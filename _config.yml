@@ -280,3 +280,6 @@ defaults:
       comments: # true
       share: true
       related: true
+
+plugins:
+  - jekyll-include-cache
