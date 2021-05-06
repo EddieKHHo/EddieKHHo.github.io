@@ -98,14 +98,14 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "bio"
   location         : "Somewhere"
-  email            : "eddie.kaho.ho@email.com"
+  email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:eddie.kaho.ho@email.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       # url: "https://twitter.com/"
