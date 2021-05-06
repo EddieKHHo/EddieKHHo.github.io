@@ -16,8 +16,8 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Site Title"
-title_separator          : "-"
+title                    : "Eddie's website"
+title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Eddie Ho"
 description              : "Desc testing."
@@ -96,9 +96,9 @@ analytics:
 author:
   name             : "Eddie Ho"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "bio"
   location         : "Somewhere"
-  email            :
+  email            : "eddie.kaho.ho@email.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
