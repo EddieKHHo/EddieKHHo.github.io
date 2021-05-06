@@ -48,3 +48,23 @@ Apply the `half` class like so to display two images side by side that share the
 	<figcaption>Caption for both images: left has link, right does not.</figcaption>
 </figure>
 
+#### Three Up
+
+Apply the `third` class like so to display three images side by side that share the same caption.
+
+```html
+<figure class="third">
+	<img src="/images/image-filename-1.jpg">
+	<img src="/images/image-filename-2.jpg">
+	<img src="/images/image-filename-3.jpg">
+	<figcaption>Caption describing these three images.</figcaption>
+</figure>
+```
+
+<figure class="third">
+	<img src="/assets/images/star_galaxy_1200x777.jpg">
+	<img src="/assets/images/star_galaxy_1200x777.jpg">
+	<img src="/assets/images/star_galaxy_1200x777.jpg">
+	<figcaption>Three images.</figcaption>
+</figure>
+
