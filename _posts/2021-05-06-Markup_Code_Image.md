@@ -4,6 +4,7 @@ title: "Markup: Post with Code/Images"
 excerpt: "Displaying code and images in posts."
 header:
   teaser: "http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg"
+share: false
 ---
 
 ## Code
@@ -25,8 +26,8 @@ Each instance of `figure` is auto-numbered and displayed in the caption.
 #### One Figure
 
 <figure>
-	<a href="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_b.jpg"><img src="http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg"></a>
-	<figcaption><a href="http://www.flickr.com/photos/80901381@N04/7758832526/">Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr</a>.</figcaption>
+	<a href="/assets/images/star_galaxy_1200x777.jpg"><img src="/assets/images/star_galaxy_1200x777.jpg"></a>
+	<figcaption>Figure caption.</figcaption>
 </figure>
 
 
