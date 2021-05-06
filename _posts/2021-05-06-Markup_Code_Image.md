@@ -6,12 +6,21 @@ header:
   teaser: "http://farm9.staticflickr.com/8426/7758832526_cc8f681e48_c.jpg"
 ---
 
+## Code
+
+If you want to have inline text use acutess `like this`.
+
+For code block use three acutes followed by the language (html, python, etc):
+```python
+import pandas as pd
+import numpy as np
+```
+
+
+## Figures (for images or video)
 
 If you want to display two or three images next to each other responsively use `figure` with the appropriate `class`.  
 Each instance of `figure` is auto-numbered and displayed in the caption.
-
-
-### Figures (for images or video)
 
 #### One Figure
 
@@ -33,11 +42,9 @@ Apply the `half` class like so to display two images side by side that share the
 </figure>
 ```
 
-And you'll get something that looks like this:
-
 <figure class="half">
 	<a href="/assets/images/star_galaxy_1200x777.jpg"><img src="/assets/images/star_galaxy_1200x777.jpg"></a>
-	<img src="/assets/images/star_galaxy_1200x777.jpg"></a>
+	<img src="/assets/images/star_galaxy_1200x777.jpg">
 	<figcaption>Caption for both images: left has link, right does not.</figcaption>
 </figure>
 
