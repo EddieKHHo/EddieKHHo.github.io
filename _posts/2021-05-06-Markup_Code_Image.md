@@ -1,9 +1,9 @@
 ---
-classes: wide
 title: "Markup: Post with Code/Images"
 excerpt: "This is the excerpt. Displaying code and images in posts."
 date: 2021-05-06
 last_modified_at: false
+# classes: wide
 toc : true
 toc_sticky: true
 ---
