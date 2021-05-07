@@ -1,4 +1,5 @@
 ---
+author_profile: false
 title: "Markup: Post with Code/Images"
 excerpt: "This is the excerpt. Displaying code and images in posts."
 date: 2021-05-06
