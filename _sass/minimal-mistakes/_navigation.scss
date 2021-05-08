@@ -236,9 +236,10 @@
 
     a {
       position: relative;
+      color: $link-color;
       &:hover{
         /*color: $text-color;*/
-        color: DarkGray;
+        color: $link-color-hover;
         text-decoration: underline;
       }
       /*
