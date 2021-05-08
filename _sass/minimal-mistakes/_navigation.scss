@@ -248,7 +248,7 @@
         -webkit-transition: $global-transition;
         transition: $global-transition;
         -webkit-transform: scaleX(0) translate3d(0, 0, 0);
-        transform: scaleX(0) translate3d(0, 0, 0); // hide
+        /*transform: scaleX(0) translate3d(0, 0, 0); // hide*/
       }
 
       &:hover:before {
