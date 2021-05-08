@@ -238,7 +238,8 @@
       position: relative;
       &:hover{
         /*color: $text-color;*/
-        color: Purple
+        color: DarkGray;
+        text-decoration: underline;
       }
       /*
       &:before {
