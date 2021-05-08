@@ -236,7 +236,9 @@
 
     a {
       position: relative;
-      color: $text-color;
+      &:hover{
+        color: $text-color;
+      }
       /*
       &:before {
         content: "";
