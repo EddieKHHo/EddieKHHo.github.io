@@ -28,7 +28,7 @@ Each instance of `figure` is auto-numbered and displayed in the caption.
 #### One Figure
 
 <figure>
-	<a href="/assets/images/star_galaxy_1200x777.jpg"><img src="/assets/images/star_galaxy_1200x777.jpg"></a>
+	<a href="/assets/images/Fig01.png"><img src="/assets/images/Fig01.png"></a>
 	<figcaption>Figure caption.</figcaption>
 </figure>
 
