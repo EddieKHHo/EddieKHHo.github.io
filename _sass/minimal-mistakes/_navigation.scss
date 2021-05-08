@@ -238,9 +238,8 @@
       position: relative;
       color: $link-color;
       &:hover{
-        /*color: $text-color;*/
         color: $link-color-hover;
-        text-decoration: underline;
+        /*text-decoration: underline;*/
       }
       /*
       &:before {
