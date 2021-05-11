@@ -123,6 +123,10 @@ g    12332
 h     6688
 Name: class, dtype: int64
 ```
+| Type | Count |
+| :--- | :---: |
+| Gamma | 12332 |
+| Hadron | 6688 |
 
 
 <figure class="half">
