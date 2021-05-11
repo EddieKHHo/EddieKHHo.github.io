@@ -136,7 +136,7 @@ Name: class, dtype: int64
 | cell1   | cell2   | cell3   |
 | cell4   | cell5   | cell6   |
 |=============================|
-| FOOT   | FOOT   | FOOT   |
+| FOOT1   | FOOT2   | FOOT3   |
 
 <figure class="half">
 	<img src="/assets/images/TestConvert_4_1.png">
