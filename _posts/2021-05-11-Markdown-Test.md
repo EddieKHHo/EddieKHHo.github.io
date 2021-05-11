@@ -9,7 +9,13 @@ header:
   teaser: "/assets/images/class.count.png"
 ---
 
-## Classifying signals from MAGIC telescope
+## Table of contents
+1. [Introduction](#first)
+2. [Target counts](#second)
+    1. [Plot of counts](#second-sub)
+3. [Another section](#third)
+
+## Classifying signals from MAGIC telescope <a name="first"></a>
 Some description text
 
 ```python
@@ -106,7 +112,7 @@ class       0
 dtype: int64
 ```
 
-## Number of hadron and gamma signals
+## Number of hadron and gamma signals <a name="second"></a>
 Plotting a histogram for counts of hardon and gamma signals.
 
 ```python
@@ -141,9 +147,12 @@ Name: class, dtype: int64
 |=============================|
 | FOOT11   | FOOT22   | FOOT33   |
 
+### plot of counts <a name="second-sub"></a>
 <figure class="half">
 	<img src="/assets/images/TestConvert_4_1.png">
   <img src="/assets/images/class.count.png">
 	<figcaption>Figure caption.</figcaption>
 </figure>
+
+## Third section <a name="third"></a>
 
