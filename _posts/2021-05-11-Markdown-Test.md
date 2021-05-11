@@ -123,6 +123,7 @@ g    12332
 h     6688
 Name: class, dtype: int64
 ```
+
 | Type   | Count  |
 | :----  | :----: |
 | Gamma  | 12332  |
@@ -136,7 +137,7 @@ Name: class, dtype: int64
 | cell1   | cell2   | cell3   |
 | cell4   | cell5   | cell6   |
 |=============================|
-| FOOT1   | FOOT2   | FOOT3   |
+| FOOT11   | FOOT22   | FOOT33   |
 
 <figure class="half">
 	<img src="/assets/images/TestConvert_4_1.png">
