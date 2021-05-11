@@ -123,11 +123,20 @@ g    12332
 h     6688
 Name: class, dtype: int64
 ```
-Type | Count
-:--- | :---:
-Gamma | 12332
-Hadron | 6688
+| Type | Count |
+| :--- | :---: |
+| Gamma | 12332 |
+| Hadron | 6688 |
 
+| Header1 | Header2 | Header3 |
+|:--------|:-------:|--------:|
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|-----------------------------|
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+|=============================|
+| Foot1   | Foot2   | Foot3   |
 
 <figure class="half">
 	<img src="/assets/images/TestConvert_4_1.png">
