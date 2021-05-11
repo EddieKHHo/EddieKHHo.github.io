@@ -46,7 +46,7 @@ print(Star.describe())
 print('-'*50)
 print(Star.isnull().sum())
 ```
-Some output
+    Some output
     --------------------------------------------------
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 19020 entries, 0 to 19019
