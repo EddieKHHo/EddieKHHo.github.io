@@ -1,5 +1,6 @@
 ---
 title: "Markup: HTML Tags and Formatting"
+date: 2021-05-04
 header:
   teaser: "assets/images/markup-syntax-highlighting-teaser.jpg"
 categories:
