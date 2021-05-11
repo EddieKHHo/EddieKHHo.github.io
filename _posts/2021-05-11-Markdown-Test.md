@@ -7,7 +7,7 @@ toc : true
 toc_sticky: true
 ---
 
-# Classifying signals from MAGIC telescope
+## Classifying signals from MAGIC telescope
 Some description text
 
 ```python
@@ -104,7 +104,7 @@ class       0
 dtype: int64
 ```
 
-# Number of hadron and gamma signals
+## Number of hadron and gamma signals
 Plotting a histogram for counts of hardon and gamma signals.
 
 ```python
