@@ -124,7 +124,7 @@ h     6688
 Name: class, dtype: int64
 ```
 | Type | Count |
-| :--- | :---: |
+| :---- | :----: |
 | Gamma | 12332 |
 | Hadron | 6688 |
 
