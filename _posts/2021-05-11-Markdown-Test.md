@@ -7,6 +7,9 @@ toc : true
 toc_sticky: true
 ---
 
+# Classifying signals from MAGIC telescope
+Some description text
+
 ```python
 %matplotlib inline
 import numpy as np
@@ -43,7 +46,7 @@ print(Star.describe())
 print('-'*50)
 print(Star.isnull().sum())
 ```
-
+Some output
     --------------------------------------------------
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 19020 entries, 0 to 19019
@@ -100,7 +103,7 @@ print(Star.isnull().sum())
     
 
 # Number of hadron and gamma signals
-
+Plotting a histogram for counts of hardon and gamma signals.
 
 ```python
 #########----------Barplot of class counts
