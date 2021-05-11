@@ -120,8 +120,9 @@ plt.show()
     
 
 
-<figure>
-	<a href="/assets/images/Fig01.png"><img src="/assets/images/Fig01.png"></a>
+<figure class="half">
+	<img src="/assets/images/TestConvert_4_1.png"></a>
+  <img src="/assets/images/class.count.png"></a>
 	<figcaption>Figure caption.</figcaption>
 </figure>
 
