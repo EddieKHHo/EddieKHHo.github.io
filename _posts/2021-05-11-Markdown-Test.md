@@ -5,6 +5,8 @@ date: 2021-05-11
 last_modified_at: false
 toc : true
 toc_sticky: true
+header:
+  teaser: "/assets/images/class.count.png"
 ---
 
 ## Classifying signals from MAGIC telescope
