@@ -15,7 +15,8 @@ header:
     1. [Plot of counts](#second-sub)
 3. [Another section](#third)
 
-## Classifying signals from MAGIC telescope <a name="first"></a>
+<a name="first"></a>
+## Classifying signals from MAGIC telescope 
 Some description text
 
 ```python
@@ -147,12 +148,14 @@ Name: class, dtype: int64
 |=============================|
 | FOOT11   | FOOT22   | FOOT33   |
 
-### plot of counts <a name="second-sub"></a>
+<a name="second-sub"></a>
+### plot of counts
 <figure class="half">
 	<img src="/assets/images/TestConvert_4_1.png">
   <img src="/assets/images/class.count.png">
 	<figcaption>Figure caption.</figcaption>
 </figure>
 
-## Third section <a name="third"></a>
+<a name="third"></a>
+## Third section
 
