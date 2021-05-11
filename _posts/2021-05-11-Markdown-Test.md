@@ -3,10 +3,9 @@ title: "Markup: ipython nbconvert output"
 excerpt: "This is the excerpt. Test markdown"
 date: 2021-05-11
 last_modified_at: false
-toc : true
-toc_sticky: true
-header:
-  teaser: "/assets/images/class.count.png"
+#toc : true
+# toc_sticky: true
+classes: wide
 ---
 
 ## Table of contents
