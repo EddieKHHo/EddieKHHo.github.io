@@ -189,7 +189,7 @@ sns.boxplot(x='class', y='fDist', data=Telescope, ax=ax[1,4])
 fig.show()
 ```
 <figure>
- 	<img src="/assets/images/05_2021/features.bloxplot.png">
+ 	<img src="/assets/images/05_2021/features.boxplot.png">
 	<figcaption>Figure 3. Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
 
@@ -235,6 +235,6 @@ ax.legend(targets, prop={'size': 15})
 ax.grid()
 ```
 <figure>
- 	<img src="/assets/images/05_2-21/pca.png">
+ 	<img src="/assets/images/05_2021/pca.png">
 	<figcaption>Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
