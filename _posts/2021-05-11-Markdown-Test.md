@@ -10,12 +10,12 @@ classes: wide
 
 ## Table of contents
 1. [Introduction](#first)
-2. [Target counts](#second)
+2. [Data exploration](#second)
     1. [Plot of counts](#second-sub)
 3. [Another section](#third)
 
 <a name="first"></a>
-## Classifying signals from MAGIC telescope 
+## Signals from MAGIC telescope 
 This dataset was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
 This dataset contains 10 features from image data of **gamma (g)** and **hadronic (h)** events.
@@ -36,7 +36,7 @@ This dataset contains 10 features from image data of **gamma (g)** and **hadroni
 I will utilize this dataset to explore several supervised machine learning algorithms aimed at classifying the events as gamma or hadronic based on these 10 features. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
 
 
-
+<a name="second"></a>
 ## Data exploration
 
 Iimport from NumPy, Pandas, MatplotLib, Seaborn and Scikit-learn
@@ -58,8 +58,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, f1_score, make_scorer, classification_report, confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
-
-
 ```
 Read the csv data file.
 
@@ -70,7 +68,7 @@ Telescope = pd.read_csv('telescope.csv')
 Examining the data structure, we see that all the features are floats and the class (g or h) is an object type.
 
 ```python
-print(Star.info())
+Star.info()
 ```
 ```
 <class 'pandas.core.frame.DataFrame'>
@@ -93,7 +91,7 @@ dtypes: float64(10), object(1)
 ```
 Since this is simulated data, there are no missing values.
 ```python
-print(Telescope.isnull().sum())
+Telescope.isnull().sum()
 ```
 ```
 fLength     0
@@ -109,12 +107,11 @@ fDist       0
 class       0
 dtype: int64
 ```
-Describing the data, we observe that the features have very different ranges. It will be important to standardize them before using them for classification.
+Describing the data, we observe that the features have very different ranges. This is not surprising, given that some features are rations and others are 3rd root of values. It will be important to standardize them prior to classification.
 ```python
-print(Telescope.describe().loc[['count','mean','std','min','50%','max']])
+Telescope.describe().loc[['count','mean','std','min','50%','max']]
 ```
 ```
---------------------------------------------------
             fLength        fWidth         fSize         fConc        fConc1  \
 count  19020.000000  19020.000000  19020.000000  19020.000000  19020.000000   
 mean      53.250154     22.180966      2.825017      0.380327      0.214657   
@@ -136,13 +133,17 @@ min     -457.916100   -331.780000   -205.894700      0.000000      1.282600
 max      575.240700    238.321000    179.851000     90.000000    495.561000  
 ```
 
-<a name="second"></a>
-## Number of hadron and gamma signals
-Plotting a histogram for counts of hardon and gamma signals.
-
+### Number of hadron and gamma signals
+There is a bias towards a higher number of data points for gamma (12332) events than hadronic (6688) events. This suggests that we should use a machine learning score that is less senstitive to this type of bias, such as the F1 score.
 ```python
-#########----------Barplot of class counts
-print(Star['class'].value_counts())
+Star['class'].value_counts()
+```
+```
+g    12332
+h     6688
+Name: class, dtype: int64
+```
+```python
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.countplot(data=Star, x='class')
 ax.set_xlabel('Class', fontsize=20)
@@ -151,29 +152,6 @@ ax.tick_params(axis='both', which='major', labelsize=18)
 plt.savefig('images/class.count.png')
 plt.show()
 ```
-```
-g    12332
-h     6688
-Name: class, dtype: int64
-```
-
-| Type   | Count  |
-| :----  | :----: |
-| Gamma  | 12332  |
-| Hadron | 6688   |
-
-| Header1 | Header2 | Header3 |
-|:--------|:-------:|--------:|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|-----------------------------|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|=============================|
-| FOOT11   | FOOT22   | FOOT33   |
-
-<a name="second-sub"></a>
-### plot of counts
 <figure class="half">
 	<img src="/assets/images/TestConvert_4_1.png">
   <img src="/assets/images/class.count.png">
