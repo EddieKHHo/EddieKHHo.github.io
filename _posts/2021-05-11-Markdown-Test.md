@@ -200,7 +200,7 @@ Here, we see that the first and second principal components explain 42% and 16% 
 scaler = StandardScaler()
 X = Telescope.drop('class', axis=1)
 X_full_scaled = scaler.fit_transform(X)
-##########----------Perform PCA with 2 components
+#####-----Perform PCA with 2 components
 pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(X_full_scaled)
 print(pca.explained_variance_ratio_) 
@@ -210,10 +210,10 @@ print(pca.explained_variance_ratio_)
 ```
 However, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma evetns.
 ```python
-##########----------Create dataframe for plotting
+#####-----Create dataframe for plotting
 dfPC = pd.DataFrame(data = principalComponents, columns = ['principal component 1', 'principal component 2'])
 dfFinal = pd.concat([dfPC, Telescope[['class']]], axis = 1)
-##########----------Plot data of PC axes
+#####-----Plot data of PC axes
 fig = plt.figure(figsize = (10,10))
 ax = fig.add_subplot(1,1,1) 
 ax.set_xlabel('Principal Component 1', fontsize = 15)
