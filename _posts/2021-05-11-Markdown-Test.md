@@ -181,7 +181,7 @@ fig.show()
 	<figcaption>Figure 3. Boxplot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
 
-## Principal components analysis
+<h3>Principal components analysis</h3>
 For classification problems, I typically perform a PCA to reduce dimensionality and see if the classes can be separated visually. 
 Here, we see that the first and second principal components explain 42% and 16% of the variance.
 
