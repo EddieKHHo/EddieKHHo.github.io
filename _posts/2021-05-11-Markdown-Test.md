@@ -30,7 +30,7 @@ I will utilize this dataset to explore several supervised machine learning algor
 
 ## Data exploration
 
-Iimport from NumPy, Pandas, MatplotLib, Seaborn and Scikit-learn
+Import from NumPy, Pandas, MatplotLib, Seaborn and Scikit-learn
 
 ```
 import numpy as np
@@ -124,7 +124,7 @@ max      575.240700    238.321000    179.851000     90.000000    495.561000
 ```
 
 ### Count of events
-There is a bias towards a higher number of data points for gamma (12332) events than hadronic (6688) events. This suggests that we should use a machine learning score that is less senstitive to this type of bias, such as the F1 score.
+There is a bias towards a higher number of data points for gamma (12332) events than hadronic (6688) events. This suggests that we should use a machine learning score that is less sensitive to this type of bias, such as the F1 score.
 ```python
 Star['class'].value_counts()
 ```
@@ -144,8 +144,9 @@ plt.show()
 ```
 <figure>
  	<img src="/assets/images/05_2021/class.count.png">
-	<figcaption>Counts of gamma (g) and hadronic (h) events.</figcaption>
+	<figcaption>Figure 1. Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
+
 ### Pair plot of all features
 
 ```python
@@ -155,8 +156,9 @@ pp._legend.remove()
 ```
 <figure>
  	<img src="/assets/images/05_2021/features.pairplot.png">
-	<figcaption>Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption>Figure 2. Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 ### Boxplot of features
 We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
 ```python
@@ -176,9 +178,8 @@ fig.show()
 ```
 <figure>
  	<img src="/assets/images/05_2021/features.boxplot.png">
-	<figcaption>Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption>Figure 3. Boxplot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
-
 
 ### Principal components analysis
 For classification problems, I typically perform a PCA to reduce dimensionality and see if the classes can be separated visually. 
@@ -222,8 +223,9 @@ ax.grid()
 ```
 <figure>
  	<img src="/assets/images/05_2021/pca.png">
-	<figcaption>Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption>Figure 4. Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 
 ## Data preprocessing
 
@@ -265,7 +267,7 @@ X_test = scaler.transform(X_test)
 
 Here I explore using nearest neighbors, decision tree, random forest, and neural networks to classify the data. Since the number of gamma and hadron events are unbiased, I will focus on using the F1 score to determine the fit of the model. For each classifier, I will first perform optimization using `GridSearchCV` or `RandomizedSearchCV` to find the hyperparameters that maximize F1 on the training set. This will be followed by some exploratory analysis on the effects of select hyperparameters when performing cross-validation on the training set and ultimately when making predictions for the test set.
 
-Below are just some wrapper functions used for fine-tuning hyperparameters.
+Below are wrapper functions for fine-tuning hyperparameters.
 
 ```python
 def grid_search_wrapper(model, parameters, cv, scoring):
@@ -305,7 +307,7 @@ def random_search_wrapper(model, parameters, cv, scoring, n_iter):
 
 ### Hyperparameter tuning
 
-I will fine-tune *weights*, *n_neighbors*, and *p* utilize `StratifiedKFold` for cross-validation with 5 folds. This totals to 160 candidate models and 800 fits after accounting for cross-validation.
+Fine-tune *weights*, *n_neighbors*, and *p*. Utilize `StratifiedKFold` for cross-validation with 5 folds. This totals to 160 candidate models and 800 fits after accounting for cross-validation.
 
 ```python
 # Define model and parameters
@@ -315,7 +317,6 @@ parameters = {'weights':['uniform','distance'],
               'n_neighbors':[x for x in range(1, 41)],
               'p':[1,2]}
 scoring = make_scorer(f1_score)
-
 # Grid search
 grid_search_wrapper(model, parameters, cv, scoring)
 ```
@@ -337,35 +338,35 @@ Accuracy: 0.843322818086225
 Here I explore the effects of *weights* and *n_neighbors* on F1, fixing *p*=1 as suggested by the best model above.
 
 ```python
-##########----------Parameters
+# Parameters
 p = 1
 list_weights = ['uniform','distance']
 list_n_neighbors = [x for x in range(1, 21)]+[25,30]
 n_splits, scoring = 10, make_scorer(f1_score)
 
-##########----------Loop through all parameter combinations
+# Loop through all parameter combinations
 results_cv = pd.DataFrame(columns=['weights','n_neighbors','CV_score'])
 results_smy = pd.DataFrame(columns=['weights','n_neighbors','CV_mean_score','CV_std_score','Test_score'])
 for weights in list_weights:
     for n_neighbors in list_n_neighbors:
-        #####-----define model and cv
+        # define model and cv
         model = KNeighborsClassifier(p=p, weights=weights, n_neighbors=n_neighbors)
         cv = StratifiedKFold(n_splits=n_splits)
-        #####-----Cross-validation results
+        # Cross-validation results
         n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
         CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
-        #####-----Test set results
+        # Test set results
         model = model.fit(X_train, Y_train)
         Y_pred = model.predict(X_test)
         Test_score = f1_score(Y_test, Y_pred)
-        #####-----record all cv data
+        # record all cv data
         for CV_score in n_scores:
             results_cv.loc[len(results_cv)] = [weights, n_neighbors, CV_score]
-        #####-----record summary data
+        # record summary data
         results_smy.loc[len(results_smy)] = [weights, n_neighbors, CV_mean_score, CV_std_score, Test_score]
 ```
 
-When we plot these scores we find a few interesting patterns.
+When we plot these scores we find these patterns.
 
 1. Indeed *distance* weights perform better than *uniform* weights for all number of neighbors
 2. F1 rises quickly from 1 to 5 neighbors and slowly decreases with increasing neighbors.
@@ -375,16 +376,170 @@ When we plot these scores we find a few interesting patterns.
 <figure class="half">
  	<img src="/assets/images/05_2021/nn.cv.png">
     <img src="/assets/images/05_2021/nn.smy.png">
-	<figcaption>Cross-validation and test scores for nearest neighbor classifiers</figcaption>
+	<figcaption>Figure 5. Cross-validation and test scores for nearest neighbor classifiers</figcaption>
 </figure>
+
 
 ## Decision tree classifier
 
+### Hyperparameter tuning
 
+Fine-tune *criterion*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 5 folds. This totals to 72 candidate models and 360 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
+
+``` python
+# Define model and parameters
+model = DecisionTreeClassifier()
+cv = StratifiedKFold(n_splits=5)
+parameters = {'criterion':['gini','entropy'],
+              'max_depth':[5,10,15],
+              'min_samples_split':[40,50,60,70],
+              'min_samples_leaf':[5,10,15]}
+scoring = make_scorer(f1_score)
+# Grid search
+grid_search_wrapper(model, parameters, cv, scoring)
+```
+
+The best model has a training F1 of 0.762 and a test F1 of 0.772
+
+```
+GS best parameters:  {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 10, 'min_samples_split': 60}
+GS best score:  0.761903175240568
+Confusion matrix:
+ [[3404  296]
+ [ 558 1448]]
+F1: 0.7722666666666668
+Accuracy: 0.8503329828250964
+```
+
+### Explore hyperparameters
+
+Here I explore the effects of *criterion* and *max_depth* on F1, fixing the other variables according to the best model above.
+
+```python
+# Parameters
+min_samples_split, min_samples_leaf = 60, 10
+list_criterion = ['gini', 'entropy']
+list_max_depth = [2,4,6,8,10,12,14,16,18,20]
+
+# Loop through all parameter combinations
+results_cv = pd.DataFrame(columns=['criterion','max_depth','CV_score'])
+results_smy = pd.DataFrame(columns=['criterion','max_depth','CV_mean_score','CV_std_score','Test_score'])
+for criterion in list_criterion:
+    for max_depth in list_max_depth:
+        # define model and cv
+        model = DecisionTreeClassifier(criterion=criterion, max_depth=max_depth, 
+                                       min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf)
+        cv = StratifiedKFold(n_splits=10)
+        # Cross-validation results
+        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
+        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
+        # Test set results
+        model = model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_test)
+        Test_score = f1_score(Y_test, Y_pred)
+        # record all cv data
+        for CV_score in n_scores:
+            results_cv.loc[len(results_cv)] = [criterion, max_depth, CV_score]
+        # record summary data
+        results_smy.loc[len(results_smy)] = [criterion, max_depth, CV_mean_score, CV_std_score, Test_score]
+```
+
+Plotting these scores show some interesting patterns.
+
+1. Increasing *max_depth* from 2 to 10 raises F1 very quickly.
+2. There is evidence of overfitting. The optimal model from hyperparameter tuning suggests using the criterion *gini*. This is observed in the cross-validation scores, however the test score is actually lower when using *gini* compared to *entropy*. This suggest that using the slightly less optimal model with the *entropy* criterion would avoid some of this overfitting to the training set and make better predictions for the test set.
+
+<figure class="half">
+ 	<img src="/assets/images/05_2021/dt.cv.png">
+    <img src="/assets/images/05_2021/dt.smy.png">
+	<figcaption>Figure 6. Cross-validation and test scores for decision tree classifiers</figcaption>
+</figure>
 
 ## Random forest classifier
 
+### Hyperparameter tuning
 
+Fine-tune *criterion*, *n_estimators*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 3 folds. We will perform a **randomized grid search** with 200 iterations which amounts to 600 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
+
+```python
+# Define model. cross-val, parameters
+model = RandomForestClassifier()
+cv = StratifiedKFold(n_splits=3)
+parameters = {
+    'criterion':['gini','entropy'],
+    'n_estimators': [200, 300, 400, 500],
+    'max_features': ['sqrt', 'log2'],
+    'max_depth': [20, 30, 40, 50, 60],
+    'min_samples_split': [5,10,15,20],
+    'min_samples_leaf': [2,4,6,8,10]}
+scoring = make_scorer(f1_score)
+n_iter = 200
+# Grid search
+random_search_wrapper(model, parameters, cv, scoring, n_iter=n_iter)
+```
+
+The best model has a training F1 of 0.809 and a test F1 of 0.817.
+
+```
+GS best parameters:  {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 40, 'criterion': 'gini'}
+GS best score:  0.8085174923910863
+Confusion matrix:
+ [[3494  206]
+ [ 479 1527]]
+F1: 0.8167959347419096
+Accuracy: 0.8799509288468279
+```
+
+### Explore hyperparameters
+
+Here I explore the effects of *n_estimators* and *max_depth* on F1, fixing the other variables according to the best model above.
+
+```python
+# Parameters
+criterion, min_samples_split, min_samples_leaf, max_features = 'entropy', 5, 2, 'sqrt'
+list_n_estimators = [2,4,6,8,10,20,50,100,200,300,400]
+list_max_depth = [10,20,30,40,50,60]
+
+# Loop through all parameter combinations
+results_cv = pd.DataFrame(columns=['n_estimators','max_depth','CV_score'])
+results_smy = pd.DataFrame(columns=['n_estimators','max_depth','CV_mean_score','CV_std_score','Test_score'])
+for n_estimators in list_n_estimators:
+    for max_depth in list_max_depth:
+        # define model and cv
+        model = RandomForestClassifier(
+            criterion=criterion, max_features=max_features, max_depth=max_depth,
+            n_estimators=n_estimators,min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf)
+        cv = StratifiedKFold(n_splits=10)
+        # Cross-validation results
+        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
+        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
+        # Test set results
+        model = model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_test)
+        Test_score = f1_score(Y_test, Y_pred)
+        # record all cv data
+        for CV_score in n_scores:
+            results_cv.loc[len(results_cv)] = [n_estimators, max_depth, CV_score]
+        # record summary data
+        results_smy.loc[len(results_smy)] = [n_estimators, max_depth, CV_mean_score, CV_std_score, Test_score]
+```
+
+Plotting these scores show some interesting patterns.
+
+1. Although the optimal *n_estimators* is 300, we can obtain a high F1 with just around 50 trees. Running 50 rather than 300 trees can save a lot of time.
+2. Similarly, a high F1 score is obtained once *max_depth* is larger than 10. There is not much difference when setting *max_depth* to 20, 40, or 60. 
+
+<figure class="half">
+ 	<img src="/assets/images/05_2021/rf.cv.png">
+    <img src="/assets/images/05_2021/rf.smy.png">
+	<figcaption>Figure 7. Cross-validation and test scores for random forest classifiers</figcaption>
+</figure>
 
 ## Neural network classifier
+
+### Hyperparameter tuning
+
+
+
+### Explore hyperparameters
 
