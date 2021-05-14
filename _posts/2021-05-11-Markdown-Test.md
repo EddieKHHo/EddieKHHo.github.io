@@ -8,13 +8,6 @@ toc_sticky: true
 # classes: wide
 ---
 
-## Table of contents
-1. [Introduction](#first)
-2. [Data exploration](#second)
-    1. [Plot of counts](#second-sub)
-3. [Another section](#third)
-
-<a name="first"></a>
 ## Signals from MAGIC telescope 
 This dataset was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
@@ -35,8 +28,6 @@ This dataset contains 10 features from image data of **gamma (g)** and **hadroni
 
 I will utilize this dataset to explore several supervised machine learning algorithms aimed at classifying the events as gamma or hadronic based on these 10 features. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
 
-
-<a name="second"></a>
 ## Data exploration
 
 Iimport from NumPy, Pandas, MatplotLib, Seaborn and Scikit-learn
@@ -132,7 +123,7 @@ min     -457.916100   -331.780000   -205.894700      0.000000      1.282600
 max      575.240700    238.321000    179.851000     90.000000    495.561000  
 ```
 
-### Number of hadron and gamma signals
+### Count of events
 There is a bias towards a higher number of data points for gamma (12332) events than hadronic (6688) events. This suggests that we should use a machine learning score that is less senstitive to this type of bias, such as the F1 score.
 ```python
 Star['class'].value_counts()
@@ -155,9 +146,6 @@ plt.show()
  	<img src="/assets/images/05_2021/class.count.png">
 	<figcaption>Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
-
-
-<a name="third"></a>
 ### Pair plot of all features
 
 ```python
@@ -169,9 +157,7 @@ pp._legend.remove()
  	<img src="/assets/images/05_2021/features.pairplot.png">
 	<figcaption>Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
-
-
-### Boxplot of features separated by class
+### Boxplot of features
 We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
 ```python
 sns.set_context("paper", rc={"axes.labelsize":20})
@@ -199,11 +185,11 @@ For classification problems, I typically perform a PCA to reduce dimensionality 
 Here, we see that the first and second principal components explain 42% and 16% of the variance.
 
 ```python
-#####-----Get features and standardize using StandardScaler()
+# Get features and standardize using StandardScaler()
 scaler = StandardScaler()
 X = Telescope.drop('class', axis=1)
 X_full_scaled = scaler.fit_transform(X)
-#####-----Perform PCA with 2 components
+# Perform PCA with 2 components
 pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(X_full_scaled)
 print(pca.explained_variance_ratio_) 
@@ -213,10 +199,10 @@ print(pca.explained_variance_ratio_)
 ```
 However, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma events.
 ```python
-#####-----Create dataframe for plotting
+# Create dataframe for plotting
 dfPC = pd.DataFrame(data = principalComponents, columns = ['principal component 1', 'principal component 2'])
 dfFinal = pd.concat([dfPC, Telescope[['class']]], axis = 1)
-#####-----Plot data of PC axes
+# Plot data of PC axes
 fig = plt.figure(figsize = (10,10))
 ax = fig.add_subplot(1,1,1) 
 ax.set_xlabel('Principal Component 1', fontsize = 15)
@@ -287,12 +273,12 @@ def grid_search_wrapper(model, parameters, cv, scoring):
     Perform grid search given model and parameters
     Outputs parameters and scores for best model
     '''
-    ##########----------Perform grid search
+    # Perform grid search
     model_GS = GridSearchCV(model, parameters, cv=cv, scoring=scoring, verbose=1, n_jobs = 3)
     model_GS.fit(X_train, Y_train)
     print('GS best parameters: ',model_GS.best_params_)
     print('GS best score: ',model_GS.best_score_)
-    ##########----------Test score
+    # Test score
     Y_pred = model_GS.predict(X_test)
     print("Confusion matrix:\n", confusion_matrix(Y_test, Y_pred))
     print("F1:", f1_score(Y_test, Y_pred))
@@ -303,21 +289,91 @@ def random_search_wrapper(model, parameters, cv, scoring, n_iter):
     Perform randomized search given model and parameters
     Outputs parameters and scores for best model
     '''
-    ##########----------Perform grid search
+    # Perform grid search
     model_GS = RandomizedSearchCV(model, parameters, cv=cv, scoring=scoring, n_iter=n_iter, verbose=1, n_jobs = 3)
     model_GS.fit(X_train, Y_train)
     print('GS best parameters: ',model_GS.best_params_)
     print('GS best score: ',model_GS.best_score_)
-    ##########----------Test score
+    # Test score
     Y_pred = model_GS.predict(X_test)
     print("Confusion matrix:\n", confusion_matrix(Y_test, Y_pred))
     print("F1:", f1_score(Y_test, Y_pred))
     print("Accuracy:", accuracy_score(Y_test, Y_pred))
 ```
 
+## Nearest neighbors classifier
 
+### Hyperparameter tuning
 
-### Nearest neighbors classifier
+I will fine-tune *weights*, *n_neighbors*, and *p* utilize `StratifiedKFold` for cross-validation with 5 folds. This totals to 160 candidate models and 800 fits after accounting for cross-validation.
 
+```python
+# Define model and parameters
+model = KNeighborsClassifier()
+cv = StratifiedKFold(n_splits=5)
+parameters = {'weights':['uniform','distance'],
+              'n_neighbors':[x for x in range(1, 41)],
+              'p':[1,2]}
+scoring = make_scorer(f1_score)
 
+# Grid search
+grid_search_wrapper(model, parameters, cv, scoring)
+```
 
+The best model has a training F1 of 0.736, and a test F1 of 0.743. 
+
+```
+GS best parameters:  {'n_neighbors': 5, 'p': 1, 'weights': 'distance'}
+GS best score:  0.7361074720702369
+Confusion matrix:
+ [[3520  180]
+ [ 714 1292]]
+F1: 0.7429557216791258
+Accuracy: 0.843322818086225
+```
+
+### Explore hyperparameters
+
+Here I explore the effects of *weights* and *n_neighbors* on F1, fixing *p*=1 as suggested by the best model above.
+
+```python
+##########----------Parameters
+p = 1
+list_weights = ['uniform','distance']
+list_n_neighbors = [x for x in range(1, 21)]+[25,30]
+n_splits, scoring = 10, make_scorer(f1_score)
+
+##########----------Loop through all parameter combinations
+results_cv = pd.DataFrame(columns=['weights','n_neighbors','CV_score'])
+results_smy = pd.DataFrame(columns=['weights','n_neighbors','CV_mean_score','CV_std_score','Test_score'])
+for weights in list_weights:
+    for n_neighbors in list_n_neighbors:
+        #####-----define model and cv
+        model = KNeighborsClassifier(p=p, weights=weights, n_neighbors=n_neighbors)
+        cv = StratifiedKFold(n_splits=n_splits)
+        #####-----Cross-validation results
+        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
+        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
+        #####-----Test set results
+        model = model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_test)
+        Test_score = f1_score(Y_test, Y_pred)
+        #####-----record all cv data
+        for CV_score in n_scores:
+            results_cv.loc[len(results_cv)] = [weights, n_neighbors, CV_score]
+        #####-----record summary data
+        results_smy.loc[len(results_smy)] = [weights, n_neighbors, CV_mean_score, CV_std_score, Test_score]
+```
+
+When we plot these scores we find a few interesting patterns.
+
+1. Indeed *distance* weights perform better than *uniform* weights for all number of neighbors
+2. F1 rises quickly from 1 to 5 neighbors and slowly decreases with increasing neighbors.
+3. The optimal *n_neighbors* is actually 6 for the test set, rather than 5 for the training set.
+4. There is a very strange pattern where F1 fluctuates between high and low for odd and even *n_neighbors* when using the *uniform* weight, but fluctuates between low and high for odd and even *n_neighbors* when using the *distance* weight. **I do not have an explanation for this!**
+
+<figure class="half">
+ 	<img src="/assets/images/05_2021/nn.cv.png">
+    <img src="/assets/images/05_2021/nn.smy.png">
+	<figcaption></figcaption>
+</figure>
