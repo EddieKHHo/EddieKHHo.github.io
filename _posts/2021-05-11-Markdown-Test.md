@@ -18,7 +18,7 @@ classes: wide
 ## Classifying signals from MAGIC telescope 
 This dataset was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
-This dataset contains 10 features from imaging data for **gamma (g)** and **hadronic (h)** events.
+This dataset contains 10 features from image data of **gamma (g)** and **hadronic (h)** events.
 
 | Feature  | Description                                           |
 | -------- | ----------------------------------------------------- |
@@ -32,6 +32,10 @@ This dataset contains 10 features from imaging data for **gamma (g)** and **hadr
 | fM3Trans | 3rd root of third moment along minor axis [mm]        |
 | fAlpha   | Angle of major axis with vector to origin [deg]       |
 | fDist    | Distance from origin to center of ellipse [mm]        |
+
+I will utilize this dataset to explore several supervised machine learning algorithms aimed at classifying the events as gamma or hadronic based on these 10 features.
+
+
 
 ```python
 %matplotlib inline
