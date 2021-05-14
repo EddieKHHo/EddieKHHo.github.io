@@ -123,7 +123,7 @@ min     -457.916100   -331.780000   -205.894700      0.000000      1.282600
 max      575.240700    238.321000    179.851000     90.000000    495.561000  
 ```
 
-### Count of events
+<h3>Count of events</h3>
 There is a bias towards a higher number of data points for gamma (12332) events than hadronic (6688) events. This suggests that we should use a machine learning score that is less sensitive to this type of bias, such as the F1 score.
 ```python
 Star['class'].value_counts()
@@ -147,7 +147,7 @@ plt.show()
 	<figcaption>Figure 1. Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
 
-### Pair plot of all features
+<h3>Pair plot of all features</h3>
 
 ```python
 sns.set_context("paper", rc={"axes.labelsize":20})
@@ -159,7 +159,7 @@ pp._legend.remove()
 	<figcaption>Figure 2. Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
 
-### Boxplot of features
+<h3>Boxplot of features</h3>
 We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
 ```python
 sns.set_context("paper", rc={"axes.labelsize":20})
@@ -181,7 +181,7 @@ fig.show()
 	<figcaption>Figure 3. Boxplot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
 
-### Principal components analysis
+## Principal components analysis
 For classification problems, I typically perform a PCA to reduce dimensionality and see if the classes can be separated visually. 
 Here, we see that the first and second principal components explain 42% and 16% of the variance.
 
@@ -305,7 +305,7 @@ def random_search_wrapper(model, parameters, cv, scoring, n_iter):
 
 ## Nearest neighbors classifier
 
-### Hyperparameter tuning
+<h3>Hyperparameter tuning</h3>
 
 Fine-tune *weights*, *n_neighbors*, and *p*. Utilize `StratifiedKFold` for cross-validation with 5 folds. Perform **grid search** on 160 models and 800 fits after accounting for cross-validation.
 
@@ -333,7 +333,7 @@ F1: 0.7429557216791258
 Accuracy: 0.843322818086225
 ```
 
-### Explore hyperparameters
+<h3>Explore hyperparameters</h3>
 
 Here I explore the effects of *weights* and *n_neighbors* on F1, fixing *p*=1 as suggested by the best model above.
 
@@ -382,7 +382,7 @@ Plotting these scores show some interesting patterns.
 
 ## Decision tree classifier
 
-### Hyperparameter tuning
+<h3>Hyperparameter tuning</h3>
 
 Fine-tune *criterion*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 5 folds. Perform **grid search** on 72 candidate models and 360 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
 
@@ -411,7 +411,7 @@ F1: 0.7722666666666668
 Accuracy: 0.8503329828250964
 ```
 
-### Explore hyperparameters
+<h3>Explore hyperparameters</h3>
 
 Here I explore the effects of *criterion* and *max_depth* on F1, fixing the other variables according to the best model above.
 
@@ -457,7 +457,7 @@ Plotting these scores show some interesting patterns.
 
 ## Random forest classifier
 
-### Hyperparameter tuning
+<h3>Hyperparameter tuning</h3>
 
 Fine-tune *criterion*, *n_estimators*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 3 folds. Perform **randomized grid search** with 200 iterations which amounts to 600 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
 
@@ -490,7 +490,7 @@ F1: 0.8167959347419096
 Accuracy: 0.8799509288468279
 ```
 
-### Explore hyperparameters
+<h3>Explore hyperparameters</h3>
 
 Here I explore the effects of *n_estimators* and *max_depth* on F1, fixing the other variables according to the best model above.
 
@@ -537,7 +537,7 @@ Plotting these scores show some interesting patterns.
 
 ## Neural network classifier
 
-### Hyperparameter tuning
+<h3>Hyperparameter tuning</h3>
 
 Fine-tune *hidden_layer_sizes*, *activation*, *solver*, *alpha*, and *learning_rate*. Utilize `StratifiedKFold` for cross-validation with 3 folds. Perform **grid search** on 288 models which amounts to 864fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
 
@@ -572,7 +572,7 @@ F1: 0.8110599078341013
 Accuracy: 0.8778478794251665
 ```
 
-### Explore hyperparameters (one hidden layer)
+<h3>Explore hyperparameters (one hidden layers)</h3>
 
 Here I explore the effects of *activation* function and the number of nodes in a network with **one hidden layer**. Hyperparameters for other arguments are assigned based on the best model from above.
 
@@ -619,7 +619,7 @@ Plotting these scores show some interesting patterns.
 	<figcaption>Figure 8. Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
 </figure>
 
-### Explore hyperparameters (two hidden layers)
+<h3>Explore hyperparameters (two hidden layers)</h3>
 
 Here I explore the effects of *activation* function and the number of nodes in a network with **two hidden layers**.  I will set the number of nodes in the first layer as 20 and vary the number of nodes in the second layer. Hyperparameters for other arguments are assigned based on the best model from above.
 
