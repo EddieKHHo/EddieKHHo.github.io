@@ -8,7 +8,7 @@ toc_sticky: true
 # classes: wide
 ---
 
-## Signals from MAGIC telescope 
+## Signals from MAGIC telescopes
 This dataset was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
 This dataset contains 10 features from image data of **gamma (g)** and **hadronic (h)** events.
@@ -307,7 +307,7 @@ def random_search_wrapper(model, parameters, cv, scoring, n_iter):
 
 ### Hyperparameter tuning
 
-Fine-tune *weights*, *n_neighbors*, and *p*. Utilize `StratifiedKFold` for cross-validation with 5 folds. This totals to 160 candidate models and 800 fits after accounting for cross-validation.
+Fine-tune *weights*, *n_neighbors*, and *p*. Utilize `StratifiedKFold` for cross-validation with 5 folds. Perform **grid search** on 160 models and 800 fits after accounting for cross-validation.
 
 ```python
 # Define model and parameters
@@ -366,7 +366,7 @@ for weights in list_weights:
         results_smy.loc[len(results_smy)] = [weights, n_neighbors, CV_mean_score, CV_std_score, Test_score]
 ```
 
-When we plot these scores we find these patterns.
+Plotting these scores show some interesting patterns.
 
 1. Indeed *distance* weights perform better than *uniform* weights for all number of neighbors
 2. F1 rises quickly from 1 to 5 neighbors and slowly decreases with increasing neighbors.
@@ -384,7 +384,7 @@ When we plot these scores we find these patterns.
 
 ### Hyperparameter tuning
 
-Fine-tune *criterion*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 5 folds. This totals to 72 candidate models and 360 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
+Fine-tune *criterion*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 5 folds. Perform **grid search** on 72 candidate models and 360 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
 
 ``` python
 # Define model and parameters
@@ -459,7 +459,7 @@ Plotting these scores show some interesting patterns.
 
 ### Hyperparameter tuning
 
-Fine-tune *criterion*, *n_estimators*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 3 folds. We will perform a **randomized grid search** with 200 iterations which amounts to 600 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
+Fine-tune *criterion*, *n_estimators*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 3 folds. Perform **randomized grid search** with 200 iterations which amounts to 600 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
 
 ```python
 # Define model. cross-val, parameters
@@ -539,7 +539,132 @@ Plotting these scores show some interesting patterns.
 
 ### Hyperparameter tuning
 
+Fine-tune *hidden_layer_sizes*, *activation*, *solver*, *alpha*, and *learning_rate*. Utilize `StratifiedKFold` for cross-validation with 3 folds. Perform **grid search** on 288 models which amounts to 864fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
 
+I will only be testing networks with one and two hidden layers. As will be shown later, adding a second hidden layer does not improve the performance of the classifier very much.
 
-### Explore hyperparameters
+```python
+# Define model. cross-val, parameters
+model = MLPClassifier()
+cv = StratifiedKFold(n_splits=3)
+parameters = {
+    'hidden_layer_sizes': [(5),(10),(20),(5,5),(10,10),(20,20)],
+    'activation': ['identity','logistic','tanh','relu'],
+    'solver': ['lbfgs,''sgd', 'adam'],
+    'alpha': [0.0001, 0.001, 0.01],
+    'learning_rate': ['constant','adaptive'],
+    'max_iter': [1000]
+}
+scoring = make_scorer(f1_score)
+# Grid search
+grid_search_wrapper(model, parameters, cv, scoring)
+```
+
+The best model has a training F1 of 0.804 and a test F1 of 0.811.
+
+```
+GS best parameters:  {'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (20, 20), 'learning_rate': 'adaptive', 'max_iter': 1000, 'solver': 'adam'}
+GS best score:  0.8036652051440711
+Confusion matrix:
+ [[3513  187]
+ [ 510 1496]]
+F1: 0.8110599078341013
+Accuracy: 0.8778478794251665
+```
+
+### Explore hyperparameters (one hidden layer)
+
+Here I explore the effects of *activation* function and the number of nodes in a network with **one hidden layer**. Hyperparameters for other arguments are assigned based on the best model from above.
+
+```python
+# Parameters
+solver, max_iter, learning_rate, alpha = 'adam', 1000, 'adaptive', 0.0001
+list_activation = ['identity','logistic','tanh','relu']
+list_num_node = [2,4,6,8,10,15,20,25]
+
+# Loop through all parameter combinations
+results_cv = pd.DataFrame(columns=['activation','num_node','CV_score'])
+results_smy = pd.DataFrame(columns=['activation','num_node','CV_mean_score','CV_std_score','Test_score'])
+for activation in list_activation:
+    for num_node in list_num_node:
+        # define hidden layers
+        hidden_layer_sizes = (num_node)
+        # define model and cv
+        model = MLPClassifier(
+            activation=activation, solver=solver, hidden_layer_sizes=hidden_layer_sizes,
+            max_iter=max_iter, learning_rate=learning_rate, alpha=alpha)
+        cv = StratifiedKFold(n_splits=10)
+        # Cross-validation results
+        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
+        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
+        # Test set results
+        model = model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_test)
+        Test_score = f1_score(Y_test, Y_pred)
+        # record all cv data
+        for CV_score in n_scores:
+            results_cv.loc[len(results_cv)] = [activation, num_node, CV_score]
+        # record summary data
+        results_smy.loc[len(results_smy)] = [activation, num_node, CV_mean_score, CV_std_score, Test_score]
+```
+
+Plotting these scores show some interesting patterns.
+
+1. The *identity* activation function performs far worse then the other activation functions.
+2. F1 score increases sharply from 2 to 10 nodes and plateaus afterwards.
+
+<figure class="half">
+ 	<img src="/assets/images/05_2021/nnet.01.cv.png">
+    <img src="/assets/images/05_2021/nnet.01.smy.png">
+	<figcaption>Figure 8. Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
+</figure>
+
+### Explore hyperparameters (two hidden layers)
+
+Here I explore the effects of *activation* function and the number of nodes in a network with **two hidden layers**.  I will set the number of nodes in the first layer as 20 and vary the number of nodes in the second layer. Hyperparameters for other arguments are assigned based on the best model from above.
+
+```python
+# Parameters
+solver, max_iter, learning_rate, alpha = 'adam', 1000, 'adaptive', 0.0001
+list_activation = ['identity','logistic','tanh','relu']
+list_num_node = [2,4,6,8,10,15,20,25]
+
+# Loop through all parameter combinations
+results_cv = pd.DataFrame(columns=['activation','num_node','CV_score'])
+results_smy = pd.DataFrame(columns=['activation','num_node','CV_mean_score','CV_std_score','Test_score'])
+for activation in list_activation:
+    for num_node in list_num_node:
+        # define model and cv
+        hidden_layer_sizes = (20, num_node)
+        model = MLPClassifier(
+            activation=activation, solver=solver, hidden_layer_sizes=hidden_layer_sizes,
+            max_iter=max_iter, learning_rate=learning_rate, alpha=alpha)
+        cv = StratifiedKFold(n_splits=10)
+        # Cross-validation results
+        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
+        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
+        # Test set results
+        model = model.fit(X_train, Y_train)
+        Y_pred = model.predict(X_test)
+        Test_score = f1_score(Y_test, Y_pred)
+        # record all cv data
+        for CV_score in n_scores:
+            results_cv.loc[len(results_cv)] = [activation, num_node, CV_score]
+        # record summary data
+        results_smy.loc[len(results_smy)] = [activation, num_node, CV_mean_score, CV_std_score, Test_score]
+```
+
+Plotting these scores show some interesting patterns.
+
+1. The *identity* activation function performs far worse then the other activation functions.
+2. The number of nodes in the second layer has very effect on F1, but does have a higher score than models with just one hidden layer.
+3. The *tanh* activation function is clearly the best model (based on test scores) when there are two hidden layers, followed by *relu* and *logistic*. This was less clear in the model with one hidden layer. 
+
+<figure class="half">
+ 	<img src="/assets/images/05_2021/nnet.02.cv.png">
+    <img src="/assets/images/05_2021/nnet.02.smy.png">
+	<figcaption>Figure 9. Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
+</figure>
+
+## Summary
 
