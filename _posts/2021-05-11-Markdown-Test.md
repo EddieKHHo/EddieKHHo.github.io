@@ -153,7 +153,7 @@ plt.show()
 ```
 <figure>
  	<img src="/assets/images/05_2021/class.count.png">
-	<figcaption>Figure 1. Counts of gamma (g) and hadronic (h) events.</figcaption>
+	<figcaption>Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
 
 
@@ -167,7 +167,7 @@ pp._legend.remove()
 ```
 <figure>
  	<img src="/assets/images/05_2021/features.pairplot.png">
-	<figcaption>Figure 2. Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption>Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
 
 
@@ -190,7 +190,7 @@ fig.show()
 ```
 <figure>
  	<img src="/assets/images/05_2021/features.boxplot.png">
-	<figcaption>Figure 3. Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption>Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
 
 
