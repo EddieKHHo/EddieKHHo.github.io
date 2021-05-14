@@ -677,3 +677,8 @@ Plotting these scores show some interesting patterns.
 | Random forest    | 0.809       | 0.817   |
 | Neural network   | 0.804       | 0.811   |
 
+<h2>Test h2</h2>
+
+<h3>Test h3</h3>
+
+<h4>Test h4</h4>
