@@ -1,5 +1,5 @@
 ---
-title: "Markup: ipython nbconvert output"
+title: "Machine learning: Classifying telescope images"
 excerpt: "This is the excerpt. Test markdown"
 date: 2021-05-11
 last_modified_at: false
@@ -370,10 +370,21 @@ When we plot these scores we find a few interesting patterns.
 1. Indeed *distance* weights perform better than *uniform* weights for all number of neighbors
 2. F1 rises quickly from 1 to 5 neighbors and slowly decreases with increasing neighbors.
 3. The optimal *n_neighbors* is actually 6 for the test set, rather than 5 for the training set.
-4. There is a very strange pattern where F1 fluctuates between high and low for odd and even *n_neighbors* when using the *uniform* weight, but fluctuates between low and high for odd and even *n_neighbors* when using the *distance* weight. **I do not have an explanation for this!**
+4. There is a very strange pattern where F1 fluctuates between high and low for odd and even *n_neighbors* when using the *uniform* weight, but goes the opposite way when using the *distance* weight. **I do not have an explanation for this!**
 
 <figure class="half">
  	<img src="/assets/images/05_2021/nn.cv.png">
     <img src="/assets/images/05_2021/nn.smy.png">
-	<figcaption></figcaption>
+	<figcaption>Cross-validation and test scores for nearest neighbor classifiers</figcaption>
 </figure>
+
+## Decision tree classifier
+
+
+
+## Random forest classifier
+
+
+
+## Neural network classifier
+
