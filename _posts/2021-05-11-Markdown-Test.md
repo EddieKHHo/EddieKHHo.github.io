@@ -152,9 +152,10 @@ plt.savefig('images/class.count.png')
 plt.show()
 ```
 <figure>
- 	<img src="/assets/images/class.count.png">
+ 	<img src="/assets/images/05_2021/class.count.png">
 	<figcaption>Figure 1. Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
+
 
 <a name="third"></a>
 ### Pair plot of all features
@@ -165,9 +166,10 @@ pp = sns.pairplot(Telescope, height = 2.5, hue='class', plot_kws={'alpha':0.5})
 pp._legend.remove()
 ```
 <figure>
- 	<img src="/assets/images/class.count.png">
+ 	<img src="/assets/images/05_2021/features.pairplot.png">
 	<figcaption>Figure 2. Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 
 ### Boxplot of features separated by class
 We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
@@ -187,9 +189,10 @@ sns.boxplot(x='class', y='fDist', data=Telescope, ax=ax[1,4])
 fig.show()
 ```
 <figure>
- 	<img src="/assets/images/class.count.png">
+ 	<img src="/assets/images/05_2021/features.bloxplot.png">
 	<figcaption>Figure 3. Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 
 ### Principal components analysis
 For classification problems, I typically perform a PCA to reduce dimensionality and see if the classes can be separated visually. 
@@ -208,7 +211,7 @@ print(pca.explained_variance_ratio_)
 ```
 [0.42239909 0.15751879]
 ```
-However, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma evetns.
+However, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma events.
 ```python
 #####-----Create dataframe for plotting
 dfPC = pd.DataFrame(data = principalComponents, columns = ['principal component 1', 'principal component 2'])
@@ -232,6 +235,6 @@ ax.legend(targets, prop={'size': 15})
 ax.grid()
 ```
 <figure>
- 	<img src="/assets/images/class.count.png">
-	<figcaption>Figure 3. Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+ 	<img src="/assets/images/05_2-21/pca.png">
+	<figcaption>Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
