@@ -1,5 +1,5 @@
 ---
-title: "Machine learning: Classifying telescope images"
+title: "Classifying telescope images (Part 1)"
 excerpt: "This is the excerpt. Test markdown"
 date: 2021-05-11
 last_modified_at: false
@@ -667,4 +667,13 @@ Plotting these scores show some interesting patterns.
 </figure>
 
 ## Summary
+
+
+
+| Classifier       | Training F1 | Test F1 |
+| ---------------- | ----------- | ------- |
+| Nearest neighbor | 0.736       | 0.743   |
+| Decision tree    | 0.762       | 0.772   |
+| Random forest    | 0.809       | 0.817   |
+| Neural network   | 0.804       | 0.811   |
 
