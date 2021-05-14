@@ -238,3 +238,86 @@ ax.grid()
  	<img src="/assets/images/05_2021/pca.png">
 	<figcaption>Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
+## Data preprocessing
+
+Here I prepare the data for supervised machine learning. First I split the dataset in features *X* and classes *Y*. I will utilize `LabelEncoder` to convert *g* and *h* into binary format.
+
+```python
+# Define X as features and Y as labels
+X = Telescope.drop('class', axis=1)
+Y = Telescope['class']
+# Encode Y
+le = LabelEncoder()
+Y_encode = le.fit_transform(Y)
+print(pd.crosstab(Y, Y_encode, rownames=['Original'], colnames=['Encode']))
+```
+
+```
+Encode        0     1
+Original             
+g         12332     0
+h             0  6688
+```
+
+Now, split the data into the training and the test set using `train_test_split`. I will make the training set be 70% of the data and stratify by *Y* because the number of gamma and hadronic events are unbalanced.
+
+Lastly, I standardize each feature using `StandardScaler` because they vary a lot in their ranges. Remember to only utilize the training set when fitting the scaler, that way the no information from the test set will leak into the training set.
+
+```python
+# split, stratify by Y
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y_encode, test_size=0.30, stratify=Y)
+
+# Standardize X_train, then fit to X_test
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+```
+
+## Supervised machine learning
+
+Here I explore using nearest neighbors, decision tree, random forest, and neural networks to classify the data. Since the number of gamma and hadron events are unbiased, I will focus on using the F1 score to determine the fit of the model. For each classifier, I will first perform optimization using `GridSearchCV` or `RandomizedSearchCV` to find the hyperparameters that maximize F1 on the training set. This will be followed by some exploratory analysis on the effects of select hyperparameters when performing cross-validation on the training set and ultimately when making predictions for the test set.
+
+Below are just some wrapper functions used for fine-tuning hyperparameters.
+
+```python
+def grid_search_wrapper(model, parameters, cv, scoring):
+    '''
+    Perform grid search given model and parameters
+    Outputs parameters and scores for best model
+    '''
+    ##########----------Perform grid search
+    model_GS = GridSearchCV(model, parameters, cv=cv, scoring=scoring, verbose=1, n_jobs = 3)
+    model_GS.fit(X_train, Y_train)
+    print('GS best parameters: ',model_GS.best_params_)
+    print('GS best score: ',model_GS.best_score_)
+    ##########----------Test score
+    Y_pred = model_GS.predict(X_test)
+    print("Confusion matrix:\n", confusion_matrix(Y_test, Y_pred))
+    print("F1:", f1_score(Y_test, Y_pred))
+    print("Accuracy:", accuracy_score(Y_test, Y_pred))
+
+def random_search_wrapper(model, parameters, cv, scoring, n_iter):
+    '''
+    Perform randomized search given model and parameters
+    Outputs parameters and scores for best model
+    '''
+    ##########----------Perform grid search
+    model_GS = RandomizedSearchCV(model, parameters, cv=cv, scoring=scoring, n_iter=n_iter, verbose=1, n_jobs = 3)
+    model_GS.fit(X_train, Y_train)
+    print('GS best parameters: ',model_GS.best_params_)
+    print('GS best score: ',model_GS.best_score_)
+    ##########----------Test score
+    Y_pred = model_GS.predict(X_test)
+    print("Confusion matrix:\n", confusion_matrix(Y_test, Y_pred))
+    print("F1:", f1_score(Y_test, Y_pred))
+    print("Accuracy:", accuracy_score(Y_test, Y_pred))
+```
+
+
+
+### Nearest neighbors classifier
+
+
+
