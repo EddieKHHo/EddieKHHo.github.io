@@ -62,7 +62,6 @@ from sklearn.metrics import accuracy_score, f1_score, make_scorer, classificatio
 Read the csv data file.
 
 ```python
-##########----------Read telescope data as Star
 Telescope = pd.read_csv('telescope.csv')
 ```
 Examining the data structure, we see that all the features are floats and the class (g or h) is an object type.
@@ -107,7 +106,7 @@ fDist       0
 class       0
 dtype: int64
 ```
-Describing the data, we observe that the features have very different ranges. This is not surprising, given that some features are rations and others are 3rd root of values. It will be important to standardize them prior to classification.
+Describing the data, we observe that the features have very different ranges. This is not surprising, given that some features are ratios and others are 3rd root of values. It will be important to standardize them prior to classification.
 ```python
 Telescope.describe().loc[['count','mean','std','min','50%','max']]
 ```
@@ -152,12 +151,87 @@ ax.tick_params(axis='both', which='major', labelsize=18)
 plt.savefig('images/class.count.png')
 plt.show()
 ```
-<figure class="half">
-	<img src="/assets/images/TestConvert_4_1.png">
-  <img src="/assets/images/class.count.png">
-	<figcaption>Figure caption.</figcaption>
+<figure>
+ 	<img src="/assets/images/class.count.png">
+	<figcaption>Figure 1. Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
 
 <a name="third"></a>
-## Third section
+### Pair plot of all features
 
+```python
+sns.set_context("paper", rc={"axes.labelsize":20})
+pp = sns.pairplot(Telescope, height = 2.5, hue='class', plot_kws={'alpha':0.5})
+pp._legend.remove()
+```
+<figure>
+ 	<img src="/assets/images/class.count.png">
+	<figcaption>Figure 2. Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+</figure>
+
+### Boxplot of features separated by class
+We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
+```python
+sns.set_context("paper", rc={"axes.labelsize":20})
+fig, ax =plt.subplots(2, 5, figsize=(26,20))
+sns.boxplot(x='class', y='fLength', data=Telescope, ax=ax[0,0])
+sns.boxplot(x='class', y='fWidth', data=Telescope, ax=ax[0,1])
+sns.boxplot(x='class', y='fSize', data=Telescope, ax=ax[0,2])
+sns.boxplot(x='class', y='fConc', data=Telescope, ax=ax[0,3])
+sns.boxplot(x='class', y='fConc1', data=Telescope, ax=ax[0,4])
+sns.boxplot(x='class', y='fAsym', data=Telescope, ax=ax[1,0])
+sns.boxplot(x='class', y='fM3Long', data=Telescope, ax=ax[1,1])
+sns.boxplot(x='class', y='fM3Trans', data=Telescope, ax=ax[1,2])
+sns.boxplot(x='class', y='fAlpha', data=Telescope, ax=ax[1,3])
+sns.boxplot(x='class', y='fDist', data=Telescope, ax=ax[1,4])
+fig.show()
+```
+<figure>
+ 	<img src="/assets/images/class.count.png">
+	<figcaption>Figure 3. Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+</figure>
+
+### Principal components analysis
+For classification problems, I typically perform a PCA to reduce dimensionality and see if the classes can be separated visually. 
+Here, we see that the first and second principal components explain 42% and 16% of the variance.
+
+```python
+#####-----Get features and standardize using StandardScaler()
+scaler = StandardScaler()
+X = Telescope.drop('class', axis=1)
+X_full_scaled = scaler.fit_transform(X)
+##########----------Perform PCA with 2 components
+pca = PCA(n_components=2)
+principalComponents = pca.fit_transform(X_full_scaled)
+print(pca.explained_variance_ratio_) 
+```
+```
+[0.42239909 0.15751879]
+```
+However, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma evetns.
+```python
+##########----------Create dataframe for plotting
+dfPC = pd.DataFrame(data = principalComponents, columns = ['principal component 1', 'principal component 2'])
+dfFinal = pd.concat([dfPC, Telescope[['class']]], axis = 1)
+##########----------Plot data of PC axes
+fig = plt.figure(figsize = (10,10))
+ax = fig.add_subplot(1,1,1) 
+ax.set_xlabel('Principal Component 1', fontsize = 15)
+ax.set_ylabel('Principal Component 2', fontsize = 15)
+targets = ['g','h']
+colors = ['blue','orange']
+for target, color in zip(targets,colors):
+    indicesToKeep = dfFinal['class'] == target
+    ax.scatter(dfFinal.loc[indicesToKeep, 'principal component 1'],
+               dfFinal.loc[indicesToKeep, 'principal component 2'],
+               c=color, s=50, alpha=0.25)
+ax.set_xlabel('Principal Component 1 (42%)', fontsize=20)
+ax.set_ylabel('Principal Component 2 (16%)', fontsize=20)
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.legend(targets, prop={'size': 15})
+ax.grid()
+```
+<figure>
+ 	<img src="/assets/images/class.count.png">
+	<figcaption>Figure 3. Box plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+</figure>
