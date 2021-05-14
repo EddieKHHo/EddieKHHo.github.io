@@ -33,50 +33,46 @@ This dataset contains 10 features from image data of **gamma (g)** and **hadroni
 | fAlpha   | Angle of major axis with vector to origin [deg]       |
 | fDist    | Distance from origin to center of ellipse [mm]        |
 
-I will utilize this dataset to explore several supervised machine learning algorithms aimed at classifying the events as gamma or hadronic based on these 10 features.
+I will utilize this dataset to explore several supervised machine learning algorithms aimed at classifying the events as gamma or hadronic based on these 10 features. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
 
 
 
-```python
-%matplotlib inline
+## Data exploration
+
+Iimport from NumPy, Pandas, MatplotLib, Seaborn and Scikit-learn
+
+```
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder, scale, StandardScaler
-from sklearn.model_selection import train_test_split, cross_val_score, cross_val_predict, StratifiedKFold, RepeatedStratifiedKFold
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split, cross_val_score,  StratifiedKFold
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-from sklearn.decomposition import PCA
 
-from sklearn.pipeline import Pipeline
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn import svm
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-```
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import accuracy_score, f1_score, make_scorer, classification_report, confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
 
+
+```
+Read the csv data file.
 
 ```python
 ##########----------Read telescope data as Star
-Star = pd.read_csv('telescope.csv')
+Telescope = pd.read_csv('telescope.csv')
 ```
-
+Examining the data structure, we see that all the features are floats and the class (g or h) is an object type.
 
 ```python
-##########----------All features are numeric except for class
-print('-'*50)
 print(Star.info())
-print('-'*50)
-print(Star.describe())
-##########---------There are 0 NAs
-print('-'*50)
-print(Star.isnull().sum())
 ```
-Some output
-
 ```
---------------------------------------------------
 <class 'pandas.core.frame.DataFrame'>
 RangeIndex: 19020 entries, 0 to 19019
 Data columns (total 11 columns):
@@ -94,8 +90,30 @@ Data columns (total 11 columns):
  9   fDist     19020 non-null  float64
  10  class     19020 non-null  object 
 dtypes: float64(10), object(1)
-memory usage: 1.5+ MB
-None
+```
+Since this is simulated data, there are no missing values.
+```python
+print(Telescope.isnull().sum())
+```
+```
+fLength     0
+fWidth      0
+fSize       0
+fConc       0
+fConc1      0
+fAsym       0
+fM3Long     0
+fM3Trans    0
+fAlpha      0
+fDist       0
+class       0
+dtype: int64
+```
+Describing the data, we observe that the features have very different ranges. It will be important to standardize them before using them for classification.
+```python
+print(Telescope.describe().loc[['count','mean','std','min','50%','max']])
+```
+```
 --------------------------------------------------
             fLength        fWidth         fSize         fConc        fConc1  \
 count  19020.000000  19020.000000  19020.000000  19020.000000  19020.000000   
@@ -116,20 +134,8 @@ min     -457.916100   -331.780000   -205.894700      0.000000      1.282600
 50%        4.013050     15.314100      0.666200     17.679500    191.851450  
 75%       24.063700     35.837800     10.946425     45.883550    240.563825  
 max      575.240700    238.321000    179.851000     90.000000    495.561000  
---------------------------------------------------
-fLength     0
-fWidth      0
-fSize       0
-fConc       0
-fConc1      0
-fAsym       0
-fM3Long     0
-fM3Trans    0
-fAlpha      0
-fDist       0
-class       0
-dtype: int64
 ```
+
 <a name="second"></a>
 ## Number of hadron and gamma signals
 Plotting a histogram for counts of hardon and gamma signals.
