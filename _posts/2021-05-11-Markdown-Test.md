@@ -12,7 +12,7 @@ This is the first few machine learning projects using data from Kaggle. My goal 
 
 ## Signals from MAGIC telescopes
 
-This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset/code) was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
+This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset) was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
 This dataset contains 10 features from image data of **gamma (g)** and **hadronic (h)** events.
 
@@ -166,6 +166,7 @@ Name: class, dtype: int64
  	<img src="/assets/images/05_2021/class.count.png">
 	<figcaption><b>Figure 1.</b> Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
+
 
 <h3>Pair plot of all features</h3>
 
