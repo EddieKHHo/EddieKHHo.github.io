@@ -594,14 +594,14 @@ Plotting these scores show some interesting patterns.
 </figure>
 
 
-## Summary
+## Conclusions
 
+It seems that the more complex random forest ensemble classifier and the neural network performed better than the nearest neighbor and decision tree classifiers.
 
-
-| Classifier       | Training F1 | Test F1 |
-| ---------------- | ----------- | ------- |
-| Nearest neighbor | 0.736       | 0.743   |
-| Decision tree    | 0.762       | 0.772   |
-| Random forest    | 0.809       | 0.817   |
-| Neural network   | 0.804       | 0.811   |
+|    Classifier    | Training F1 | Test F1 | Test accuracy |
+| :--------------: | :---------: | :-----: | :-----------: |
+| Nearest neighbor |    0.736    |  0.743  |     0.843     |
+|  Decision tree   |    0.762    |  0.772  |     0.850     |
+|  Random forest   |    0.809    |  0.817  |     0.880     |
+|  Neural network  |    0.804    |  0.811  |     0.878     |
 
