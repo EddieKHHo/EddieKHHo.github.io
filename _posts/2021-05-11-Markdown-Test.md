@@ -52,25 +52,6 @@ from sklearn.metrics import accuracy_score, f1_score, make_scorer, classificatio
 ```
 ## Data exploration
 
-```
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder, StandardScaler
-from sklearn.model_selection import train_test_split, cross_val_score,  StratifiedKFold
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
-
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score, f1_score, make_scorer, classification_report, confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
-```
-
 Read the csv data file.
 
 ```python
