@@ -5,6 +5,7 @@ date: 2021-05-14
 last_modified_at: false
 header:
   overlay_image: /assets/images/05_2021/star_galaxy_1200x777.jpg
+  overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
