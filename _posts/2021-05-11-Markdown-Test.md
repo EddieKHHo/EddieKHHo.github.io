@@ -335,7 +335,7 @@ Accuracy: 0.843322818086225
 
 <h3>Explore hyperparameters</h3>
 
-Here I explore the effects of *weights* and *n_neighbors* on F1, fixing *p*=1 as suggested by the best model above.
+Here I explore the effects of *weights* and *n_neighbors* on F1, fixing the other parameters according to the best model from above.
 
 ```python
 # Parameters
@@ -413,35 +413,13 @@ Accuracy: 0.8503329828250964
 
 <h3>Explore hyperparameters</h3>
 
-Here I explore the effects of *criterion* and *max_depth* on F1, fixing the other variables according to the best model above.
+Here I explore the effects of *criterion* and *max_depth* on F1, fixing the other variables according to the best model above. The range of hyperparameters I examined are listed below, but I won't repeat the code for obtaining the F1 scores.
 
 ```python
 # Parameters
 min_samples_split, min_samples_leaf = 60, 10
 list_criterion = ['gini', 'entropy']
 list_max_depth = [2,4,6,8,10,12,14,16,18,20]
-
-# Loop through all parameter combinations
-results_cv = pd.DataFrame(columns=['criterion','max_depth','CV_score'])
-results_smy = pd.DataFrame(columns=['criterion','max_depth','CV_mean_score','CV_std_score','Test_score'])
-for criterion in list_criterion:
-    for max_depth in list_max_depth:
-        # define model and cv
-        model = DecisionTreeClassifier(criterion=criterion, max_depth=max_depth, 
-                                       min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf)
-        cv = StratifiedKFold(n_splits=10)
-        # Cross-validation results
-        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
-        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
-        # Test set results
-        model = model.fit(X_train, Y_train)
-        Y_pred = model.predict(X_test)
-        Test_score = f1_score(Y_test, Y_pred)
-        # record all cv data
-        for CV_score in n_scores:
-            results_cv.loc[len(results_cv)] = [criterion, max_depth, CV_score]
-        # record summary data
-        results_smy.loc[len(results_smy)] = [criterion, max_depth, CV_mean_score, CV_std_score, Test_score]
 ```
 
 Plotting these scores show some interesting patterns.
@@ -459,7 +437,7 @@ Plotting these scores show some interesting patterns.
 
 <h3>Hyperparameter tuning</h3>
 
-Fine-tune *criterion*, *n_estimators*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 3 folds. Perform **randomized grid search** with 200 iterations which amounts to 600 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of grid search.
+Fine-tune *criterion*, *n_estimators*, *max_depth*, *min_samples_split*, and *min_samples_leaf*. Utilize `StratifiedKFold` for cross-validation with 3 folds. Perform **randomized grid search** with 200 iterations which amounts to 600 fits after accounting for cross-validation. Note that the range of hyperparameter value shown here are the results of slowly narrowing the range based on several rounds of randomized search.
 
 ```python
 # Define model. cross-val, parameters
@@ -474,7 +452,7 @@ parameters = {
     'min_samples_leaf': [2,4,6,8,10]}
 scoring = make_scorer(f1_score)
 n_iter = 200
-# Grid search
+# Randomized search
 random_search_wrapper(model, parameters, cv, scoring, n_iter=n_iter)
 ```
 
@@ -492,36 +470,13 @@ Accuracy: 0.8799509288468279
 
 <h3>Explore hyperparameters</h3>
 
-Here I explore the effects of *n_estimators* and *max_depth* on F1, fixing the other variables according to the best model above.
+Here I explore the effects of *n_estimators* and *max_depth* on F1, fixing the other variables according to the best model above. The range of hyperparameters I examined are listed below, but I won't repeat the code for obtaining the F1 scores.
 
 ```python
 # Parameters
 criterion, min_samples_split, min_samples_leaf, max_features = 'entropy', 5, 2, 'sqrt'
 list_n_estimators = [2,4,6,8,10,20,50,100,200,300,400]
 list_max_depth = [10,20,30,40,50,60]
-
-# Loop through all parameter combinations
-results_cv = pd.DataFrame(columns=['n_estimators','max_depth','CV_score'])
-results_smy = pd.DataFrame(columns=['n_estimators','max_depth','CV_mean_score','CV_std_score','Test_score'])
-for n_estimators in list_n_estimators:
-    for max_depth in list_max_depth:
-        # define model and cv
-        model = RandomForestClassifier(
-            criterion=criterion, max_features=max_features, max_depth=max_depth,
-            n_estimators=n_estimators,min_samples_split=min_samples_split, min_samples_leaf=min_samples_leaf)
-        cv = StratifiedKFold(n_splits=10)
-        # Cross-validation results
-        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
-        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
-        # Test set results
-        model = model.fit(X_train, Y_train)
-        Y_pred = model.predict(X_test)
-        Test_score = f1_score(Y_test, Y_pred)
-        # record all cv data
-        for CV_score in n_scores:
-            results_cv.loc[len(results_cv)] = [n_estimators, max_depth, CV_score]
-        # record summary data
-        results_smy.loc[len(results_smy)] = [n_estimators, max_depth, CV_mean_score, CV_std_score, Test_score]
 ```
 
 Plotting these scores show some interesting patterns.
@@ -574,7 +529,7 @@ Accuracy: 0.8778478794251665
 
 <h3>Explore hyperparameters (one hidden layers)</h3>
 
-Here I explore the effects of *activation* function and the number of nodes in a network with **one hidden layer**. Hyperparameters for other arguments are assigned based on the best model from above.
+Here I explore the effects of *activation* function and the number of nodes in a network with **one hidden layer**. Hyperparameters for other arguments are assigned based on the best model from above. The range of hyperparameters I examined are listed below, but I won't repeat the code for obtaining the F1 scores.
 
 ```python
 # Parameters
@@ -583,29 +538,13 @@ list_activation = ['identity','logistic','tanh','relu']
 list_num_node = [2,4,6,8,10,15,20,25]
 
 # Loop through all parameter combinations
-results_cv = pd.DataFrame(columns=['activation','num_node','CV_score'])
-results_smy = pd.DataFrame(columns=['activation','num_node','CV_mean_score','CV_std_score','Test_score'])
 for activation in list_activation:
     for num_node in list_num_node:
-        # define hidden layers
+        # one hidden layer with num_node nodes
         hidden_layer_sizes = (num_node)
-        # define model and cv
-        model = MLPClassifier(
-            activation=activation, solver=solver, hidden_layer_sizes=hidden_layer_sizes,
-            max_iter=max_iter, learning_rate=learning_rate, alpha=alpha)
-        cv = StratifiedKFold(n_splits=10)
-        # Cross-validation results
-        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
-        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
-        # Test set results
-        model = model.fit(X_train, Y_train)
-        Y_pred = model.predict(X_test)
-        Test_score = f1_score(Y_test, Y_pred)
-        # record all cv data
-        for CV_score in n_scores:
-            results_cv.loc[len(results_cv)] = [activation, num_node, CV_score]
-        # record summary data
-        results_smy.loc[len(results_smy)] = [activation, num_node, CV_mean_score, CV_std_score, Test_score]
+       '''
+       Code for obtaining scores not repeated here
+       '''
 ```
 
 Plotting these scores show some interesting patterns.
@@ -630,28 +569,13 @@ list_activation = ['identity','logistic','tanh','relu']
 list_num_node = [2,4,6,8,10,15,20,25]
 
 # Loop through all parameter combinations
-results_cv = pd.DataFrame(columns=['activation','num_node','CV_score'])
-results_smy = pd.DataFrame(columns=['activation','num_node','CV_mean_score','CV_std_score','Test_score'])
 for activation in list_activation:
     for num_node in list_num_node:
-        # define model and cv
+        # two hidden layers with num_node nodes in second layer
         hidden_layer_sizes = (20, num_node)
-        model = MLPClassifier(
-            activation=activation, solver=solver, hidden_layer_sizes=hidden_layer_sizes,
-            max_iter=max_iter, learning_rate=learning_rate, alpha=alpha)
-        cv = StratifiedKFold(n_splits=10)
-        # Cross-validation results
-        n_scores = cross_val_score(model, X_test, Y_test, cv=cv, scoring=scoring, n_jobs = 3)
-        CV_mean_score, CV_std_score = np.mean(n_scores), np.mean(n_scores)
-        # Test set results
-        model = model.fit(X_train, Y_train)
-        Y_pred = model.predict(X_test)
-        Test_score = f1_score(Y_test, Y_pred)
-        # record all cv data
-        for CV_score in n_scores:
-            results_cv.loc[len(results_cv)] = [activation, num_node, CV_score]
-        # record summary data
-        results_smy.loc[len(results_smy)] = [activation, num_node, CV_mean_score, CV_std_score, Test_score]
+        '''
+        Code for obtaining scores not repeated here
+        '''
 ```
 
 Plotting these scores show some interesting patterns.
@@ -677,8 +601,3 @@ Plotting these scores show some interesting patterns.
 | Random forest    | 0.809       | 0.817   |
 | Neural network   | 0.804       | 0.811   |
 
-<h2>Test h2</h2>
-
-<h3>Test h3</h3>
-
-<h4>Test h4</h4>
