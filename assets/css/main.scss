@@ -4,8 +4,8 @@
 
 @charset "utf-8";
 
-$link-color: ForestGreen;
-$link-color-hover: mix(#000, $link-color, 75%);
+$link-color: red;
+$link-color-hover: mix(#000, $link-color, 75%); // the % if for the first color
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
