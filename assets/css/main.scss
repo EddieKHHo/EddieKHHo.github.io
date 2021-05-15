@@ -4,11 +4,10 @@
 
 @charset "utf-8";
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-
 $link-color: ForestGreen // $link-color: DarkGray;
 $link-color-hover: mix(#000, $link-color, 75%);
 
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
 // manuall change font size; breakpoint means the font when screen size is medium, large, or ex-large
