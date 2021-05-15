@@ -16,7 +16,7 @@ This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset) 
 
 <figure>
  	<img src="/assets/images/05_2021/stereoscopic_technique.jpg">
-    <figcaption>Image from <a href="https://www.isdc.unige.ch/cta/outreach"></a>https://www.isdc.unige.ch/cta/outreach</a>.</figcaption>
+    <figcaption>Image from <a href="https://www.isdc.unige.ch/cta/outreach">https://www.isdc.unige.ch/cta/outreach</a>.</figcaption>
 </figure>
 
 This dataset contains 10 features from images of **gamma (g)** and **hadronic (h)** events.
