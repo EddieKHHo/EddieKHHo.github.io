@@ -234,7 +234,7 @@ ax.grid()
 
 ## Data preprocessing
 
-Here I prepare the data for supervised machine learning. First I split the dataset in features *X* and classes *Y*. I will utilize `LabelEncoder` to convert *g* and *h* into binary format.
+First I split the dataset in features (*X*) and classes (*Y*). I will utilize `LabelEncoder` to convert *g* and *h* into binary format in the class variable.
 
 ```python
 # Define X as features and Y as labels
@@ -255,12 +255,14 @@ h             0  6688
 
 Now, split the data into the training and the test set using `train_test_split`. I will make the training set be 70% of the data and stratify by *Y* because the number of gamma and hadronic events are unbalanced.
 
-Lastly, I standardize each feature using `StandardScaler` because they vary a lot in their ranges. Remember to only utilize the training set when fitting the scaler, that way the no information from the test set will leak into the training set.
+```python
+# split to training and testing set, stratify by Y
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y_encode, test_size=0.30, stratify=Y)
+```
+
+Standardize each feature using `StandardScaler` because they vary a lot in their range (figure 3). Remember to only utilize the training set when fitting the scaler, that way no information from the test set will "leak" into the training set.
 
 ```python
-# split, stratify by Y
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y_encode, test_size=0.30, stratify=Y)
-
 # Standardize X_train, then fit to X_test
 scaler = StandardScaler()
 scaler.fit(X_train)
@@ -602,8 +604,6 @@ Plotting these scores show some interesting patterns.
 
 ## Conclusions
 
-It seems that the more complex random forest ensemble classifier and the neural network performed better than the nearest neighbor and decision tree classifiers. This is true when looking at both the F1 and the accuracy score.
-
 |    Classifier    | Training F1 | Test F1 | Test accuracy |
 | :--------------: | :---------: | :-----: | :-----------: |
 | Nearest neighbor |    0.736    |  0.743  |     0.843     |
@@ -611,13 +611,19 @@ It seems that the more complex random forest ensemble classifier and the neural 
 |  Random forest   |    0.809    |  0.817  |     0.880     |
 |  Neural network  |    0.804    |  0.811  |     0.878     |
 
-I found that exploring the effects of hyperparameters on the F1 score revealed some interesting findings.
+It seems that the more complex random forest ensemble classifier and the neural network performed better than the nearest neighbor and decision tree classifiers. This is true when looking at both the F1 and the accuracy score.
+
+
+
+Exploring the effects of hyperparameters on the F1 score revealed some interesting findings.
 
 1. The optimal model found by grid/randomized search may give the best score, but may do so at the cost of longer processing time.
    * The optimal random forest model utilized 300 estimators, but 50 to 100 estimators is achieves a similar score and would save processing time (Figure 7).
    * the optimal neural network contains two hidden layers, but one hidden layer achieves a similar score and would save processing time (Figure 8, 9).
 2. Hyperparameter tuning can lead to overfitting that is not obvious by just looking at the training and test score of the optimal model.
    * The optimal decision tree utilizes the Gini impurity to measure information gain, rather than entropy. However, when we explored using the entropy criterion, we find that it has a lower score when fitted on the training set, but ultimately has a slightly higher score on the test set (Figure 6)
+
+
 
 Throughout this analysis, I have not considered the consequences of **false positive (FP)** versus **false negative (FN)** predictions. There are many studies that aim to minimize FN more than FP or vice versa. For example, in disease prediction, a FN may be more consequential than a FP because a FN would mean a disease becomes untreated, while a FP may just warrant further testing. For our analysis, I would aim to reduce FP more than FN because accepting a hadronic event as a gamma ray event can be very misleading. To account for these considerations, I will continue exploring this dataset using **AUC-ROC curves** in [Part 2]() of this analysis
 
