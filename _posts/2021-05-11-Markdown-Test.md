@@ -1,5 +1,5 @@
 ---
-title: "Classifying telescope images (Part 1)"
+title: "Classifying telescope image data (Part 1)"
 excerpt: "Practicing supervised machine learning with telescope imaging data of gamma rays."
 date: 2021-05-14
 last_modified_at: false
@@ -12,27 +12,14 @@ This is one of my first machine learning projects and it uses public data from K
 
 ## Signals from MAGIC telescopes
 
-This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset) was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
+This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset) was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. 
 
 <figure>
  	<img src="/assets/images/05_2021/stereoscopic_technique.jpg">
     <figcaption>Image from <a href="https://www.isdc.unige.ch/cta/outreach">https://www.isdc.unige.ch/cta/outreach</a>.</figcaption>
 </figure>
 
-This dataset contains 10 features from images of **gamma (g)** and **hadronic (h)** events.
-
-| Feature  | Description                                           |
-| -------- | ----------------------------------------------------- |
-| fLength  | Major axis of ellipse (mm)                            |
-| fWidth   | Minor axis of ellipse (mm)                            |
-| fSize    | 10-log of sum of content of all pixels                |
-| fConc    | Ratio of sum of two highest pixels over fSize [ratio] |
-| fConc1   | Ratio of highest pixel over fSize [ratio]             |
-| fAsym    | Distance from highest pixel to center [mm]            |
-| fM3Long  | 3rd root of third moment along major axis [mm]        |
-| fM3Trans | 3rd root of third moment along minor axis [mm]        |
-| fAlpha   | Angle of major axis with vector to origin [deg]       |
-| fDist    | Distance from origin to center of ellipse [mm]        |
+However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
 ## Python packages
 
@@ -56,15 +43,30 @@ from sklearn.metrics import accuracy_score, f1_score, make_scorer, classificatio
 ```
 ## Data exploration
 
+This dataset contains 10 features derived from images of **gamma ray (g)** and **hadronic (h)** shower events.
+
+| Feature  | Description                                           |
+| -------- | ----------------------------------------------------- |
+| fLength  | Major axis of ellipse (mm)                            |
+| fWidth   | Minor axis of ellipse (mm)                            |
+| fSize    | 10-log of sum of content of all pixels                |
+| fConc    | Ratio of sum of two highest pixels over fSize [ratio] |
+| fConc1   | Ratio of highest pixel over fSize [ratio]             |
+| fAsym    | Distance from highest pixel to center [mm]            |
+| fM3Long  | 3rd root of third moment along major axis [mm]        |
+| fM3Trans | 3rd root of third moment along minor axis [mm]        |
+| fAlpha   | Angle of major axis with vector to origin [deg]       |
+| fDist    | Distance from origin to center of ellipse [mm]        |
+
 Read the csv data file.
 
 ```python
 Telescope = pd.read_csv('telescope.csv')
 ```
-Examining the data structure, we see that all the features are floats and the class (g or h) is an object type.
+We see that all the features are floats and the class (g or h) is an object type.
 
 ```python
-Star.info()
+Telescope.info()
 ```
 ```
 <class 'pandas.core.frame.DataFrame'>
@@ -85,7 +87,7 @@ Data columns (total 11 columns):
  10  class     19020 non-null  object 
 dtypes: float64(10), object(1)
 ```
-Since this is simulated data, there are no missing values.
+There are no missing values, as expected from simulated data.
 ```python
 Telescope.isnull().sum()
 ```
@@ -103,7 +105,7 @@ fDist       0
 class       0
 dtype: int64
 ```
-Describing the data, we observe that the features have very different ranges. This is not surprising, given that some features are ratios and others are 3rd root of values. It will be important to standardize them prior to classification.
+Using `descrive`, I can see that the features have very different ranges. This is not surprising, given that some features are ratios and others are 3rd root of values but it will be important to standardize them prior to classification.
 ```python
 Telescope.describe().loc[['count','mean','std','min','50%','max']]
 ```
@@ -168,7 +170,7 @@ pp._legend.remove()
 
 
 <h3>Boxplot of features</h3>
-We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
+We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unlikely to strongly differentiate gamma from hadronic events. 
 ```python
 sns.set_context("paper", rc={"axes.labelsize":20})
 fig, ax =plt.subplots(2, 5, figsize=(26,20))
@@ -207,7 +209,7 @@ print(pca.explained_variance_ratio_)
 ```
 [0.42239909 0.15751879]
 ```
-However, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma events.
+When we plot this data, the gamma and hadronic events do not seem to cluster separately on these PCs. A lot of hadronic events cluster on the top-left side of the plot, but the majority clusters with the gamma events.
 ```python
 # Create dataframe for plotting
 dfPC = pd.DataFrame(data = principalComponents, columns = ['principal component 1', 'principal component 2'])
@@ -234,8 +236,6 @@ ax.grid()
  	<img src="/assets/images/05_2021/pca.png">
 	<figcaption><b>Figure 4.</b> Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
-
-
 
 ## Data preprocessing
 
@@ -622,11 +622,8 @@ It seems that the more complex random forest ensemble classifier and the neural 
 
 Exploring the effects of hyperparameters on the F1 score revealed some interesting findings.
 
-1. The optimal model found by grid/randomized search may give the best score, but may do so at the cost of longer processing time.
-   * The optimal random forest model utilized 300 estimators, but 50 to 100 estimators is achieves a similar score and would save processing time (Figure 7).
-   * the optimal neural network contains two hidden layers, but one hidden layer achieves a similar score and would save processing time (Figure 8, 9).
-2. Hyperparameter tuning can lead to overfitting that is not obvious by just looking at the training and test score of the optimal model.
-   * The optimal decision tree utilizes the Gini impurity to measure information gain, rather than entropy. However, when we explored using the entropy criterion, we find that it has a lower score when fitted on the training set, but ultimately has a slightly higher score on the test set (Figure 6)
+1. The optimal model found by grid/randomized search may give the best score, but may do so at the cost of longer processing time. The optimal random forest model utilized 300 estimators, but 50 to 100 estimators is achieves a similar score and would save processing time (Figure 7). The optimal neural network contains two hidden layers, but one hidden layer achieves a similar score and would save processing time (Figure 8, 9).
+2. Hyperparameter tuning can lead to overfitting that is not obvious by just looking at the training and test score of the optimal model. The optimal decision tree utilizes the Gini impurity to measure information gain, rather than entropy. However, when we explored using the entropy criterion, we find that it has a lower score when fitted on the training set, but ultimately has a slightly higher score on the test set (Figure 6)
 
 
 
