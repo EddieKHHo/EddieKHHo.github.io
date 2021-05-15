@@ -1,7 +1,7 @@
 ---
 title: "Classifying telescope images (Part 1)"
 excerpt: "Practicing supervised machine learning with telescope imaging data of gamma rays."
-date: 2021-05-11
+date: 2021-05-14
 last_modified_at: false
 toc : true
 toc_sticky: true
