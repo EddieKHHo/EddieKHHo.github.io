@@ -8,11 +8,11 @@ toc_sticky: true
 # classes: wide
 ---
 
-Intro text.
+This is the first few machine learning projects using data from Kaggle. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
 
 ## Signals from MAGIC telescopes
 
-This dataset was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
+This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset/code) was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
 This dataset contains 10 features from image data of **gamma (g)** and **hadronic (h)** events.
 
@@ -29,11 +29,7 @@ This dataset contains 10 features from image data of **gamma (g)** and **hadroni
 | fAlpha   | Angle of major axis with vector to origin [deg]       |
 | fDist    | Distance from origin to center of ellipse [mm]        |
 
-I will utilize this dataset to explore several supervised machine learning algorithms aimed at classifying the events as gamma or hadronic based on these 10 features. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
-
-## Data exploration
-
-Import from NumPy, Pandas, MatplotLib, Seaborn and Scikit-learn
+## Python packages
 
 ```
 import numpy as np
@@ -53,6 +49,27 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score, f1_score, make_scorer, classification_report, confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
 ```
+## Data exploration
+
+```
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.model_selection import train_test_split, cross_val_score,  StratifiedKFold
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import accuracy_score, f1_score, make_scorer, classification_report, confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
+```
+
 Read the csv data file.
 
 ```python
@@ -129,14 +146,9 @@ max      575.240700    238.321000    179.851000     90.000000    495.561000
 <h3>Count of events</h3>
 There is a bias towards a higher number of data points for gamma (12332) events than hadronic (6688) events. This suggests that we should use a machine learning score that is less sensitive to this type of bias, such as the F1 score.
 ```python
+# count of classes
 Star['class'].value_counts()
-```
-```
-g    12332
-h     6688
-Name: class, dtype: int64
-```
-```python
+# bar plot
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.countplot(data=Star, x='class')
 ax.set_xlabel('Class', fontsize=20)
@@ -144,6 +156,11 @@ ax.set_ylabel('Count', fontsize=20)
 ax.tick_params(axis='both', which='major', labelsize=18)
 plt.savefig('images/class.count.png')
 plt.show()
+```
+```
+g    12332
+h     6688
+Name: class, dtype: int64
 ```
 <figure>
  	<img src="/assets/images/05_2021/class.count.png">
