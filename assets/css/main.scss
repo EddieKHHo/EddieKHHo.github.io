@@ -6,7 +6,7 @@
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 
-$link-color: #B67926 // $link-color: DarkGray;
+$link-color: ForestGreen // $link-color: DarkGray;
 $link-color-hover: mix(#000, $link-color, 75%);
 
 @import "minimal-mistakes"; // main partials
