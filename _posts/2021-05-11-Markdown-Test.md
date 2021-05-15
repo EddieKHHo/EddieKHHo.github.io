@@ -5,7 +5,8 @@ date: 2021-05-11
 last_modified_at: false
 toc : true
 toc_sticky: true
-# classes: wide
+toc_label: "Table of Contents"
+toc_icon: "clipboard-list"
 ---
 
 This is the first few machine learning projects using data from Kaggle. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
