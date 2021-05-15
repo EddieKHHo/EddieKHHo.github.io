@@ -3,10 +3,9 @@ title: "Classifying telescope images (Part 1)"
 excerpt: "Practicing supervised machine learning with telescope imaging data of gamma rays."
 date: 2021-05-14
 last_modified_at: false
-# toc : true
-# toc_sticky: true
-# toc_label: "Table of Contents"
-# toc_icon: "clipboard-list"
+header:
+  overlay_image: /assets/images/05_2021/star_galaxy_1200x777.jpg
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
 This is one of my first machine learning projects and it uses public data from Kaggle. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
