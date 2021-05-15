@@ -159,8 +159,9 @@ pp._legend.remove()
 ```
 <figure>
  	<img src="/assets/images/05_2021/features.pairplot.png">
-	<figcaption>Figure 2. Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption><b>Figure 2.</b> Pair plot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 
 <h3>Boxplot of features</h3>
 We observe that gamma and hadronic events have similar distributions for most individual features. The one exception is *fAlpha*, where the hadronic events tend to have larger values. Regardless, this indicates that any individual feature is unliely to strongly differentiate gamma from hadronic events. 
@@ -181,8 +182,9 @@ fig.show()
 ```
 <figure>
  	<img src="/assets/images/05_2021/features.boxplot.png">
-	<figcaption>Figure 3. Boxplot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption><b>Figure 3.</b> Boxplot for all features. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 
 <h3>Principal components analysis</h3>
 For classification problems, I typically perform a PCA to reduce dimensionality and see if the classes can be separated visually. 
@@ -226,8 +228,9 @@ ax.grid()
 ```
 <figure>
  	<img src="/assets/images/05_2021/pca.png">
-	<figcaption>Figure 4. Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
+	<figcaption><b>Figure 4.</b> Data points on PC1 and PC2. Gamma and hadronic are in blue and orange, respectively.</figcaption>
 </figure>
+
 
 
 ## Data preprocessing
@@ -379,8 +382,9 @@ Plotting these scores show some interesting patterns.
 <figure class="half">
  	<img src="/assets/images/05_2021/nn.cv.png">
     <img src="/assets/images/05_2021/nn.smy.png">
-	<figcaption>Figure 5. Cross-validation and test scores for nearest neighbor classifiers</figcaption>
+	<figcaption><b>Figure 5.</b> Cross-validation and test scores for nearest neighbor classifiers</figcaption>
 </figure>
+
 
 
 ## Decision tree classifier
@@ -433,8 +437,9 @@ Plotting these scores show some interesting patterns.
 <figure class="half">
  	<img src="/assets/images/05_2021/dt.cv.png">
     <img src="/assets/images/05_2021/dt.smy.png">
-	<figcaption>Figure 6. Cross-validation and test scores for decision tree classifiers</figcaption>
+	<figcaption><b>Figure 6.</b> Cross-validation and test scores for decision tree classifiers</figcaption>
 </figure>
+
 
 ## Random forest classifier
 
@@ -490,8 +495,9 @@ Plotting these scores show some interesting patterns.
 <figure class="half">
  	<img src="/assets/images/05_2021/rf.cv.png">
     <img src="/assets/images/05_2021/rf.smy.png">
-	<figcaption>Figure 7. Cross-validation and test scores for random forest classifiers</figcaption>
+	<figcaption><b>Figure 7.</b> Cross-validation and test scores for random forest classifiers</figcaption>
 </figure>
+
 
 ## Neural network classifier
 
@@ -558,8 +564,9 @@ Plotting these scores show some interesting patterns.
 <figure class="half">
  	<img src="/assets/images/05_2021/nnet.01.cv.png">
     <img src="/assets/images/05_2021/nnet.01.smy.png">
-	<figcaption>Figure 8. Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
+	<figcaption><b>Figure 8.</b> Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
 </figure>
+
 
 <h3>Explore hyperparameters (two hidden layers)</h3>
 
@@ -596,7 +603,7 @@ Plotting these scores show some interesting patterns.
 
 ## Conclusions
 
-It seems that the more complex random forest ensemble classifier and the neural network performed better than the nearest neighbor and decision tree classifiers.
+It seems that the more complex random forest ensemble classifier and the neural network performed better than the nearest neighbor and decision tree classifiers. This is true when looking at both the F1 and the accuracy score.
 
 |    Classifier    | Training F1 | Test F1 | Test accuracy |
 | :--------------: | :---------: | :-----: | :-----------: |
@@ -604,4 +611,14 @@ It seems that the more complex random forest ensemble classifier and the neural 
 |  Decision tree   |    0.762    |  0.772  |     0.850     |
 |  Random forest   |    0.809    |  0.817  |     0.880     |
 |  Neural network  |    0.804    |  0.811  |     0.878     |
+
+I found that exploring the effects of hyperparameters on the F1 score revealed some interesting findings.
+
+1. The optimal model found by grid/randomized search may give the best score, but may do so at the cost of longer processing time.
+   * The optimal random forest model utilized 300 estimators, but 50 to 100 estimators is achieves a similar score and would save processing time (Figure 7).
+   * the optimal neural network contains two hidden layers, but one hidden layer achieves a similar score and would save processing time (Figure 8, 9).
+2. Hyperparameter tuning can lead to overfitting that is not obvious by just looking at the training and test score of the optimal model.
+   * The optimal decision tree utilizes the Gini impurity to measure information gain, rather than entropy. However, when we explored using the entropy criterion, we find that it has a lower score when fitted on the training set, but ultimately has a slightly higher score on the test set (Figure 6)
+
+Throughout this analysis, I have not considered the consequences of **false positive (FP)** versus **false negative (FN)** predictions. There are many studies that aim to minimize FN more than FP or vice versa. For example, in disease prediction, a FN may be more consequential than a FP because a FN would mean a disease becomes untreated, while a FP may just warrant further testing. For our analysis, I would aim to reduce FP more than FN because accepting a hadronic event as a gamma ray event can be very misleading. To account for these considerations, I will continue exploring this dataset using **AUC-ROC curves** in [Part 2]() of this analysis
 
