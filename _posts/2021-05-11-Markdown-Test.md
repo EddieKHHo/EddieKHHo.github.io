@@ -1,6 +1,6 @@
 ---
 title: "Classifying telescope images (Part 1)"
-excerpt: "This is the excerpt. Test markdown"
+excerpt: "Practicing supervised machine learning with telescope imaging data of gamma rays."
 date: 2021-05-11
 last_modified_at: false
 toc : true
@@ -8,7 +8,10 @@ toc_sticky: true
 # classes: wide
 ---
 
+Intro text.
+
 ## Signals from MAGIC telescopes
+
 This dataset was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. However, these events are also produced by hadron showers (atomic, not photonic) from cosmic rays. The goal is to utilize features of the ellipses to separate images of gamma rays (signal) from images of hadronic showers (background).
 
 This dataset contains 10 features from image data of **gamma (g)** and **hadronic (h)** events.
@@ -582,7 +585,7 @@ Plotting these scores show some interesting patterns.
 
 1. The *identity* activation function performs far worse then the other activation functions.
 2. The number of nodes in the second layer has very effect on F1, but does have a higher score than models with just one hidden layer.
-3. The *tanh* activation function is clearly the best model (based on test scores) when there are two hidden layers, followed by *relu* and *logistic*. This was less clear in the model with one hidden layer. 
+3. With two hidden layers, the *tanh* activation function is clearly the best model, followed by *relu* and *logistic* (based on test scores). This was less clear in the model with one hidden layer. 
 
 <figure class="half">
  	<img src="/assets/images/05_2021/nnet.02.cv.png">
