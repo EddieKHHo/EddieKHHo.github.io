@@ -9,7 +9,7 @@ toc_label: "Table of Contents"
 toc_icon: "clipboard-list"
 ---
 
-This is the first few machine learning projects using data from Kaggle. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
+This is one of my first machine learning projects and it uses public data from Kaggle. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
 
 ## Signals from MAGIC telescopes
 
