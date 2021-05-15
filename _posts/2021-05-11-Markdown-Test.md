@@ -380,9 +380,9 @@ for weights in list_weights:
 
 Plotting these scores show some interesting patterns.
 
-1. Indeed *distance* weights perform better than *uniform* weights for all number of neighbors
+1. *distance* weights perform better than *uniform* weights for all number of neighbors.
 2. F1 rises quickly from 1 to 5 neighbors and slowly decreases with increasing neighbors.
-3. The optimal *n_neighbors* is actually 6 for the test set, rather than 5 for the training set.
+3. The optimal *n_neighbors* is actually 6 in the test set, rather than 5 in the training set.
 4. There is a very strange pattern where F1 fluctuates between high and low for odd and even *n_neighbors* when using the *uniform* weight, but goes the opposite way when using the *distance* weight. **I do not have an explanation for this!**
 
 <figure class="half">
