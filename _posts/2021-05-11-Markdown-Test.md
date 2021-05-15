@@ -290,8 +290,8 @@ def grid_search_wrapper(model, parameters, cv, scoring):
     # Perform grid search
     model_GS = GridSearchCV(model, parameters, cv=cv, scoring=scoring, verbose=1, n_jobs = 3)
     model_GS.fit(X_train, Y_train)
-    print('GS best parameters: ',model_GS.best_params_)
-    print('GS best score: ',model_GS.best_score_)
+    print('Best parameters: ',model_GS.best_params_)
+    print('Best score: ',model_GS.best_score_)
     # Test score
     Y_pred = model_GS.predict(X_test)
     print("Confusion matrix:\n", confusion_matrix(Y_test, Y_pred))
@@ -306,8 +306,8 @@ def random_search_wrapper(model, parameters, cv, scoring, n_iter):
     # Perform grid search
     model_GS = RandomizedSearchCV(model, parameters, cv=cv, scoring=scoring, n_iter=n_iter, verbose=1, n_jobs = 3)
     model_GS.fit(X_train, Y_train)
-    print('GS best parameters: ',model_GS.best_params_)
-    print('GS best score: ',model_GS.best_score_)
+    print('Best parameters: ',model_GS.best_params_)
+    print('Best score: ',model_GS.best_score_)
     # Test score
     Y_pred = model_GS.predict(X_test)
     print("Confusion matrix:\n", confusion_matrix(Y_test, Y_pred))
@@ -336,8 +336,8 @@ grid_search_wrapper(model, parameters, cv, scoring)
 The best model has a training F1 of 0.736, and a test F1 of 0.743. 
 
 ```
-GS best parameters:  {'n_neighbors': 5, 'p': 1, 'weights': 'distance'}
-GS best score:  0.7361074720702369
+Best parameters:  {'n_neighbors': 5, 'p': 1, 'weights': 'distance'}
+Best score:  0.7361074720702369
 Confusion matrix:
  [[3520  180]
  [ 714 1292]]
@@ -415,8 +415,8 @@ grid_search_wrapper(model, parameters, cv, scoring)
 The best model has a training F1 of 0.762 and a test F1 of 0.772
 
 ```
-GS best parameters:  {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 10, 'min_samples_split': 60}
-GS best score:  0.761903175240568
+Best parameters:  {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 10, 'min_samples_split': 60}
+Best score:  0.761903175240568
 Confusion matrix:
  [[3404  296]
  [ 558 1448]]
@@ -473,8 +473,8 @@ random_search_wrapper(model, parameters, cv, scoring, n_iter=n_iter)
 The best model has a training F1 of 0.809 and a test F1 of 0.817.
 
 ```
-GS best parameters:  {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 40, 'criterion': 'gini'}
-GS best score:  0.8085174923910863
+Best parameters:  {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'sqrt', 'max_depth': 40, 'criterion': 'gini'}
+Best score:  0.8085174923910863
 Confusion matrix:
  [[3494  206]
  [ 479 1527]]
@@ -533,8 +533,8 @@ grid_search_wrapper(model, parameters, cv, scoring)
 The best model has a training F1 of 0.804 and a test F1 of 0.811.
 
 ```
-GS best parameters:  {'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (20, 20), 'learning_rate': 'adaptive', 'max_iter': 1000, 'solver': 'adam'}
-GS best score:  0.8036652051440711
+Best parameters:  {'activation': 'tanh', 'alpha': 0.0001, 'hidden_layer_sizes': (20, 20), 'learning_rate': 'adaptive', 'max_iter': 1000, 'solver': 'adam'}
+Best score:  0.8036652051440711
 Confusion matrix:
  [[3513  187]
  [ 510 1496]]
