@@ -164,7 +164,7 @@ Name: class, dtype: int64
 ```
 <figure>
  	<img src="/assets/images/05_2021/class.count.png">
-	<figcaption>Figure 1. Counts of gamma (g) and hadronic (h) events.</figcaption>
+	<figcaption><b>Figure 1.</b> Counts of gamma (g) and hadronic (h) events.</figcaption>
 </figure>
 
 <h3>Pair plot of all features</h3>
@@ -607,8 +607,9 @@ Plotting these scores show some interesting patterns.
 <figure class="half">
  	<img src="/assets/images/05_2021/nnet.02.cv.png">
     <img src="/assets/images/05_2021/nnet.02.smy.png">
-	<figcaption>Figure 9. Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
+    <figcaption><b>Figure 9.</b> Cross-validation and test scores for neural networks with one hidden layer.</figcaption>
 </figure>
+
 
 ## Summary
 
