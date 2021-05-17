@@ -20,3 +20,5 @@ feature_row2:
 
 {% include feature_row id="feature_row1" type="left" %}
 {% include feature_row id="feature_row2" type="right" %}
+
+## Publications
