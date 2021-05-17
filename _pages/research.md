@@ -5,6 +5,7 @@ title: "Research"
 header:
   overlay_image: /assets/images/research/NCI-1200px.jpg
   overlay_filter: 0.5
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 
 feature_row1:
   - image_path: /assets/images/research/SubRates.png
@@ -19,6 +20,6 @@ feature_row2:
 ---
 
 {% include feature_row id="feature_row1" type="left" %}
-{% include feature_row id="feature_row2" type="right" %}
+{% include feature_row id="feature_row2" type="left" %}
 
 ## Publications
