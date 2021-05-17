@@ -4,7 +4,7 @@ permalink: /research/
 title: "Research"
 header:
   overlay_image: /assets/images/research/NCI-unsplash.jpg
-  overlay_filter: 0.5
+  overlay_filter: 0.2
 
 feature_row1:
   - image_path: /assets/images/research/SubRates.png
