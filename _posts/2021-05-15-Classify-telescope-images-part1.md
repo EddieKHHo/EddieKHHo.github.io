@@ -6,7 +6,7 @@ last_modified_at: false
 header:
   overlay_image: /assets/images/05_2021/star_galaxy_1200x777.jpg
   overlay_filter: 0.5
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com){:target="_blank"}"
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
 This is one of my first machine learning projects and it uses public data from Kaggle. My goal here is mainly to gain some practice utilizing nearest neighbor, decision tree, random forest and neural networks for classification. 
