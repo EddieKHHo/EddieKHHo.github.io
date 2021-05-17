@@ -3,8 +3,8 @@ layout: archive
 permalink: /research/
 title: "Research"
 header:
-  overlay_image: /assets/images/research/NCI-unsplash.jpg
-  # overlay_filter: 0.9
+  overlay_image: /assets/images/research/NCI-1200px.jpg
+  overlay_filter: 0.5
 
 feature_row1:
   - image_path: /assets/images/research/SubRates.png
