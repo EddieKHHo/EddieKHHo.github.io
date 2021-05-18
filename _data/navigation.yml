@@ -9,6 +9,8 @@ main:
     target: "_blank"
   - title: "Posts"
     url: /year-archive/
+  - title: "About"
+    url: /about/
   # - title: "Sample Collections"
   #   url: /collection-archive/
   # - title: "Sitemap"
