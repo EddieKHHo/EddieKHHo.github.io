@@ -97,7 +97,7 @@ author:
   name             : "Eddie Ho"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              :
-  location         : Toronto, ON
+  location         :
   email            :
   links:
     - label: "eddie.kaho.ho@gmail.com"
