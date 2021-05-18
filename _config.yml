@@ -104,7 +104,7 @@ author:
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:eddie.kaho.ho@email.com"
     - label: "LinkedIn"
-      icon: "fab fa-linkedin-in"
+      icon: "fab fa-fw fa-linkedin-in"
       url: "https://www.linkedin.com/in/eddie-ho-74a51b134/"
       target: "_blank"
     - label: "GitHub"

@@ -1,7 +1,7 @@
 ---
 layout: archive
-author_profile: true
 permalink: /research/
+author_profile: true
 title: "Research"
 header:
   overlay_image: /assets/images/research/NCI-1200px.jpg
