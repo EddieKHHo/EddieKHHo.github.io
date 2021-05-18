@@ -11,3 +11,5 @@ classes: wide
 ---
 
 I am a bioinformatician / postdoctoral researcher working at the lab of Dr. Sarah Schaack. My research is focused on estimating mutation rates from genomic data of *Daphnia magna* lines. Our aim is to understand how much mutation rates varies between genotypes/populations and mutation types as well as their genomic effects.
+
+I received my Ph.D. in Evolutionary Genetics at the University of Toronto in 2017, under advisor Dr. Aneil Agrawal. My dissertation studied the population genetic/genomic consequences of uniparental reproduction using a combination of biological experiments, mathematical theory, computer simulations, and bioinformatics.
