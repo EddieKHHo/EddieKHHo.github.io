@@ -24,13 +24,13 @@ feature_row2:
 
 ## Publications
 
-* **Ho EKH**, Macrae F, Latta LC, et al. 2020. High and highly variable spontaneous mutation rates in Daphnia. Molecular Biology and Evolution 37: 3258-3266.
+* **Ho EKH**, Macrae F, Latta LC, *et al*. 2020. High and highly variable spontaneous mutation rates in Daphnia. Molecular Biology and Evolution 37: 3258-3266.
 * Schaack S, **Ho EKH**, Macrae F. 2020. Disentangling the intertwined roles of mutation, selection and drift in the mitochondrial genome. Philosophical Transactions of the Royal society B 375: 2019073.
-* **Ho EKH**, Bartkowska M, Wright SI, et al. 2019. Population genomics of the facultatively asexual duckweed Spirodela polyrhiza. New Phytologist 224: 1361-1371.
-* **Ho EKH**, Macrae F, Latta LC, et al. 2019. Intraspecific variation in microsatellite mutation profiles in Daphnia magna. Molecular Biology and Evolution 36: 1942-1954.
+* **Ho EKH**, Bartkowska M, Wright SI, Agrawal AF. 2019. Population genomics of the facultatively asexual duckweed Spirodela polyrhiza. New Phytologist 224: 1361-1371.
+* **Ho EKH**, Macrae F, Latta LC, *et al*. 2019. Intraspecific variation in microsatellite mutation profiles in Daphnia magna. Molecular Biology and Evolution 36: 1942-1954.
 * **Ho EKH**, Agrawal AF. 2018. Mutation accumulation in selfing populations under fluctuating selection. Evolution 72: 1759-1770.
-* **Ho EKH**, Luijckx P, Stanić A, et al. 2018. Mutation accumulation in populations of varying size: large effect mutations cause most mutational decline in the rotifer Brachionus calyciflorus under UV-C radiation. Journal of Evolutionary Biology 31: 924-932.
+* **Ho EKH**, Luijckx P, Stanić A, Agrawal AF. 2018. Mutation accumulation in populations of varying size: large effect mutations cause most mutational decline in the rotifer Brachionus calyciflorus under UV-C radiation. Journal of Evolutionary Biology 31: 924-932.
 * **Ho EKH**, Agrawal AF. 2017. Aging asexual lineages and the evolutionary maintenance of sex. Evolution 71: 1865-1875.
-* Luijckx P, **Ho EKH**, Gasim M, et al. 2017. Higher rates of sex evolve during adaptation to more complex environments. PNAS 114: 534-539.
+* Luijckx P, **Ho EKH**, Gasim M, *et al*. 2017. Higher rates of sex evolve during adaptation to more complex environments. PNAS 114: 534-539.
 * **Ho EKH**, Frederickson. 2014. Alate susceptibility in ants. Ecology and Evolution 4: 4209-4219.
 * **Ho EKH**, Agrawal AF. 2012. The effects of competition on the strength and softness of selection. Journal of Evolutionary Biology 25: 2537-2546.
