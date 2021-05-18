@@ -97,12 +97,18 @@ author:
   name             : "Eddie Ho"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              :
-  location         :
+  location         : Toronto, ON
   email            :
   links:
     - label: "eddie.kaho.ho@gmail.com"
       icon: "fas fa-fw fa-envelope-square"
       url: "mailto:eddie.kaho.ho@email.com"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-github"
+      url: "https://www.linkedin.com/in/eddie-ho-74a51b134/"
+    - label: "GitHub"
+      icon: "fab fa-linkedin-in"
+      url: "https://github.com/EddieKHHo"
     - label: "Google scholar"
       icon: "fas fa-fw fa-link"
       url: "https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate"
@@ -112,9 +118,6 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/EddieKHHo"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
