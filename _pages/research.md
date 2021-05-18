@@ -4,7 +4,7 @@ permalink: /research/
 author_profile: true
 title: "Research"
 header:
-  overlay_image: /assets/images/research/NCI-1200px.jpg
+  overlay_image: /assets/images/research/NCI-600px.jpg
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 
