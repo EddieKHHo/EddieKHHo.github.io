@@ -6,6 +6,7 @@ main:
     url: /research/
   - title: "Publications"
     url: https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate
+    target: "_blank"
   - title: "Posts"
     url: /year-archive/
   # - title: "Sample Collections"
