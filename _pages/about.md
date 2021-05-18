@@ -4,7 +4,7 @@ permalink: /about/
 author_profile: true
 title: "About me"
 header:
-  overlay_image: /assets/images/about/Ant-600px.jpg
+  overlay_image: /assets/images/about/Ant-2-600px.jpg
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
