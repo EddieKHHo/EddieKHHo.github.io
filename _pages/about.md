@@ -8,6 +8,10 @@ header:
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 classes: wide
+header:
+  overlay_image: /assets/images/about/Ant-600px.jpg
+  overlay_filter: 0.5
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
 I am a bioinformatician / postdoctoral researcher working at the lab of Dr. Sarah Schaack. My research is focused on estimating mutation rates from genomic data of *Daphnia magna* lines. Our aim is to understand how much mutation rates varies between genotypes/populations and mutation types as well as their genomic effects.
