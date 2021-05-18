@@ -74,7 +74,7 @@
 
 .archive__item-excerpt {
   margin-top: 0;
-  font-size: 0.8em; /* default was type-size-6 */
+  font-size: $type-size-6; /* default is $type-size-6 */
 
   & + p {
     text-indent: 0;
