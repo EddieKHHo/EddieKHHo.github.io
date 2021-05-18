@@ -15,7 +15,7 @@ feature_row1:
 
 feature_row2:
   - image_path: /assets/images/research/Research_02.png
-    title: "Genetic consequences of uniparental reproduction"
+    title: "Genetic Consequences of Uniparental Reproduction"
     excerpt: "Despite the advantages of asexual reproduction, the majority of species are sexual/outcrossing. The rarity of highly asexual/selfing species may be attributed to their low efficacy of selection, leading to the accumulation of deleterious mutations and eventual extinction. By incorporating biologically realistic parameters to population genetics theory, I showed that: i) the rate of mutation accumulation is elevated in selfing species experiencing fluctuations in selection ([Ho *et al.* 2018]( https://doi.org/10.1111/evo.13553)), ii) asexual/selfing species are less likely to outcompete sexual/outcrossing species when mutation loads are inherited ([Ho *et al.* 2017]( https://doi.org/10.1111/evo.13260)). In addition to my theoretical work, I have also identified genomic signatures of asexual reproduction and low selection efficacy in the duckweed, *Spirodela polyrhiza* ([Ho *et al.* 2019](https://doi.org/10.1111/nph.16056))."
 
 ---
