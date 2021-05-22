@@ -33,13 +33,13 @@ It should be obvious now that the value of *t* can have large consequences on th
 Below is an example of how *t* may or may not affect predictions. The *Probability* and *Actual* columns represent the class probability output by the classifier and the actual class of the data point, respectively. The *Prediction-0.5* and *Result-0.5* columns represent the prediction and result when setting the decision threshold *t* = 0.5; analogously for *Prediction-0.6* and *Result-0.6*. In the first four rows, adjusting *t* has no effect because the class probabilities are either below 0.5 or above 0.6. In the fifth row, adjusting *t* to 0.6 changes the result from being a **FP to a TN**. In the sixth row, adjusting *t* to 0.6 changes the result from a **TP to a FN**.
 
 | Probability | Actual | Prediction-0.5 | Prediction-0.6 | Result-0.5 | Result -0.6 |
-| ----------- | ------ | -------------- | -------------- | ---------- | ----------- |
-| 0.82        | 1      | 1              | 1              | TP         | TP          |
-| 0.07        | 0      | 0              | 0              | TN         | TN          |
-| 0.68        | 0      | 1              | 1              | FP         | FP          |
-| 0.22        | 1      | 0              | 0              | FN         | FN          |
-| 0.58        | 0      | 1              | 0              | FP         | TN          |
-| 0.55        | 1      | 1              | 0              | TP         | FN          |
+| :---------: | :----: | :------------: | :------------: | :--------: | :---------: |
+|    0.82     |   1    |       1        |       1        |     TP     |     TP      |
+|    0.07     |   0    |       0        |       0        |     TN     |     TN      |
+|    0.68     |   0    |       1        |       1        |     FP     |     FP      |
+|    0.22     |   1    |       0        |       0        |     FN     |     FN      |
+|    0.58     |   0    |       1        |       0        |     FP     |     TN      |
+|    0.55     |   1    |       1        |       0        |     TP     |     FN      |
 
 
 
