@@ -19,3 +19,9 @@ I concluded in [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %
 |  Random forest   |    0.809    |  0.817  |     0.880     |
 |  Neural network  |    0.804    |  0.811  |     0.878     |
 
+Tuning the input is essential for building a good classifier, but it is equally important to study and tune the output. The output of a classifier is typically the **probability** assessment of a class. This probability is then used to bin the data point into a class based on a **decision threshold**. In most classifiers the default decision threshold is set at *t* = 0.5, such that the data point is classified as '0' if its class probability is below 0.5 and classified as '1' otherwise. 
+
+It should be obvious now that the value of *t* can have large consequences on the predicted class, especially when class probabilities are noisy and hover around 0.5. 
+
+*t* can be adjusted to any value between 0 and 1 to suit the needs of our question.
+
