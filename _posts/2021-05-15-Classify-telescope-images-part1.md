@@ -629,7 +629,7 @@ Exploring the effects of hyperparameters on the F1 score revealed some interesti
 
 
 
-Throughout this analysis, I have not considered the consequences of **false positive (FP)** versus **false negative (FN)** predictions. There are many studies that aim to minimize FN more than FP or vice versa. For example, in disease prediction, a FN may be more consequential than a FP because a FN would mean a disease becomes untreated, while a FP may just warrant further testing. For our analysis, I would aim to reduce FP more than FN because accepting a hadronic event as a gamma ray event can be very misleading. To account for these considerations, I will continue exploring this dataset using **AUC-ROC curves** in [Part 2]() of this analysis
+Throughout this analysis, I have not considered the consequences of **false positive (FP)** versus **false negative (FN)** predictions. There are many studies that aim to minimize FN more than FP or vice versa. For example, in disease prediction, a FN may be more consequential than a FP because a FN would mean a disease becomes untreated, while a FP may just warrant further testing. For our analysis, I would aim to reduce FP more than FN because accepting a hadronic event as a gamma ray event can be very misleading. To account for these considerations, I will continue exploring this dataset using **AUC-ROC curves** in [Part 2]({% post_url 2021-05-15-Classify-telescope-images-part2 %}){:target="_blank"} of this analysis
 
 
 
