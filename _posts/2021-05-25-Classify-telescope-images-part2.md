@@ -10,7 +10,7 @@ header:
 
 ---
 
-I concluded in [part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="_blank"} of this analysis with four types of classifiers, each optimized by fine-tuning their hyperparameters.
+I concluded in [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="_blank"} of this analysis with four types of classifiers, each optimized by fine-tuning hyperparameters. From these results, it is clear that the random forest and neural network classifier are preferable to nearest neighbor and decision tree.
 
 |    Classifier    | Training F1 | Test F1 | Test accuracy |
 | :--------------: | :---------: | :-----: | :-----------: |
