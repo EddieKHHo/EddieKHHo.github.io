@@ -21,7 +21,14 @@ I concluded in [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %
 
 Tuning the input is essential for building a good classifier, but it is equally important to study and tune the output. The output of a classifier is typically the **probability** assessment of a class. This probability is then used to bin the data point into a class based on a **decision threshold**. In most classifiers the default decision threshold is set at *t* = 0.5, such that the data point is classified as '0' if its class probability is below 0.5 and classified as '1' otherwise. 
 
-It should be obvious now that the value of *t* can have large consequences on the predicted class, especially when class probabilities are noisy and hover around 0.5. 
+It should be obvious now that the value of *t* can have large consequences on the predicted class, especially when class probabilities are noisy and hover around 0.5. This would impact whether the prediction is a **false positive (FP)**, **false negative (FN)**, **true positive (TP)**, or **true negative (TN)**. The count of these prediction types can be displayed on a **confusion matrix**.
 
-*t* can be adjusted to any value between 0 and 1 to suit the needs of our question.
+|                 | Predict positive | Predict negative |
+| :-------------: | :--------------: | :--------------: |
+| Actual positive |        TP        |        FN        |
+| Actual negative |        FP        |        TN        |
+
+For an example of how t can affect predictions, I will show a subset of predictions from the optimal random forest classifier and set t as 05 (default) or as 0.6.
+
+
 
