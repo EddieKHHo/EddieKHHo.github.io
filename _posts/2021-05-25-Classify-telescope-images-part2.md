@@ -10,7 +10,7 @@ header:
 
 ---
 
-I concluded [part 1]() of this analysis with four types of classifiers, each optimized by fine-tuning their hyperparameters.
+I concluded in [part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="_blank"} of this analysis with four types of classifiers, each optimized by fine-tuning their hyperparameters.
 
 |    Classifier    | Training F1 | Test F1 | Test accuracy |
 | :--------------: | :---------: | :-----: | :-----------: |
