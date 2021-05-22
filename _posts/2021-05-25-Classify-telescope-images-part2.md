@@ -41,5 +41,5 @@ Below is an example of how *t* may or may not affect predictions. The *Probabili
 |    0.58     |   0    |       1        |       0        |     FP     |     TN      |
 |    0.55     |   1    |       1        |       0        |     TP     |     FN      |
 
-
+Rather than counting each type of prediction in the confusion matrix, it is typical to calculate the false positive rate (**FPR**) and true positive rate (**TPR**). The FPR represents the proportion of actual negative events that were correctly predicted as negative events and is calculated as FPR = FP /(FP+TN). The TPR represents the proportion of actual positive events that were correctly predicted as positive events and is calculated as TPR = TP / (FN+TP).
 
