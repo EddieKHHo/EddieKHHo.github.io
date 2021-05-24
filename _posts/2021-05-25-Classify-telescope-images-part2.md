@@ -51,3 +51,25 @@ Depending on the needs of your project, you can tune the decision threshold, *t*
 
 Below, I will examine the effects of adjust *t* on each of our four classifiers. In an actual study on gamma ray detection, one may prefer to optimize for low FPR at the cost of reduced TPR because there are typically many more hadronic events than gamma ray events in real data. Imagine that there are 10,000 hadronic events and only 100 gamma events. If an adjustment in *t* causes a reduction in FPR and TPR by 1%, this would reduce 100 false positives at the cost of 1 true positive.
 
+
+
+## Python packages
+
+```python
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split, cross_val_score,  StratifiedKFold
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.metrics import confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
+```
+
+
+
+## Define classifiers
+

@@ -35,13 +35,12 @@ from sklearn.model_selection import train_test_split, cross_val_score,  Stratifi
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
 from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
-from sklearn.metrics import accuracy_score, f1_score, make_scorer, classification_report, confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
+from sklearn.metrics import accuracy_score, f1_score, make_scorer, confusion_matrix
 ```
 ## Data exploration
 
