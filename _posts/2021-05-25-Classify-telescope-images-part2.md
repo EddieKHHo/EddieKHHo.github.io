@@ -69,7 +69,57 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
 ```
 
-
-
 ## Define classifiers
+
+Read the csv data file
+
+```python
+Telescope = pd.read_csv('telescope.csv')
+```
+
+Encode class identifier (Y), split the data into training and test set, and standardize features (X).
+
+```python
+# Define X as features and Y as labels
+X = Telescope.drop('class', axis=1)
+Y = Telescope['class']
+# Encode Y
+le = LabelEncoder()
+Y_encode = le.fit_transform(Y)
+# split to training and testing set, stratify by Y
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y_encode, test_size=0.30, stratify=Y)
+# Standardize X_train, then fit to X_test
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+```
+
+Define the four classifiers based on the fine-tuned hyperparameters from [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="_blank"}. Fit each classifier with training data. Obtain predictions using the default decision threshold (*t* = 0.5). Obtain the class probabilities for each data point using `predict_proba`. These class probabilities will be used to make predictions when we alter the decision threshold, *t*.
+
+```python
+#####-----nearest neighbors
+NN = KNeighborsClassifier(p=1, weights='distance', n_neighbors=5)
+NN.fit(X_train, Y_train)
+NN_Y_pred = NN.predict(X_test)
+NN_Y_proba = NN.predict_proba(X_test)
+
+#####-----decision tree
+DT = DecisionTreeClassifier(criterion='gini', max_depth=10, min_samples_split=60, min_samples_leaf=10)
+DT.fit(X_train, Y_train)
+DT_Y_pred = DT.predict(X_test)
+DT_Y_proba = DT.predict_proba(X_test)
+
+#####-----random forest
+RF = RandomForestClassifier(criterion='gini', max_features='sqrt', max_depth=40, n_estimators=300,min_samples_split=5, min_samples_leaf=2)
+RF.fit(X_train, Y_train)
+RF_Y_pred = RF.predict(X_test)
+RF_Y_proba = RF.predict_proba(X_test)
+
+#####-----neural network
+MLP = MLPClassifier(activation='tanh', solver='adam', hidden_layer_sizes=(20,20), max_iter=1000, learning_rate='adaptive', alpha=0.0001)
+MLP.fit(X_train, Y_train)
+MLP_Y_pred = MLP.predict(X_test)
+MLP_Y_proba = MLP.predict_proba(X_test)
+```
 
