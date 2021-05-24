@@ -165,7 +165,7 @@ MLP_Y_proba = MLP.predict_proba(X_test)
 
 Before we attempt to optimize the classifiers, lets examine the effects of altering the decision threshold, *t*, on the false positive rate (FPR) and true positive rates (TPR). Although this data is usually represented in a ROC-curve (below), plotting FPR and TPR against values of *t* helped me understand this process a bit more easily.
 
-To classify data points in the test set using a custom decision threshold, I utilize a custom function `adjPred`  (defined above), which simply categorized the data point as '0' if the class probability is below *t*, and as '1' otherwise.
+To classify data points in the test set using a custom decision threshold, I utilize `adjPred`  (defined above), which categorized the data point as '0' if the class probability is below *t*, and as '1' otherwise.
 
 ```python
 listI, listJ, listTitle =[0,0,1,1], [0,1,0,1], ['Nearest neighbor','Decision tree','Random forest','Neural network']
