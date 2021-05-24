@@ -53,7 +53,7 @@ Below, I will examine the effects of adjust *t* on each of our four classifiers.
 
 
 
-## Python packages
+## Python packages and functions
 
 ```python
 import numpy as np
@@ -68,6 +68,44 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix, plot_roc_curve, roc_auc_score, roc_curve
 ```
+
+```python
+def adjPred(Y_proba, t):
+    """
+    Adjusts class predictions based on the decision threshold (t)
+    """
+    return [1 if y >= t else 0 for y in Y_proba[:,1]]
+
+def calcFprTpr(Y_test, Y_proba, t):
+    '''
+    Get FPR and TPR given decision threshold
+    '''
+    Y_pred = adjPred(Y_proba, t) #get adjusted predictions
+    tn, fp, fn, tp = confusion_matrix(Y_test, Y_pred).ravel() #get confusion matrix metrics
+    fpr, tpr = fp/(fp+tn), tp/(tp+fn)
+    return [tn, fp, fn, tp, fpr, tpr]
+
+def tableFprTpr(Y_test, Y_proba, listT):
+    '''
+    Generate table of FPR, TPR with user-defined sequence of thresholds
+    '''
+    dfRates = pd.DataFrame(columns=['Threshold','TN','FP','FN','TP','FPR','TPR'])
+    for t in listT:
+        tn, fp, fn, tp, fpr, tpr = calcFprTpr(Y_test, Y_proba, t)
+        dfRates.loc[len(dfRates)] = [t, tn, fp, fn, tp, fpr, tpr]
+    return dfRates
+
+def thresholdGivenFpr(Y_test, Y_proba, maxFPR):
+    '''
+    Find the largest decision threshold (t) that returns FPR <= maxFPR
+    '''
+    for t in list(np.linspace(0,1,1001)):
+        tn, fp, fn, tp, fpr, tpr = calcFprTpr(Y_test, Y_proba, t)
+        if fpr <= maxFPR:
+            return [tn, fp, fn, tp, fpr, tpr, t]
+```
+
+
 
 ## Define classifiers
 
@@ -122,4 +160,8 @@ MLP.fit(X_train, Y_train)
 MLP_Y_pred = MLP.predict(X_test)
 MLP_Y_proba = MLP.predict_proba(X_test)
 ```
+
+## Varying the decision threshold
+
+Before we attempt to optimize the classifiers, lets examine the effects of altering the decision threshold, *t*, on the false positive rate (FPR) and true positive rates (TPR).
 
