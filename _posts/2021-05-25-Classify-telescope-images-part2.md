@@ -188,3 +188,9 @@ for k in range(4):
 plt.show()
 ```
 
+
+
+<figure>
+ 	<img src="/assets/images/05_2021/RateThreshold.png">
+	<figcaption><b>Figure 1.</b> FPR and TPR for range of decision thresholds. Dashed line represents the default threshold at <em>t</em> = 0.5.</figcaption>
+</figure>
