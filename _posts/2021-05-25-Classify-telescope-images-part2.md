@@ -40,8 +40,8 @@ Below is an example of how *t* may or may not affect predictions. The *Probabili
 |    0.07     |   0    |       0        |       0        |     TN     |     TN      |
 |    0.68     |   0    |       1        |       1        |     FP     |     FP      |
 |    0.22     |   1    |       0        |       0        |     FN     |     FN      |
-|    0.58     |   0    |       1        |       0        |     FP     |   **TN**    |
-|    0.55     |   1    |       1        |       0        |     TP     |   **FN**    |
+|  **0.58**   |   0    |       1        |       0        |     FP     |     TN      |
+|  **0.55**   |   1    |       1        |       0        |     TP     |     FN      |
 
 ### FPR and TPR
 
