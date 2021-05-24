@@ -163,5 +163,28 @@ MLP_Y_proba = MLP.predict_proba(X_test)
 
 ## Varying the decision threshold
 
-Before we attempt to optimize the classifiers, lets examine the effects of altering the decision threshold, *t*, on the false positive rate (FPR) and true positive rates (TPR).
+Before we attempt to optimize the classifiers, lets examine the effects of altering the decision threshold, *t*, on the false positive rate (FPR) and true positive rates (TPR). Although this data is usually represented in the ROC-curve (below), I find it a bit more intuitive to first plot FPR and TPR against different values of *t*.
+
+```python
+listI, listJ, listTitle =[0,0,1,1], [0,1,0,1], ['Nearest neighbor','Decision tree','Random forest','Neural network']
+listT, listProba = list(np.linspace(0,1,501)), [NN_Y_proba, DT_Y_proba, RF_Y_proba, MLP_Y_proba]
+
+# loop to produce subplots
+fig, ax =plt.subplots(2, 2, figsize=(26,20))
+fig.subplots_adjust(hspace=0.2, wspace=0.1)
+for k in range(4):
+    # table of FPR, TPR for range of decision thresholds
+    model_rates = tableFprTpr(Y_test, listProba[k], listT)
+    model_rates_melt = pd.melt(model_rates, id_vars=['Threshold'], value_vars=['FPR', 'TPR'], var_name='Type', value_name='Rate')
+    sns.lineplot(
+        data=model_rates_melt, x='Threshold', y='Rate', hue='Type', style='Type', 
+        palette="colorblind", markers=True, ax=ax[listI[k],listJ[k]])
+    ax[listI[k],listJ[k]].vlines(x=0.5, ymin=0, ymax=1, color='black', linestyle='--', alpha=0.8)
+    ax[listI[k],listJ[k]].set_title(listTitle[k], fontsize=20, loc='left')
+    ax[listI[k],listJ[k]].set_xlabel(xlabel='Threshold',fontsize=20)
+    ax[listI[k],listJ[k]].set_ylabel(ylabel='Rate', fontsize=20)
+    ax[listI[k],listJ[k]].tick_params(axis='both', which='major', labelsize=18)
+    ax[listI[k],listJ[k]].legend(loc='upper right', prop={'size': 30})
+plt.show()
+```
 
