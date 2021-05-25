@@ -272,10 +272,6 @@ The plot below shows the ROC-curve and the AUC-ROC score for all four classifier
 
 So far, we have just examined various properties of the class probabilities and decision thresholds. Here, we will attempt to find the **optimal decision threshold, *t***, for each model using the **geometric mean** method. This method simply aims to finds the value of *t* that maximizes the geometric mean of sensitivity (TPR) and specificity (1 - FPR), which turns out to equal **sqrt(TPR * (1-FPR))**.
 
-We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increase TPR, it also increases the FPR. Looking at the results for the random forest classifier, reducing *t* from 0.5 to 0.36 causes a 0.08 increase in TPR and a 0.049 increase in FPR. However this is actually an increase of 11% for the TPR and an increase of 82% for the FPR. 
-
-This is not always ideal, especially with unbalanced datasets containing many more negative events than positive events, which is almost always the case when detecting gamma ray events (most event will be the 'negative' hadronic events).
-
 ```python
 # Find value of t that maximized geometric mean
 listProba = [NN_Y_proba, DT_Y_proba, RF_Y_proba, MLP_Y_proba]
@@ -292,6 +288,10 @@ for i in range(4):
     ix = np.argmax(gmeans)
     dfGmean.loc[len(dfGmean)] = [listName[i], 'MaxGmean', thresholds[ix], fpr[ix], tpr[ix]]
 ```
+
+We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increase TPR, it also increases the FPR. Looking at the results for the random forest classifier, reducing *t* from 0.5 to 0.36 causes a 0.08 increase in TPR and a 0.049 increase in FPR. However this is actually an increase of 11% for the TPR and an increase of 82% for the FPR. 
+
+This is not always ideal, especially with unbalanced datasets containing many more negative events than positive events, which is almost always the case when detecting gamma ray events (most event will be the 'negative' hadronic events).
 
 ```
              Model  Category  Threshold       FPR       TPR
@@ -313,5 +313,46 @@ for i in range(4):
 
 ### Manually optimization of *t*
 
-Rather than relying on a generic method of optimization, like the geometric means method, it is typical to adjust *t* until an acceptable level of FPR and/or TPR is achieved. 
+Rather than relying on a generic method of optimization, like the geometric means method, it is typical to adjust *t* until an acceptable level of FPR and/or TPR is achieved. For this project, I am aiming to reduce FPR to low levels since hadronic events are typically much more abundant than gamma ray events. It would be ideal to maximally reduce false positives, while still achieve significant true positive rates. 
 
+Here I will find the value of *t* that would achieve a FPR of 5% or 2% and examine how this affects the TPR. I have defined a simple function `thresholdGivenFpr` to do this.
+
+```python
+listProba = [NN_Y_proba, DT_Y_proba, RF_Y_proba, MLP_Y_proba]
+listName = ['Nearest neighbor','Decision tree','Random forest','Neural network']
+
+dfManual = pd.DataFrame(columns=['Model','Category','Threshold','FPR','TPR'])
+for i in range(4):
+    #####-----get point for threshold=0.5
+    tn, fp, fn, tp, fpr, tpr = calcFprTpr(Y_test, listProba[i], 0.5)
+    dfManual.loc[len(dfManual)] = [listName[i], 'Default', 0.5, fpr, tpr]
+    #####-----get point for FPR=0.05
+    tn, fp, fn, tp, fpr, tpr, t = thresholdGivenFpr(Y_test, listProba[i], 0.05)
+    dfManual.loc[len(dfManual)] = [listName[i], 'Fpr0.05', t, fpr, tpr]
+    #####-----get point for FPR=0.01
+    tn, fp, fn, tp, fpr, tpr, t = thresholdGivenFpr(Y_test, listProba[i], 0.02)
+    dfManual.loc[len(dfManual)] = [listName[i], 'Fpr0.01', t, fpr, tpr]
+```
+
+We observe that when optimizing for low FPR, the decision threshold *t* increases relative to the default value. 
+
+```
+               Model Category  Threshold       FPR       TPR
+0   Nearest neighbor  Default      0.500  0.052973  0.651047
+1   Nearest neighbor  Fpr0.05      0.548  0.050000  0.645563
+2   Nearest neighbor  Fpr0.02      0.758  0.020000  0.507976
+3      Decision tree  Default      0.500  0.094865  0.713858
+4      Decision tree  Fpr0.05      0.667  0.047027  0.630110
+5      Decision tree  Fpr0.02      0.901  0.020000  0.497009
+6      Random forest  Default      0.500  0.060000  0.752243
+7      Random forest  Fpr0.05      0.530  0.050000  0.733300
+8      Random forest  Fpr0.02      0.711  0.020000  0.619143
+9     Neural network  Default      0.500  0.070270  0.775673
+10    Neural network  Fpr0.05      0.595  0.050000  0.740279
+11    Neural network  Fpr0.02      0.810  0.020000  0.637089
+```
+
+<figure>
+ 	<img src="/assets/images/05_2021/ROC.Manual.01.png">
+	<figcaption><b>Figure 5.</b>ROC curve for all four classifiers showing the points with default <em>t</em> (circles), t with FPR = 0.05 (x's) and T with FPR = 0.02 (triangles).</figcaption>
+</figure>
