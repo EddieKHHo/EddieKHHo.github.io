@@ -194,7 +194,6 @@ We also observe that the correlation in class probabilities are lower when consi
 
 ```python
 dfCorrProb = dfProb.corr()
-print(dfCorrProb)
 ```
 
 ```
@@ -216,8 +215,6 @@ sns.pairplot(dfProb, height = 2.5, plot_kws={'alpha':0.5})
  	<img src="/assets/images/05_2021/proba.pairplot.png">
 	<figcaption><b>Figure 1.</b> Pairplor of class probabilities for all four classifiers.</figcaption>
 </figure>
-
-
 
 ## Varying the decision threshold
 
@@ -259,4 +256,6 @@ Here is what I learned from examining these plots. Recall the FPR = FP/(FP+TN) a
 2. When t = 1, the TPR for nearest neighbor and decision tree classifiers are well above 0, while the TPR for the random forest and neural network classifiers are at or near 0. This is expected given that the former two classifiers assigned many more data points a class probability equal to 1. However, exactly why this is the case is not clear to me.
 3. As expected, FPR and TPR decreases as *t* increases, but the shape of the curve differs across classifiers. For the nearest neighbor classifier, there is a step-like curve suggesting that the class probabilities cluster around a few values (which is actually observed in the histogram above). The decision tree classifier show a similar but less pronounced step-like curve. The random forest and neural network classifier shows a smoother curve. 
 4. Interestingly, for the random forest and neural network classifier, the FPR show a negative curvature, while the TPR show a positive curvature. This means that for small values of *t*, as *t* increase, the FPR decreases at a faster rate than the TPR. While for larger value of t, as t increases the TPR rate decreases faster than the FPR.
+
+## ROC curves
 
