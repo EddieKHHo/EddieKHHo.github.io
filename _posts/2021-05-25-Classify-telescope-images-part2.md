@@ -261,9 +261,55 @@ Here is what I learned from examining these plots. Recall the FPR = FP/(FP+TN) a
 
 Here, we will plot the receiver operating characteristic (ROC) curve, which is simply a plot of FPR against TPR for a range of decision thresholds. This curve typically exhibits a positive curvature, showing that TPR is larger than FPR. Importantly, the area under the curve (AUC) can be used to score a classifier model. A larger **AUC-ROC score** suggests a model with a better fit to the data.
 
-The plot below shows the ROC-curve and the AUC-ROC score for all four classifiers.
+The plot below shows the ROC-curve and the AUC-ROC score for all four classifiers. We observe the classical positive curvature for all four classifiers, but also that the AUC is larger for the random forest and neural network classifiers (0.93) compare to the nearest neighbor and decision tree classifiers (0.88). In other words, similar to the accuracy and F1 score, the AUC-ROC score would rank the random forest and neural network classifiers as a better model for the data.
 
 <figure>
  	<img src="/assets/images/05_2021/ROC.default.png">
 	<figcaption><b>Figure 3.</b> ROC curve for all four classifiers</figcaption>
 </figure>
+
+### Geometric mean optimization of *t*
+
+So far, we have just examined various properties of the class probabilities and decision thresholds. Here, we will attempt to find the **optimal decision threshold, *t***, for each model using the **geometric mean** method. This method simply aims to finds the value of *t* that maximizes the geometric mean of sensitivity (TPR) and specificity (1 - FPR), which turns out to equal **sqrt(TPR * (1-FPR))**.
+
+We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increase TPR, it also increases the FPR. 
+
+```python
+# Find value of t that maximized geometric mean
+listProba = [NN_Y_proba, DT_Y_proba, RF_Y_proba, MLP_Y_proba]
+listName = ['Nearest neighbor','Decision tree','Random forest','Neural network']
+
+dfGmean = pd.DataFrame(columns=['Model','Category','Threshold','FPR','TPR'])
+for i in range(4):
+    # -get point for threshold=0.5
+    tn, fp, fn, tp, fpr, tpr = calcFprTpr(Y_test, listProba[i], 0.5)
+    dfGmean.loc[len(dfGmean)] = [listName[i], 'Default', 0.5, fpr, tpr]
+    # get point for maximum gmean
+    fpr, tpr, thresholds = roc_curve(Y_test, listProba[i][:,1])
+    gmeans = np.sqrt(tpr * (1-fpr))
+    ix = np.argmax(gmeans)
+    dfGmean.loc[len(dfGmean)] = [listName[i], 'MaxGmean', thresholds[ix], fpr[ix], tpr[ix]]
+```
+
+```
+             Model  Category  Threshold       FPR       TPR
+0  Nearest neighbor   Default   0.500000  0.052973  0.651047
+1  Nearest neighbor  MaxGmean   0.357613  0.119189  0.763709
+2     Decision tree   Default   0.500000  0.094865  0.713858
+3     Decision tree  MaxGmean   0.310345  0.132703  0.775673
+4     Random forest   Default   0.500000  0.060000  0.752243
+5     Random forest  MaxGmean   0.363560  0.109189  0.832004
+6    Neural network   Default   0.500000  0.070270  0.775673
+7    Neural network  MaxGmean   0.362441  0.119459  0.826022
+```
+
+<figure class="half">
+ 	<img src="/assets/images/05_2021/ROC.Gmean.01.png">
+    <img src="/assets/images/05_2021/ROC.Gmean.02.png">
+	<figcaption><b>Figure 4.</b> (left) ROC curve for all four classifiers showing the points with default <em>t</em> and geometric mean optimized <em>t</em>. (right)Same figure but zoomed in.</figcaption>
+</figure>
+
+## Manually optimization of *t*
+
+
+
