@@ -272,7 +272,9 @@ The plot below shows the ROC-curve and the AUC-ROC score for all four classifier
 
 So far, we have just examined various properties of the class probabilities and decision thresholds. Here, we will attempt to find the **optimal decision threshold, *t***, for each model using the **geometric mean** method. This method simply aims to finds the value of *t* that maximizes the geometric mean of sensitivity (TPR) and specificity (1 - FPR), which turns out to equal **sqrt(TPR * (1-FPR))**.
 
-We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increase TPR, it also increases the FPR. 
+We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increase TPR, it also increases the FPR. Looking at the results for the random forest classifier, reducing *t* from 0.5 to 0.36 causes a 0.08 increase in TPR and a 0.049 increase in FPR. However this is actually an increase of 11% for the TPR and an increase of 82% for the FPR. 
+
+This is not always ideal, especially with unbalanced datasets containing many more negative events than positive events, which is almost always the case when detecting gamma ray events (most event will be the 'negative' hadronic events).
 
 ```python
 # Find value of t that maximized geometric mean
@@ -306,10 +308,10 @@ for i in range(4):
 <figure class="half">
  	<img src="/assets/images/05_2021/ROC.Gmean.01.png">
     <img src="/assets/images/05_2021/ROC.Gmean.02.png">
-	<figcaption><b>Figure 4.</b> (left) ROC curve for all four classifiers showing the points with default <em>t</em> and geometric mean optimized <em>t</em>. (right)Same figure but zoomed in.</figcaption>
+	<figcaption><b>Figure 4.</b> (left) ROC curve for all four classifiers showing the points with default <em>t</em> (circles) and geometric mean optimized <em>t</em> (x's). (right)Same figure but zoomed in.</figcaption>
 </figure>
 
-## Manually optimization of *t*
+### Manually optimization of *t*
 
-
+Rather than relying on a generic method of optimization, like the geometric means method, it is typical to adjust *t* until an acceptable level of FPR and/or TPR is achieved. 
 
