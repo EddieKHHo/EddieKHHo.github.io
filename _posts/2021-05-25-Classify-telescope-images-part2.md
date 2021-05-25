@@ -334,7 +334,7 @@ for i in range(4):
     dfManual.loc[len(dfManual)] = [listName[i], 'Fpr0.01', t, fpr, tpr]
 ```
 
-We observe that when optimizing for low FPR, the decision threshold *t* increases relative to the default value. 
+We observe that when optimizing for low FPR, the decision threshold *t* increases relative to the default value, which is opposite to what happened when optimization using the geometric mean.  
 
 ```
                Model Category  Threshold       FPR       TPR
