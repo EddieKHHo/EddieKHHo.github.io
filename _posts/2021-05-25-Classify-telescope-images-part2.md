@@ -259,3 +259,4 @@ Here is what I learned from examining these plots. Recall the FPR = FP/(FP+TN) a
 
 ## ROC curves
 
+Here, we will plot the receiver operating characteristic (ROC) curve, which is simply a plot of FPR against TPR for a range of decision thresholds. This curve typically exhibits a positive curvature, showing that TPR is larger than FPR. Importantly, the area under the curve (AUC) can be used to score a classifier model. A larger **AUC-ROC score** suggests a model with a better fit to the data.
