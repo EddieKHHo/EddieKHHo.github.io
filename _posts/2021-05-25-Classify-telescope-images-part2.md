@@ -334,7 +334,7 @@ for i in range(4):
     dfManual.loc[len(dfManual)] = [listName[i], 'Fpr0.01', t, fpr, tpr]
 ```
 
-We observe that when optimizing for low FPR, the decision threshold *t* increases relative to the default value, which is opposite to what happened when optimization using the geometric mean.  
+We observe that when optimizing for low FPR, the decision threshold *t* increases relative to the default value, which is opposite to what happened when optimization using the geometric mean. Of course, lowering the FPR comes at the cost of a lower TPR and it is up to the analyst to decide how much of the TPR they are willing to sacrifice. Looking at the results of the random forest classifier, reducing FPR to 0.05 reduced FPR by 17% and TPR by just 3%, while reducing FPR to 0.02 reduced FPR by 67% and TPR by 18%. 
 
 ```
                Model Category  Threshold       FPR       TPR
@@ -356,3 +356,6 @@ We observe that when optimizing for low FPR, the decision threshold *t* increase
  	<img src="/assets/images/05_2021/ROC.Manual.01.png">
 	<figcaption><b>Figure 5.</b>ROC curve for all four classifiers showing the points with default <em>t</em> (circles), t with FPR = 0.05 (x's) and T with FPR = 0.02 (triangles).</figcaption>
 </figure>
+
+## Conclusions
+
