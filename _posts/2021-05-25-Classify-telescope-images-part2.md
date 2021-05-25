@@ -161,6 +161,64 @@ MLP_Y_pred = MLP.predict(X_test)
 MLP_Y_proba = MLP.predict_proba(X_test)
 ```
 
+## Examining class probabilities
+
+Before even considering the decision threshold, lets take a look at the class probabilities assigned by each classifier.
+
+As expected, class probabilities range from 0 to 1. However, we observe that the neural network and decision tree classifiers assigns probability of 1 much more often than the random forest and neural network classifiers.
+
+```python
+dfProb = pd.DataFrame({'NN':NN_Y_proba[:,1],'DT':DT_Y_proba[:,1],'RF':RF_Y_proba[:,1],'MLP':MLP_Y_proba[:,1]})
+print(dfProb.describe().loc[['count','mean','std','min','50%','max']])
+```
+
+```
+                NN           DT           RF          MLP
+count  5706.000000  5706.000000  5706.000000  5706.000000
+mean      0.296769     0.349363     0.348438     0.359866
+std       0.363212     0.372850     0.347748     0.385066
+min       0.000000     0.016760     0.000000     0.000058
+50%       0.179352     0.138983     0.195281     0.158873
+max       1.000000     1.000000     1.000000     0.999994
+```
+
+```
+print(sum(temp0.NN==1),sum(temp0.DT==1),sum(temp0.RF==1),sum(temp0.MLP==1))
+```
+
+```
+758 667 39 0
+```
+
+We also observe that the correlation in class probabilities are lower when considering the nearest neighbor classifier, and highest between random forest and neural network classifiers.
+
+```python
+dfCorrProb = dfProb.corr()
+print(dfCorrProb)
+```
+
+```
+           NN        DT        RF       MLP
+NN   1.000000  0.823648  0.897634  0.855501
+DT   0.823648  1.000000  0.918581  0.862727
+RF   0.897634  0.918581  1.000000  0.944070
+MLP  0.855501  0.862727  0.944070  1.000000
+```
+
+Histogram of class probabilities show bimodal distributions with peaks at 0 and near 1. However the large number of points with intermediate probabilities suggests that adjusting the threshold value will have significant effects on class assignments.
+
+```python
+sns.set_context("paper", rc={"axes.labelsize":20})
+sns.pairplot(dfProb, height = 2.5, plot_kws={'alpha':0.5})
+```
+
+<figure>
+ 	<img src="/assets/images/05_2021/proba.pairplot.png">
+	<figcaption><b>Figure 1.</b> Pairplor of class probabilities for all four classifiers.</figcaption>
+</figure>
+
+
+
 ## Varying the decision threshold
 
 Before we attempt to optimize the classifiers, lets examine the effects of altering the decision threshold, *t*, on the false positive rate (FPR) and true positive rates (TPR). Although this data is usually represented in a ROC-curve (below), plotting FPR and TPR against values of *t* helped me understand this process a bit more easily.
@@ -192,12 +250,13 @@ plt.show()
 
 <figure>
  	<img src="/assets/images/05_2021/RateThreshold.png">
-	<figcaption><b>Figure 1.</b> FPR and TPR for range of decision thresholds. Dashed line represents the default threshold at <em>t</em> = 0.5.</figcaption>
+	<figcaption><b>Figure 2.</b> FPR and TPR for range of decision thresholds. Dashed line represents the default threshold at <em>t</em> = 0.5.</figcaption>
 </figure>
 
 Here is what I learned from examining these plots. Recall the FPR = FP/(FP+TN) and TPR = TP/(FN+TP).
 
 1. FPR = 1 and TPR = 1 when *t* = 0, since TN = 0 and FN = 0.
-2. FPR = 0 when t = 0, since FP = 0.
-3. TPR = the frequency of '1' in the test set when t = 0, since everything is classified as '1' and the predictions can only be TP or FP.
-4. As *t* increases, both FPR and TPR decreases. 
+2. When t = 1, the TPR for nearest neighbor and decision tree classifiers are well above 0, while the TPR for the random forest and neural network classifiers are at or near 0. This is expected given that the former two classifiers assigned many more data points a class probability equal to 1. However, exactly why this is the case is not clear to me.
+3. As expected, FPR and TPR decreases as *t* increases, but the shape of the curve differs across classifiers. For the nearest neighbor classifier, there is a step-like curve suggesting that the class probabilities cluster around a few values (which is actually observed in the histogram above). The decision tree classifier show a similar but less pronounced step-like curve. The random forest and neural network classifier shows a smoother curve. 
+4. Interestingly, for the random forest and neural network classifier, the FPR show a negative curvature, while the TPR show a positive curvature. This means that for small values of *t*, as *t* increase, the FPR decreases at a faster rate than the TPR. While for larger value of t, as t increases the TPR rate decreases faster than the FPR.
+
