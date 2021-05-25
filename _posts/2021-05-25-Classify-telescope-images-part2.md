@@ -195,9 +195,9 @@ plt.show()
 	<figcaption><b>Figure 1.</b> FPR and TPR for range of decision thresholds. Dashed line represents the default threshold at <em>t</em> = 0.5.</figcaption>
 </figure>
 
-Here is what I learned from looking these plots. Recall the FPR = FP/(FP+TN) and TPR = TP/(FN+TP).
+Here is what I learned from examining these plots. Recall the FPR = FP/(FP+TN) and TPR = TP/(FN+TP).
 
 1. FPR = 1 and TPR = 1 when *t* = 0, since TN = 0 and FN = 0.
 2. FPR = 0 when t = 0, since FP = 0.
 3. TPR = the frequency of '1' in the test set when t = 0, since everything is classified as '1' and the predictions can only be TP or FP.
-4. As *t* increases, both FPR and TPR decreases.
+4. As *t* increases, both FPR and TPR decreases. 
