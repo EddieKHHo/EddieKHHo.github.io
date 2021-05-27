@@ -311,7 +311,7 @@ This is not always ideal, especially with unbalanced datasets containing many mo
 	<figcaption><b>Figure 4.</b> (left) ROC curve for all four classifiers showing the points with default <em>t</em> (circles) and geometric mean optimized <em>t</em> (x's). (right)Same figure but zoomed in.</figcaption>
 </figure>
 
-### Manually optimization of *t*
+### Manual optimization of *t*
 
 Rather than relying on a generic method of optimization, like the geometric means method, it is typical to adjust *t* until an acceptable level of FPR and/or TPR is achieved. For this project, I am aiming to reduce FPR to low levels since hadronic events are typically much more abundant than gamma ray events. It would be ideal to maximally reduce false positives, while still achieve significant true positive rates. 
 
