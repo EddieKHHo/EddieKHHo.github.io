@@ -9,7 +9,7 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-This project consists of two parts: [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="_blank"} aims to explore the data optimize classifiers by fine-tuning hyperparameter.  [Part 2]({% post_url 2021-05-25-Classify-telescope-images-part2 %}){:target="_blank"} continues with the fine-tuned models and optimize the classifiers via their decision thresholds.
+This project consists of two parts: [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="blank"} aims to explore the data optimize classifiers by fine-tuning hyperparameter.  [Part 2]({% post_url 2021-05-25-Classify-telescope-images-part2 %}){:target="blank"} continues with the fine-tuned models and optimize the classifiers via their decision thresholds.
 
 ## Signals from MAGIC telescopes
 
