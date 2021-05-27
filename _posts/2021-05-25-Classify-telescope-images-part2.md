@@ -289,7 +289,7 @@ for i in range(4):
     dfGmean.loc[len(dfGmean)] = [listName[i], 'MaxGmean', thresholds[ix], fpr[ix], tpr[ix]]
 ```
 
-We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increase TPR, it also increases the FPR. Looking at the results for the random forest classifier, reducing *t* from 0.5 to 0.36 causes a 0.08 increase in TPR and a 0.049 increase in FPR. However this is actually an increase of 11% for the TPR and an increase of 82% for the FPR. 
+We observe that the optimized value of *t* has a lower value that the default across all four classifiers. Although lowering the threshold increases TPR, it also increases the FPR. Looking at the results for the random forest classifier, reducing *t* from 0.5 to 0.36 causes a 0.08 increase in TPR and a 0.049 increase in FPR. However this is actually an increase of 11% for the TPR and an increase of 82% for the FPR. 
 
 This is not always ideal, especially with unbalanced datasets containing many more negative events than positive events, which is almost always the case when detecting gamma ray events (most event will be the 'negative' hadronic events).
 
