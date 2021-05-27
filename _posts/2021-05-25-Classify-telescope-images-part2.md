@@ -359,3 +359,13 @@ We observe that when optimizing for low FPR, the decision threshold *t* increase
 
 ## Conclusions
 
+Optimizing the decision threshold for a classifier model can be a very important step to alter the FPR/TPR to levels that are acceptable for the project, especially for unbalanced datasets. As shown above, blindly using a standard approach, such as optimizing by geometric mean, can be detrimental to your project specifications. 
+
+It is also important to understand that optimizing for the decision threshold would change all the other scores, since they are based on the metrics on the confusion table. The table below shows how optimizing *t* affects the accuracy and F1 score in our random forest model.
+
+| Optimization | t | FPR | TPR | Accuracy | F1 |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| Default | 0.50 | 0.056 | 0.761 | 0.880 | 0.817 |
+| Geometric mean | 0.340 | 0.129 | 0.863 | 0.868 | 0.821 |
+| FPR=0.05 | 0.509 | 0.05 | 0.757 | 0.882 | 0.819 |
+| FPR=0.02 | 0.685 | 0.02 | 0.637 | 0.859 | 0.761 |
