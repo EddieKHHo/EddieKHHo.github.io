@@ -363,7 +363,7 @@ Optimizing the decision threshold for a classifier model can be a very important
 
 It is also important to understand that optimizing for the decision threshold would change all the other scores, since they are based on the metrics on the confusion table. The table below shows how optimizing *t* affects the accuracy and F1 score in our random forest model.
 
-| Optimization | t | FPR | TPR | Accuracy | F1 |
+| Optimization | t | FPR | TPR | Test accuracy | Test F1 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | Default | 0.50 | 0.056 | 0.761 | 0.880 | 0.817 |
 | Geometric mean | 0.340 | 0.129 | 0.863 | 0.868 | 0.821 |
