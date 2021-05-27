@@ -9,6 +9,8 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
+This project consists of two parts: [Part 1]({% post_url 2021-05-15-Classify-telescope-images-part1 %}){:target="_blank"} aims to explore the data optimize classifiers by fine-tuning hyperparameter.  [Part 2]({% post_url 2021-05-25-Classify-telescope-images-part2 %}){:target="_blank"} continues with the fine-tuned models and optimize the classifiers via their decision thresholds.
+
 ## Signals from MAGIC telescopes
 
 This [dataset](https://www.kaggle.com/abhinand05/magic-gamma-telescope-dataset){:target="_blank"} was generated from a Monte Carlo program that simulates registration of high energy gamma particles detected by ground-based Major Atmospheric Gamma Imaging Cherenkov telescopes (MAGIC). When gamma rays (high energy photons) hit the Earth's atmosphere, they interact with the atoms and molecules of the air to create a particle shower, producing blue flashes of light called Cherenkov radiation. This light is collected by the telescope's mirror system and creates images of elongated ellipses.  With this data, researchers can draw conclusions about the source of the gamma rays and discover new objects in our own galaxy and supermassive black holes outside of it. 
