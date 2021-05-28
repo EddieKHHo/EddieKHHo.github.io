@@ -31,9 +31,9 @@ Schaack S, **Ho EKH** and Macrae F. 2019. Disentangling the intertwined roles of
 
 ## 2017
 
-**Ho EKH** and Agrawal AF. 2017. Aging asexual lineages and the evolutionary maintenance of sex. *Evolution* 71: 1865 - 1875.
+**Ho EKH** and Agrawal AF. 2017. Aging asexual lineages and the evolutionary maintenance of sex. *Evolution* 71: 1865 - 1875. [https://doi.org/10.1111/evo.13260](https://doi.org/10.1111/evo.13260){:target="blank"}
 
-Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanić A, Yanchus C, Kim, YS and Agrawal AF. 2017. Higher rates of sex evolve during adaptation to more complex environments. *PNAS* 114: 534 - 539.
+Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanić A, Yanchus C, Kim, YS and Agrawal AF. 2017. Higher rates of sex evolve during adaptation to more complex environments. *PNAS* 114: 534 - 539. [https://doi.org/10.1073/pnas.1604072114](https://doi.org/10.1073/pnas.1604072114){:target="blank"}
 
 ## 2014
 
