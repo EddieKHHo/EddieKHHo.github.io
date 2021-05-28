@@ -13,7 +13,7 @@ header:
 
 ## 2020
 
-Ho EKH, Macrae, F, Latta IV LC, Mcllroy P, Ebert D, Fields PD, Benner MJ and Schaack S. 2020. High and highly variable spontaneous mutations rates in *Daphnia*. *Molecular Biology and Evolution* 37: 3258 – 3266. [https://doi.org/10.1093/molbev/msaa142](https://doi.org/10.1093/molbev/msaa142){:target="blank"}
+**Ho EKH**, Macrae, F, Latta IV LC, Mcllroy P, Ebert D, Fields PD, Benner MJ and Schaack S. 2020. High and highly variable spontaneous mutations rates in *Daphnia*. *Molecular Biology and Evolution* 37: 3258 – 3266. [https://doi.org/10.1093/molbev/msaa142](https://doi.org/10.1093/molbev/msaa142){:target="blank"}
 
 ## 2019
 
@@ -34,8 +34,6 @@ Schaack S, **Ho EKH** and Macrae F. 2019. Disentangling the intertwined roles of
 **Ho EKH** and Agrawal AF. 2017. Aging asexual lineages and the evolutionary maintenance of sex. *Evolution* 71: 1865 - 1875.
 
 Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanić A, Yanchus C, Kim, YS and Agrawal AF. 2017. Higher rates of sex evolve during adaptation to more complex environments. *PNAS* 114: 534 - 539.
-
-
 
 ## 2014
 
