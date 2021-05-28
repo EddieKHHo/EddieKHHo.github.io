@@ -13,7 +13,7 @@ Below are the software/pipelines I have designed and coded for different researc
 
 ## [SelfingMutAccum](https://github.com/EddieKHHo/SelfingMutAccum){:target="blank"}
 
-SelfingMutAccum simulates a self-fertilizing population who genomes contain a mixture of loci experiencing time constant selection and loci experiencing selection that fluctuates over time. 
+SelfingMutAccum simulates a self-fertilizing population who genomes contain a mixture of loci experiencing time constant selection (C-loci) and loci experiencing selection that fluctuates over time (L-loci). Selection fluctuations are auto-correlated in time and can change in strength and direction. Data is continually outputted at as the simulation runs.
 
 Language: C++
 
@@ -32,3 +32,4 @@ simMutAccumSV simulates a mutation accumulation (MA) experiment by introducing s
 Language: Python
 
 Dependencies: [pIRS](https://github.com/galaxy001/pirs){:target="blank"}, [SVsim](https://github.com/GregoryFaust/SVsim){:target="blank"}
+
