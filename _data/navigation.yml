@@ -9,11 +9,11 @@ main:
   - title: "Software"
     url: /software/
   - title: "Publications"
-    url: https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate
-    target: "_blank"
+    url: /publications/
   - title: "Posts"
     url: /year-archive/
   # - title: "Sample Collections"
   #   url: /collection-archive/
+  #   target: "_blank"
   # - title: "Sitemap"
   #   url: /sitemap/
