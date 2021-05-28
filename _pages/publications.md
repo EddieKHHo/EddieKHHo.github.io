@@ -21,11 +21,11 @@ header:
 
 Schaack S, **Ho EKH** and Macrae F. 2019. Disentangling the intertwined roles of mutation, selection and drift in the mitochondrial genome. *Philosophical Transaction B* 375: 20190173. [https://doi.org/10.1098/rstb.2019.0173](https://doi.org/10.1098/rstb.2019.0173){:target="blank"}
 
-**Ho EKH**, Macrae F, Latta IV LC, Benner MJ, Sun C, Evert D and Schaack S. 2019. Intraspecific variation in microsatellite mutation profiles in *Daphnia magna*. *Molecular Biology and Evolution* 36: 1942 - 1954.
+**Ho EKH**, Macrae F, Latta IV LC, Benner MJ, Sun C, Evert D and Schaack S. 2019. Intraspecific variation in microsatellite mutation profiles in *Daphnia magna*. *Molecular Biology and Evolution* 36: 1942 - 1954. [https://doi.org/10.1093/molbev/msz118](https://doi.org/10.1093/molbev/msz118){:target="blank"}
 
 ## 2018
 
-**Ho EKH** and Agrawal AF. 2018. Mutation accumulation in selfing populations under fluctuating selection. *Evolution* 72: 1759 - 1772.
+**Ho EKH** and Agrawal AF. 2018. Mutation accumulation in selfing populations under fluctuating selection. *Evolution* 72: 1759 - 1772. [https://doi.org/10.1111/evo.13553](https://doi.org/10.1111/evo.13553){:target="blank"}
 
 **Ho EKH**, Luijckx P,  Stanić A and Agrawal AF. 2018. Mutation accumulation in populations of varying size: large effect mutations cause most mutational decline in the rotifer *Brachionus calyciflorus* under UV-C radiation. *Journal of Evolutionary Biology* 31: 924 - 932.
 
