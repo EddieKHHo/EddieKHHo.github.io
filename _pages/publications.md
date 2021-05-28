@@ -13,7 +13,7 @@ header:
 
 ## 2020
 
-
+Ho EKH, Macrae, F, Latta IV LC, Mcllroy P, Ebert D, Fields PD, Benner MJ and Schaack S. 2020. High and highly variable spontaneous mutations rates in *Daphnia*. *Molecular Biology and Evolution* 37: 3258 – 3266. [https://doi.org/10.1093/molbev/msaa142](https://doi.org/10.1093/molbev/msaa142){:target="blank"}
 
 ## 2019
 
