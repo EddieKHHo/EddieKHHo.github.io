@@ -13,9 +13,15 @@ header:
 
 
 
+## 2017
+
+Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanic A,  \'{e}
+
+
+
 ## 2014
 
-Ho, EKH and Frederickson, ME. 2014. Alate susceptibility in ants. *Ecology and Evolution* 4: 4209-4219.
+**Ho, EKH** and Frederickson, ME. 2014. Alate susceptibility in ants. *Ecology and Evolution* 4: 4209-4219.
 
 ## 2012
 
