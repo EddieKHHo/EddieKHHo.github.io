@@ -4,7 +4,7 @@ permalink: /software/
 author_profile: true
 title: "Software"
 header:
-  overlay_image: /assets/images/software/code-300px.jpg
+  overlay_image: /assets/images/software/code.jpg
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
