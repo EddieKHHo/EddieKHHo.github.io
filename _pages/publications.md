@@ -4,7 +4,7 @@ permalink: /publications/
 author_profile: true
 title: "Publications"
 header:
-  overlay_image: /assets/images/software/code.jpg
+  overlay_image: /assets/images/publications/library.jpg
   overlay_filter: 0.5
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
