@@ -17,7 +17,11 @@ header:
 
 ## 2019
 
+**Ho EKH**, Bartowska M, Wright SI and Agrawal AF. 2019. Population genomics of the facultatively asexual duckweed *Spirodela polyrhiza*. *New Phytologist* 224: 1361 - 1371.
 
+Schaack S, **Ho EKH** and Macrae F. 2019. Disentangling the intertwined roles of mutation, selection and drift in the mitochondrial genome. *Philosophical Transaction B* 375: 20190173. [https://doi.org/10.1098/rstb.2019.0173](https://doi.org/10.1098/rstb.2019.0173){:target="blank"}
+
+**Ho EKH**, Macrae F, Latta IV LC, Benner MJ, Sun C, Evert D and Schaack S. 2019. Intraspecific variation in microsatellite mutation profiles in *Daphnia magna*. *Molecular Biology and Evolution* 36: 1942 - 1954.
 
 ## 2018
 
