@@ -11,17 +11,29 @@ header:
 
 ### [Google scholar](https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate){:target="blank"}
 
+## 2020
+
+
+
+## 2019
+
+
+
+## 2018
+
 
 
 ## 2017
 
-Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanić A, 
+**Ho EKH** and Agrawal AF. 2017. Aging asexual lineages and the evolutionary maintenance of sex. *Evolution* 71: 1865 - 1875.
+
+Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanić A, Yanchus C, Kim, YS and Agrawal AF. 2017. Higher rates of sex evolve during adaptation to more complex environments. *PNAS* 114: 534 - 539.
 
 
 
 ## 2014
 
-**Ho, EKH** and Frederickson, ME. 2014. Alate susceptibility in ants. *Ecology and Evolution* 4: 4209-4219.
+**Ho, EKH** and Frederickson, ME. 2014. Alate susceptibility in ants. *Ecology and Evolution* 4: 4209 - 4219.
 
 ## 2012
 
