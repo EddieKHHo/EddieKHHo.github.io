@@ -21,7 +21,9 @@ header:
 
 ## 2018
 
+**Ho EKH** and Agrawal AF. 2018. Mutation accumulation in selfing populations under fluctuating selection. *Evolution* 72: 1759 - 1772.
 
+**Ho EKH**, Luijckx P,  Stanić A and Agrawal AF. 2018. Mutation accumulation in populations of varying size: large effect mutations cause most mutational decline in the rotifer *Brachionus calyciflorus* under UV-C radiation. *Journal of Evolutionary Biology* 31: 924 - 932.
 
 ## 2017
 
