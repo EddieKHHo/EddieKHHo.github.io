@@ -15,7 +15,7 @@ header:
 
 ## 2017
 
-Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanic A,  \'{e}
+Luijckx P, **Ho EKH**, Gasim M, Chen S, Stanić A, 
 
 
 
