@@ -369,8 +369,3 @@ It is also important to understand that optimizing for the decision threshold wo
 | Geometric mean | 0.340 | 0.129 | 0.863 | 0.868 | 0.821 |
 | FPR=0.05 | 0.509 | 0.05 | 0.757 | 0.882 | 0.819 |
 | FPR=0.02 | 0.685 | 0.02 | 0.637 | 0.859 | 0.761 |
-
-
-$$ f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz $$
-
-Inline equation \\( f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz \\) looks like this.
