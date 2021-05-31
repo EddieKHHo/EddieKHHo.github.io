@@ -9,7 +9,7 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-Below are the software/pipelines I have designed and coded for different research projects.
+Software/pipelines I have designed and coded for different research projects.
 
 ## [SelfingMutAccum](https://github.com/EddieKHHo/SelfingMutAccum){:target="blank"}
 
