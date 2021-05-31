@@ -94,27 +94,6 @@ $$ T(E2) = \left(  \left( 1-\rho \right) \left( 1 - \alpha \right) \right)^{-1} 
 ```
 1{	
 	defineConstant("N", N1); //Set current N as N1
-	sim.addSubpop("p1", N); //Create population with size = N
-}
-late(){
-	//Fluctuate N every K generations
-	if(sim.generation%K == 0){		
-		if(N == N1){rm("N",T); defineConstant("N", N2);}
-		else{rm("N",T); defineConstant("N", N1);}
-	}
-	p1.setSubpopulationSize(asInteger(N)); //Set population size 
-}
-```
-
-```
-slim -d K=100 -d N1=1000 -d N1=100 FlucN_Deterministic.txt
-```
-
-
-
-```
-1{	
-	defineConstant("N", N1); //Set current N as N1
 	sim.addSubpop("p1", N); //Create population with subze = N
 }
 late(){
