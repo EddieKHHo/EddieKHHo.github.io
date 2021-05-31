@@ -9,7 +9,7 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-I intend to use this as my personal website and a place to post hobby projects related to machine learning, bioinformatics, population genetics, and coding. I am constantly learning new methodologies/technologies to better analyze data and my philosophy for self-education has always been the same: experiment, construct pet projects, fail, fix, and repeat! 
+This as my personal website and a place to post hobby projects related to machine learning, bioinformatics, population genetics, and coding. I am constantly learning new methodologies/technologies to better analyze data and my philosophy for self-education has always been the same: experiment, construct pet projects, fail, fix, and repeat! 
 
 ### Background
 
