@@ -1,0 +1,184 @@
+---
+title: "SLiM code for flucatuating N and s"
+excerpt: "SLiM code for simulations with deterministic and stochastic fluctuations in population size and selection strength."
+date: 2021-06-15
+last_modified_at: false
+header:
+  overlay_image: /assets/images/05_2021/star_galaxy_1200x777.jpg
+  overlay_filter: 0.5
+  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
+---
+
+
+
+$$ f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz $$_
+
+_Inline equation \\( f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz \\) looks like this.
+
+
+
+Description of [SLiM](https://messerlab.org/slim/){:target="_blank"} from their website:
+
+> <cite>SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated evolutionary scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations.</cite>
+
+
+
+## Deterministic fluctuations of *N*
+
+A simple way to have fluctuations in population size (*N*) is to imagine there are two environmental conditions that supports different *N*'s. The environment then fluctuates between these two conditions at set intervals. 
+
+Below is a simple SLiM script to have a population fluctuate between an N of 1000 and 100 every 500 generations.
+
+```
+initialize(){
+	initializeMutationRate(1e-7); //uniform mutation rate per base per gen
+	initializeMutationType("m1", 0.5, "f", 1e-4); //m1 = slightly  deleterious
+	initializeGenomicElementType("g1", m1, 1); //g1 = coding site
+	initializeGenomicElement(g1, 0, 99999); //Chromosome with 10000 bp
+	initializeRecombinationRate(1e-8); //Assign recombination rate
+}
+1{	
+	defineConstant("N", 1000); //Set current N as 1000
+	sim.addSubpop("p1", N); //Create population with size = N
+}
+late(){
+	//Fluctuate N every 500 generations
+	if(sim.generation%500 == 0){		
+		if(N == 1000){rm("N",T); defineConstant("N", 100);}
+		else{rm("N",T); defineConstant("N", 1000);}
+		p1.setSubpopulationSize(asInteger(N)); //Set population size 
+	}
+}
+10000 late(){
+	sim.outputFull(); //Output full data
+}
+```
+
+The code within `initialize` is pretty standard and not important here. The simulation starts at the first generation with *N* = 1000. Importantly, I utilize `defineConstant` to define `N` as 1000 and give it a **global scope**. This means that `N` can be utilized anywhere within the script, not just within `1{}`.
+
+The part within `late`, which runs at the end of every generation, controls the fluctuations in *N*. `sim.generation` exists by default and gives the generation number of the simulation. The modulo operation, `%`,  within the if statement ensures that fluctuations only occur every 500 generations. The inner if statement fluctuates *N* by simply setting the constant `N` to 100 if it is currently equal 1000 or vice versa. Note that you need to use `rm` to remove `N` in order to reassign it using `defineConstant`. Lastly, I use `setSubpopulationSize` to set the population size to`N`.
+
+### Passing comand line arguments
+
+We can use the `-d` argument in the command line to pass constants used by SLiM scripts. This is essential if we want to run the script with a range of parameters.
+
+```
+1{	
+	defineConstant("N", N1); //Set current N as 1000
+	sim.addSubpop("p1", N); //Create population with size = N
+}
+late(){
+	//Fluctuate N every K generations
+	if(sim.generation%K == 0){		
+		if(N == N1){rm("N",T); defineConstant("N", N2);}
+		else{rm("N",T); defineConstant("N", N2);}
+		p1.setSubpopulationSize(asInteger(N)); //Set population size 
+	}
+}
+```
+
+Here, we modifed the script such that the simulation fluctuates between population sizes of `N1` and `N2` every `K` generations. The command line to code to run this would simply be:
+
+```
+slim -d K=500 -d N1=1000 -d N2=100 MyScript.txt
+```
+
+## Stochastic fluctuations in *N*
+
+Similar to deterministic fluctuations, there are an infinite number of ways to model stochastic fluctuations in population size. Here, I will utilize a method I applied in my previous research that allows me to control the degree of temporal autocorrelation in the environments as well the frequency that each environment occurs. Again, imagine that there are two environments (*E1*, *E2*) that support two different *N*'s (*N1*, *N2*). I define \\(\rho\\) as the per generation probability that the environmental conditions remains the same; this controls for temporal autocorrelation. However, with probability 1 - \\(\rho\\) a "new" environement is chosen from the two. The probability of choose E1 and E2 is defined as 1 - \\(\alpha\\) and \\(\alpha\\), respectively.
+
+Given these assumptions, the expected runs (in generations) in each environment would be:
+
+$$ T(E1) = \left( \left( 1-\rho \right) \left( \alpha \right) \right)^{-1} $$
+
+$$ T(E1) = \left(  \left( 1-\rho \right) \left( 1 - \alpha \right) \right)^{-1} $$
+
+
+
+
+
+```
+1{	
+	defineConstant("N", N1); //Set current N as N1
+	sim.addSubpop("p1", N); //Create population with size = N
+}
+late(){
+	//Fluctuate N every K generations
+	if(sim.generation%K == 0){		
+		if(N == N1){rm("N",T); defineConstant("N", N2);}
+		else{rm("N",T); defineConstant("N", N1);}
+	}
+	p1.setSubpopulationSize(asInteger(N)); //Set population size 
+}
+```
+
+```
+slim -d K=100 -d N1=1000 -d N1=100 FlucN_Deterministic.txt
+```
+
+
+
+```
+1{	
+	defineConstant("N", N1); //Set current N as N1
+	sim.addSubpop("p1", N); //Create population with subze = N
+}
+late(){
+	//rho is prob env stays the same
+	STAY = rbinom(1, 1, rho);
+	//if STAY==0, then randomly choose env based on alpha
+	if(STAY==0){
+		ENV = rbinom(1, 1, 1-alpha); //Choose env
+		if(ENV==0){rm("N",T); defineConstant("N", N1);}
+		else{rm("N",T); defineConstant("N", N2);}
+		p1.setSubpopulationSize(asInteger(N)); //Set population size 
+	} 
+}
+```
+
+```
+slim -d rho=0.5 -d alpha=0.5 -d N1=1000 -d N1=100 FlucN_Stochastic.txt
+```
+
+
+
+
+
+
+
+```
+initialize(){
+	initializeMutationRate(1e-7); //uniform mutation rate per base per gen
+	initializeMutationType("m1", 0.5, "f", S1); //m1 = slightly  deleterious
+	initializeGenomicElementType("g1", m1, 1); //g1 = coding site
+	initializeGenomicElement(g1, 0, 99999); //Chromosome with 10000 bp
+	initializeRecombinationRate(1e-8); //Assign recombination rate
+}
+1{	
+	defineConstant("S", S1); //set current S as S1
+	sim.addSubpop("p1", N); //Create population with size = N
+}
+late(){
+	//rho is prob env stays the same
+	STAY = rbinom(1, 1, rho);
+	//if STAY==0, then randomly choose env based on alpha
+	if(STAY==0){
+		ENV = rbinom(1, 1, 1-alpha); //Choose selection env
+		if(ENV==0){rm("S",T); defineConstant("S", S1);}
+		else{rm("S",T); defineConstant("S", S2);}
+		
+		mut = sim.mutationsOfType(m1); //get all m1 mutations
+		mut.setSelectionCoeff(S); //Set selection strength for m1
+	} 
+}
+10000 late(){
+	sim.outputFull(); //Output full data
+}
+```
+
+
+
+```
+slim -d rho=0.5 -d alpha=0.5 -d N=1000 -d S1=0.001 -d S2=0.0001 SimpleFlucS_Stochastic.txt
+```
+
