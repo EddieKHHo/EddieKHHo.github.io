@@ -11,12 +11,6 @@ header:
 
 
 
-$$ f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz $$_
-
-_Inline equation \\( f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz \\) looks like this.
-
-
-
 Description of [SLiM](https://messerlab.org/slim/){:target="_blank"} from their website:
 
 > <cite>SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated evolutionary scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations.</cite>
@@ -91,7 +85,7 @@ Given these assumptions, the expected runs (in generations) in each environment 
 
 $$ T(E1) = \left( \left( 1-\rho \right) \left( \alpha \right) \right)^{-1} $$
 
-$$ T(E1) = \left(  \left( 1-\rho \right) \left( 1 - \alpha \right) \right)^{-1} $$
+$$ T(E2) = \left(  \left( 1-\rho \right) \left( 1 - \alpha \right) \right)^{-1} $$
 
 
 
