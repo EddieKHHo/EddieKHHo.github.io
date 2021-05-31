@@ -20,7 +20,7 @@ title                    : "Eddie Ho, PhD"
 title_separator          : "|"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Eddie Ho, PhD"
-description              : "Desc testing."
+description              : "Professional website for Eddie Ho, PhD."
 url                      : "https://eddiekhho.github.io"# the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "EddieKHHo/EddieKHHo.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -96,7 +96,7 @@ analytics:
 author:
   name             : "Eddie Ho"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              :
+  bio              : "Bioinformatician / Postdoctoral researcher studying mutation rates and their genomic effects."
   location         :
   email            :
   links:
