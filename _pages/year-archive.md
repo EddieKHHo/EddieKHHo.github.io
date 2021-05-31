@@ -2,7 +2,7 @@
 layout: posts
 permalink: /year-archive/
 author_profile: true
-title: "Posts by Year"
+title: "Posts"
 header:
   overlay_image: /assets/images/archive/plot.02.jpg
   overlay_filter: 0.5
