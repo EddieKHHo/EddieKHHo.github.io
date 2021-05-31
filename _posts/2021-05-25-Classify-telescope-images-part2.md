@@ -372,3 +372,5 @@ It is also important to understand that optimizing for the decision threshold wo
 
 
 $$ f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz $$
+
+Inline equation \\( f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz \\) looks like this.
