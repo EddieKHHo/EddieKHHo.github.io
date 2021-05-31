@@ -291,6 +291,7 @@ defaults:
       toc_sticky: true
       toc_label: "Table of Contents"
       toc_icon: "clipboard-list"
+      mathjax: true #Added 2021-05-31 https://www.cross-validated.com/How-to-render-math-on-Minimal-Mistakes/
 
 plugins:
   - jekyll-include-cache
