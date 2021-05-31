@@ -94,7 +94,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Eddie Ho"
+  name             : ""
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Bioinformatician / Postdoctoral researcher studying mutation rates and their genomic effects."
   location         :
