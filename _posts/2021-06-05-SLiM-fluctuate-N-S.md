@@ -120,8 +120,8 @@ If we wanted even the environment in the first generation to be from a random sa
 ```
 1{	
 	//---Random assign initial env
-	ENV = rbinom(1, 1, alpha); //Choose env
-	if(ENV==0){defineConstant("N", N1);}
+	env = rbinom(1, 1, alpha); //Choose env
+	if(env==0){defineConstant("N", N1);}
 	else{defineConstant("N", N2);}
 	sim.addSubpop("p1", N); //Create population with size = N
 }
@@ -173,8 +173,8 @@ If we wanted even the environment in the first generation to be from a random sa
 ```
 1{	
 	//---Random assign initial env
-	ENV = rbinom(1, 1, alpha); //Choose env
-	if(ENV==0){defineConstant("S", S1);}
+	env = rbinom(1, 1, alpha); //Choose env
+	if(env==0){defineConstant("S", S1);}
 	else{defineConstant("S", S2);}
 	mut = sim.mutationsOfType(m1); //get all m1 mutations
 	mut.setSelectionCoeff(S); //Set selection strength for m1
