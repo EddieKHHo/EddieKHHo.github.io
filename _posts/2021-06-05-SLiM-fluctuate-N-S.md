@@ -79,7 +79,7 @@ slim -d K=500 -d N1=1000 -d N2=100 MyScript.txt
 
 ## Stochastic fluctuations in *N*
 
-Similar to deterministic fluctuations, there are an infinite number of ways to model stochastic fluctuations in population size. Here, I will utilize a method I applied in my previous research that allows me to control the degree of temporal autocorrelation in the environments as well the frequency that each environment occurs. Again, imagine that there are two environments (*E1*, *E2*) that support two different *N*'s (*N1*, *N2*). I define \\(\rho\\) as the per generation probability that the environmental conditions remains the same; this controls for temporal autocorrelation. However, with probability 1 - \\(\rho\\) a "new" environement is chosen from the two. The probability of choosing *E1* and *E2* is defined as 1 - \\(\alpha\\) and \\(\alpha\\), respectively.
+Similar to deterministic fluctuations, there are an infinite number of ways to model stochastic fluctuations in population size. Here, I will utilize a method I applied in my previous research that allows me to control the degree of temporal autocorrelation in the environments as well the frequency that each environment occurs. Again, imagine that there are two environments (*E1*, *E2*) that support two different *N*'s (*N1*, *N2*). I define \\(\rho\\) as the per generation probability that the environmental conditions remains the same; this controls for temporal autocorrelation. However, with probability 1 - \\(\rho\\) a "new" environment is chosen from the two. The probability of choosing *E1* and *E2* is defined as 1 - \\(\alpha\\) and \\(\alpha\\), respectively.
 
 Given these assumptions, the expected runs (in generations) in each environment would be:
 
@@ -99,7 +99,7 @@ late(){
 	STAY = rbinom(1, 1, rho);
 	//if STAY==0, then randomly choose env based on alpha
 	if(STAY==0){
-		ENV = rbinom(1, 1, 1-alpha); //Choose env
+		ENV = rbinom(1, 1, alpha); //Choose env
 		if(ENV==0){rm("N",T); defineConstant("N", N1);}
 		else{rm("N",T); defineConstant("N", N2);}
 		p1.setSubpopulationSize(asInteger(N)); //Set population size 
@@ -107,7 +107,7 @@ late(){
 }
 ```
 
-Each generation, we take a Bernoulli sample with probability of success equal to \\(\rho\\). If *STAY* equals 1 then no change in the environment, If *STAY* equals 0, then take another Bernoulli sample to choose the next environment. 
+Each generation, we take a Bernoulli sample with probability of success equal to \\(\rho\\). If *STAY* equals 1 then no change in the environment, If *STAY* equals 0, then take another Bernoulli sample with probability of success equal to \\(\alpha\\) to choose the next environment. 
 
 
 
