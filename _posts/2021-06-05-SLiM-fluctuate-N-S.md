@@ -71,7 +71,7 @@ late(){
 }
 ```
 
-Here, we modifed the script such that the simulation fluctuates between population sizes of `N1` and `N2` every `K` generations. The command line to code to run this would simply be:
+Here, we modified the script such that the simulation fluctuates between population sizes of `N1` and `N2` every `K` generations. The command line to code to run this would simply be:
 
 ```
 slim -d K=500 -d N1=1000 -d N2=100 MyScript.txt
