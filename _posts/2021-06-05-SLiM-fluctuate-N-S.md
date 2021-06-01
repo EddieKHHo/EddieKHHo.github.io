@@ -52,7 +52,7 @@ The code within `initialize` is pretty standard and not important here. The simu
 
 The part within `late`, which runs at the end of every generation, controls the fluctuations in *N*. `sim.generation` exists by default and gives the generation number of the simulation. The modulo operation, `%`,  within the if statement ensures that fluctuations only occur every 500 generations. The inner if statement fluctuates *N* by simply setting the constant *N* to 100 if it is currently equal 1000 or vice versa. Note that you need to use `rm` to remove *N* in order to reassign it using `defineConstant`. Lastly, I use `setSubpopulationSize` to set the population size to`N`.
 
-### Passing comand line arguments
+### Passing command line arguments
 
 We can use the `-d` argument in the command line to pass constants used by SLiM scripts. This is essential if we want to run the script with a range of parameters.
 
@@ -107,12 +107,12 @@ late(){
 }
 ```
 
-Each generation, we take a Bernoulli sample with probability of success equal to \\(\rho\\). If *STAY* equals 1 then no change in the environment, If *STAY* equals 0, then take another Bernoulli sample with probability of success equal to \\(\alpha\\) to choose the next environment. 
+Each generation, we take a Bernoulli sample with probability of success equal to \\(\rho\\). If *STAY* equals 1 then no change in the environment. If *STAY* equals 0, then take another Bernoulli sample with probability of success equal to \\(\alpha\\) to choose the next environment. *ENV* equal to 0 and 1 means the population size changes to *N1* and *N2*, respectively.
 
-
+The command line to code to run this would simply be:
 
 ```
-slim -d rho=0.5 -d alpha=0.5 -d N1=1000 -d N1=100 FlucN_Stochastic.txt
+slim -d rho=0.5 -d alpha=0.5 -d N1=1000 -d N1=100 MyScript.txt
 ```
 
 
