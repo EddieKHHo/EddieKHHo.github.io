@@ -115,6 +115,20 @@ The command line to code to run this would simply be:
 slim -d rho=0.5 -d alpha=0.5 -d N1=1000 -d N1=100 MyScript.txt
 ```
 
+If we wanted even the environment in the first generation to be from a random sample, we can simply modify `1{}` to the following:
+
+```
+1{	
+	//---Random assign initial env
+	ENV = rbinom(1, 1, alpha); //Choose env
+	if(ENV==0){defineConstant("N", N1);}
+	else{defineConstant("N", N2);}
+	sim.addSubpop("p1", N); //Create population with size = N
+}
+```
+
+
+
 ## Stochastic fluctuations in S
 
 You can also allow selection strength to fluctuate over time using the same method of simulating temporal autocorrelation. In this case, we imagine environmental conditions *E1* and *E2* that causes the selection coefficient to fluctuate between *S1* and *S2*, respectively. \\(\rho\\) is the per generation probability that the environmental conditions remains the same.  \\(\alpha\\) is the expected proportion of generations the under *E2*.
