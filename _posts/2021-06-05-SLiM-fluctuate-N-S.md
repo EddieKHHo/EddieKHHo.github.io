@@ -48,7 +48,7 @@ late(){
 }
 ```
 
-The code within `initialize` is pretty standard and not important here. The simulation starts at the first generation with *N* = 1000. Importantly, I utilize `defineConstant` to define *N* as 1000 and give it a **global scope**. This means that `N` can be utilized anywhere within the script, not just within `1{}`.
+The code within `initialize` is pretty standard and not important here. The simulation starts at the first generation with *N* = 1000. Importantly, I utilize `defineConstant` to define *N* as 1000 and give it a **global scope**. This means that *N* can be called anywhere within the script, not just within `1{}`.
 
 The part within `late`, which runs at the end of every generation, controls the fluctuations in *N*. `sim.generation` exists by default and gives the generation number of the simulation. The modulo operation, `%`,  within the if statement ensures that fluctuations only occur every 500 generations. The inner if statement fluctuates *N* by simply setting the constant *N* to 100 if it is currently equal 1000 or vice versa. Note that you need to use `rm` to remove *N* in order to reassign it using `defineConstant`. Lastly, I use `setSubpopulationSize` to set the population size to`N`.
 
