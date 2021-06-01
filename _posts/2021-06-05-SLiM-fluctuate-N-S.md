@@ -9,11 +9,11 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-
-
 Description of [SLiM](https://messerlab.org/slim/){:target="_blank"} from their website:
 
 > SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated evolutionary scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations.
+
+I 
 
 
 
@@ -160,9 +160,26 @@ late(){
 }
 ```
 
+The logic here is identical to the script for stochastically fluctuating population size. To apply the change in selection coefficient, we first must get a list of all *m1* mutations using `sim.mutationsOfType` and save it as *mut*. Then use `setSelectionCoef` to apply selection coefficient *S* to the mutations listed in *mut*.
 
+The command line to code to run this would simply be:
 
 ```
-slim -d rho=0.5 -d alpha=0.5 -d N=1000 -d S1=0.001 -d S2=0.0001 SimpleFlucS_Stochastic.txt
+slim -d rho=0.5 -d alpha=0.5 -d N=1000 -d S1=0.001 -d S2=0.0001 MyScript.txt
 ```
+
+If we wanted even the environment in the first generation to be from a random sample, we can simply modify `1{}` to the following:
+
+```
+1{	
+	//---Random assign initial env
+	ENV = rbinom(1, 1, alpha); //Choose env
+	if(ENV==0){defineConstant("S", S1);}
+	else{defineConstant("S", S2);}
+	mut = sim.mutationsOfType(m1); //get all m1 mutations
+	mut.setSelectionCoeff(S); //Set selection strength for m1
+}
+```
+
+
 
