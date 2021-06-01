@@ -96,18 +96,18 @@ Implementing this into the SLiM script only requires the use of the `rbinom` fun
 }
 late(){
 	//rho is prob env stays the same
-	STAY = rbinom(1, 1, rho);
-	//if STAY==0, then randomly choose env based on alpha
-	if(STAY==0){
-		ENV = rbinom(1, 1, alpha); //Choose env
-		if(ENV==0){rm("N",T); defineConstant("N", N1);}
+	stay = rbinom(1, 1, rho);
+	//if stay==0, then randomly choose env based on alpha
+	if(stay==0){
+		env = rbinom(1, 1, alpha); //Choose env
+		if(env==0){rm("N",T); defineConstant("N", N1);}
 		else{rm("N",T); defineConstant("N", N2);}
 		p1.setSubpopulationSize(asInteger(N)); //Set population size 
 	} 
 }
 ```
 
-Each generation, we take a Bernoulli sample with probability of success equal to \\(\rho\\). If *STAY* equals 1 then no change in the environment. If *STAY* equals 0, then take another Bernoulli sample with probability of success equal to \\(\alpha\\) to choose the next environment. *ENV* equal to 0 and 1 means the population size changes to *N1* and *N2*, respectively.
+Each generation, we take a Bernoulli sample with probability of success equal to \\(\rho\\). If *stay* equals 1 then no change in the environment. If *stay* equals 0, then take another Bernoulli sample with probability of success equal to \\(\alpha\\) to choose the next environment. *env* equal to 0 and 1 means the population size changes to *N1* and *N2*, respectively.
 
 The command line to code to run this would simply be:
 
@@ -134,10 +134,10 @@ initialize(){
 late(){
 	//rho is prob env stays the same
 	STAY = rbinom(1, 1, rho);
-	//if STAY==0, then randomly choose env based on alpha
-	if(STAY==0){
-		ENV = rbinom(1, 1, alpha); //Choose selection env
-		if(ENV==0){rm("S",T); defineConstant("S", S1);}
+	//if stay==0, then randomly choose env based on alpha
+	if(stay==0){
+		env = rbinom(1, 1, alpha); //Choose selection env
+		if(env==0){rm("S",T); defineConstant("S", S1);}
 		else{rm("S",T); defineConstant("S", S2);}
 		
 		mut = sim.mutationsOfType(m1); //get all m1 mutations
