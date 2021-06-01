@@ -13,9 +13,9 @@ Description of [SLiM](https://messerlab.org/slim/){:target="_blank"} from their 
 
 > SLiM is an evolutionary simulation framework that combines a powerful engine for population genetic simulations with the capability of modeling arbitrarily complex evolutionary scenarios. Simulations are configured via the integrated Eidos scripting language that allows interactive control over practically every aspect of the simulated evolutionary scenarios. The underlying individual-based simulation engine is highly optimized to enable modeling of entire chromosomes in large populations.
 
-I 
+I have utilized SLiM is a couple of research projects during my PhD. Although it comes with a plethora of built-in utilities to create biologically realistic simulations, I often added custom features to suit my project needs. One of my needs were temporal fluctuations in population size (*N*) and selection strength (*S*). SLiM comes with the ability to change *N* and *S* at a specified generation(s), but I wanted to have fluctuations occur stochastically. Obviously, SLiM could not anticipate the infinite number of ways that these variable can change temporally.
 
-
+Below if some of the SLiM scripts I developed to allow for deterministic and stochastic fluctuations in *N* and *S*.
 
 ## Deterministic fluctuations of *N*
 
@@ -147,7 +147,7 @@ initialize(){
 }
 late(){
 	//rho is prob env stays the same
-	STAY = rbinom(1, 1, rho);
+	stay = rbinom(1, 1, rho);
 	//if stay==0, then randomly choose env based on alpha
 	if(stay==0){
 		env = rbinom(1, 1, alpha); //Choose selection env
