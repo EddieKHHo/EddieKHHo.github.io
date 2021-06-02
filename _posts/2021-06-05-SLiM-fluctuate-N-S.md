@@ -81,6 +81,8 @@ slim -d K=500 -d N1=1000 -d N2=100 MyScript.txt
 
 Similar to deterministic fluctuations, there are an infinite number of ways to model stochastic fluctuations in population size. Here, I will utilize a method I applied in my previous research that allows me to control the degree of **temporal autocorrelation** in the environments as well the frequency that each environment occurs. Again, imagine that there are two environments (*E1*, *E2*) that support two different *N*'s (*N1*, *N2*). I define \\(\rho\\) as the per generation probability that the environmental conditions remains the same; this controls for temporal autocorrelation. However, with probability 1 - \\(\rho\\) a "new" environment is chosen from the two. The probability of choosing *E1* and *E2* is defined as 1 - \\(\alpha\\) and \\(\alpha\\), respectively. Therefore,  \\(\alpha\\) represents the expected proportion of generations the under *E2*. 
 
+Given this model, we can calculated the expected run length within each environment; the run length is simply the number of consecutive generations elapsed in one environment before transitioning to the other environment. The expected run length in E1 and E2 is \\(((1-\rho)\alpha)^{-1}\\) and \\(((1-\rho)(1-\alpha))^{-1}\\), respectively.
+
 Given these assumptions, the expected run length (in generations) in each environment would be:
 
 $$ E[run length in E1] = \left( \left( 1-\rho \right) \left( \alpha \right) \right)^{-1} $$
