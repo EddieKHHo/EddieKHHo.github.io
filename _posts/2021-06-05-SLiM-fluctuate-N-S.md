@@ -283,10 +283,9 @@ plt.savefig('images/state.timeseries.png', bbox_inches='tight')
 plt.show()
 ```
 
-
-
 <figure>
  	<img src="/assets/images/06_2021/state.timeseries.png">
 	<figcaption><b>Figure 2.</b> Time series of fluctuating populationsize simulations.</figcaption>
 </figure>
 
+With \\(\rho = 0.5, \alpha=0.5\\), we observe many transitions and short run lengths in both environments. 
