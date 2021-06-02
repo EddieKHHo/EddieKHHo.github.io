@@ -194,6 +194,7 @@ The model for stochastic fluctuations of population size (and selection) is actu
 | \\(p_{21}\\) | \\((1-\rho) (1-\alpha)\\)        |
 
 We can define \\(T_{12}\\) as the number of generations it takes to transition from N1 to N2 and \\(T_{21}\\) as the number of generation it takes to transition from N2 to N1; this is what I refer to as the **run lengths** in the sections above.
+
 The expect value of \\(T_{12}\\) can be calculated following the equation for expected [hitting times](https://en.wikipedia.org/wiki/Markov_chain#Hitting_times){:target="_blank"} :
 
 $$\begin{aligned}
