@@ -225,11 +225,10 @@ def stochasticSim(rho, alpha, gen, seed):
     '''
     Simulate stochastic fluctuations following two-state Markov model
     '''
-    ##########----------Run stochastic simulation
     np.random.seed(seed)
-    #####-----randomly set first environment
+    # randomly set first environment
     ENV = np.random.binomial(1, rho)
-    #####-----run for 1000000 gens
+    # run for gen generations
     lENV = [ENV]
     for x in range(gen-1):
         STAY = np.random.binomial(1, rho)
@@ -238,9 +237,13 @@ def stochasticSim(rho, alpha, gen, seed):
         else:
             ENV = np.random.binomial(1, alpha)
         lENV += [ENV]
-    #####-----return
     return lENV
 ```
 
 
+
+<figure>
+ 	<img src="/assets/images/06_2021/state.timeseries.png">
+	<figcaption><b>Figure 2.</b> Time series of fluctuating populationsize simulations.</figcaption>
+</figure>
 
