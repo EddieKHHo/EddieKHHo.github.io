@@ -211,5 +211,6 @@ $$\begin{aligned}
 \overline{T_{21}} &= (1-(\rho + (1-\rho)\alpha)^{-1} \\
 \overline{T_{21}} &= ((1-\rho)(1-\alpha))^{-1} \end{aligned}$$
 
-### Visualising the model
+### Visualizing the model
 
+The mean run lengths in each environment doesn't really tell the whole story because run lengths in this model have a very large variance. To be more precise, the run lengths are expected to be **geometrically distributed**, where the variance is equal to the square of the mean; it is well known the sojourn times are geometrically distributed for finite Markov models with \\(p_{ii}\\) > 0.
