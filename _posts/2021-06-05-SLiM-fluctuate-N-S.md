@@ -240,6 +240,49 @@ def stochasticSim(rho, alpha, gen, seed):
     return lENV
 ```
 
+I will plot the first 500 generations for simulations where \\(\rho = {0.5, 0.95}\\) and \\(\alpha = {0.5, 0.95}\\). 
+
+```python
+#####-----simulate
+lENV_1A = stochasticSim(0.5, 0.5, 1000, 30)
+lENV_1B = stochasticSim(0.5, 0.95, 1000, 30)
+lENV_2A = stochasticSim(0.95, 0.5, 1000, 30)
+lENV_2B = stochasticSim(0.95, 0.95, 1000, 30)
+
+#####-----create dataframes
+lGEN = [x for x in range(1, 1000+1)]
+dfEnv = pd.DataFrame({
+    'GEN':lGEN+lGEN+lGEN+lGEN,
+    'TYPE':[1]*1000+[2]*1000+[3]*1000+[4]*1000,
+    'ENV':lENV_1A+lENV_1B+lENV_2A+lENV_2B})
+
+#####-----plot
+listI, listJ =[0,0,1,1], [0,1,0,1]
+listTitle = ['\u03C1=0.5, \u03B1=0.5','\u03C1=0.5, \u03B1=0.95','\u03C1=0.95, \u03B1=0.5','\u03C1=0.95, \u03B1=0.95']
+
+fig, ax =plt.subplots(2, 2, figsize=(15,10))
+fig.subplots_adjust(hspace=0.3, wspace=0.05)
+for k in range(4):
+    sns.lineplot(
+        data=dfEnv[dfEnv['TYPE']==(k+1)].iloc[0:500], x='GEN', y='ENV', 
+        markers=True, ax=ax[listI[k],listJ[k]])
+    ax[listI[k],listJ[k]].set_yticks([0,1])
+    ax[listI[k],listJ[k]].set_title(listTitle[k], fontsize=20, loc='left')
+    if listI[k]==1:
+        ax[listI[k],listJ[k]].set_xlabel(xlabel='Generation',fontsize=20)
+    else:
+        ax[listI[k],listJ[k]].set_xlabel(xlabel='',fontsize=20)
+    if listJ[k]==1:
+        ax[listI[k],listJ[k]].set_yticklabels(['', ''])
+        ax[listI[k],listJ[k]].set_ylabel(ylabel='', fontsize=20)
+    else:
+        ax[listI[k],listJ[k]].set_yticklabels(['N1', 'N2'])
+        ax[listI[k],listJ[k]].set_ylabel(ylabel='Environment', fontsize=20)
+    ax[listI[k],listJ[k]].tick_params(axis='both', which='major', labelsize=18)
+plt.savefig('images/state.timeseries.png', bbox_inches='tight')
+plt.show()
+```
+
 
 
 <figure>
