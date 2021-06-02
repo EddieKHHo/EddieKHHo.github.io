@@ -213,4 +213,6 @@ $$\begin{aligned}
 
 ### Visualizing the model
 
-The mean run lengths in each environment doesn't really tell the whole story because run lengths in this model have a very large variance. To be more precise, the run lengths are expected to be **geometrically distributed**, where the variance is equal to the square of the mean; it is well known the sojourn times are geometrically distributed for finite Markov models with \\(p_{ii}\\) > 0.
+The mean run lengths in each environment doesn't really tell the whole story because run lengths in this model have a very large variance. To be more precise, the run lengths are expected to be **geometrically distributed**, where the variance is equal to the square of the mean; it is well known that sojourn times are geometrically distributed for finite Markov models with \\(p_{ii}\\) > 0. This large variance in run lengths can be very impactful because it will determine how much time there is for allele frequencies to transition from one environment to the next.
+
+To visualize the effects of \\(\rho\\) and \\(\alpha\\) on the run lengths, I simulate the model using the Python code below.
