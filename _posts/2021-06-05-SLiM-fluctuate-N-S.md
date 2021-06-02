@@ -195,7 +195,7 @@ The model for stochastic fluctuations of population size (and selection) is actu
 | Symbol       | Transition probability           |
 | ------------ | -------------------------------- |
 | \\(p_{11}\\) | \\(\rho + (1-\rho) (1-\alpha)\\) |
-| \\(p_{12}\\) |                                  |
-| \\(p_{22}\\) |                                  |
-| \\(p_{21}\\) |                                  |
+| \\(p_{12}\\) | \\((1-\rho) \alpha\\)            |
+| \\(p_{22}\\) | \\(\rho + (1-\rho) \alpha\\)     |
+| \\(p_{21}\\) | \\((1-\rho) (1-\alpha)\\)        |
 
