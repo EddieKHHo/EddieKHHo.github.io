@@ -331,7 +331,6 @@ ax.set_ylabel(ylabel='Count', fontsize=20)
 ax.tick_params(axis='both', which='major', labelsize=18)
 ax.text(meanE0+10, 200, meanE0, fontsize=15, color='blue')
 ax.text(meanE1+10, 180, meanE1, fontsize=15, color='orange')
-plt.savefig('images/runlengths.95.50.png', bbox_inches='tight')
 plt.show()
 ```
 
