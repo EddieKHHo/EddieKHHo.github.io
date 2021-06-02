@@ -181,10 +181,6 @@ If we wanted even the environment in the first generation to be from a random sa
 
 The model for stochastic fluctuations of population size (and selection) is actually just a simple **two-state Markov process**.
 
-<figure>
- 	<img src="/assets/images/06_2021/TransitionDiagram_2.png">
-	<figcaption><b>Figure 1.</b> Transition diagram for Markov process describing population size fluctuations.</figcaption>
-</figure>
 
 | Symbol       | Transition probability           |
 | ------------ | -------------------------------- |
@@ -192,6 +188,11 @@ The model for stochastic fluctuations of population size (and selection) is actu
 | \\(p_{12}\\) | \\((1-\rho) \alpha\\)            |
 | \\(p_{22}\\) | \\(\rho + (1-\rho) \alpha\\)     |
 | \\(p_{21}\\) | \\((1-\rho) (1-\alpha)\\)        |
+
+<figure>
+ 	<img src="/assets/images/06_2021/TransitionDiagram_2.png">
+	<figcaption><b>Figure 1.</b> Transition diagram for Markov process describing population size fluctuations.</figcaption>
+</figure>
 
 We can define \\(T_{12}\\) as the number of generations it takes to transition from N1 to N2 and \\(T_{21}\\) as the number of generation it takes to transition from N2 to N1; this is what I refer to as the **run lengths** in the sections above.
 
