@@ -243,6 +243,9 @@ def stochasticSim(rho, alpha, gen, seed):
 I will plot the first 500 generations for simulations where \\(\rho = \{0.5, 0.95\}\\) and \\(\alpha = \{0.5, 0.95\}\\). 
 
 ```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 #####-----simulate
 lENV_1A = stochasticSim(0.5, 0.5, 1000, 30)
 lENV_1B = stochasticSim(0.5, 0.95, 1000, 30)
@@ -279,7 +282,6 @@ for k in range(4):
         ax[listI[k],listJ[k]].set_yticklabels(['N1', 'N2'])
         ax[listI[k],listJ[k]].set_ylabel(ylabel='Environment', fontsize=20)
     ax[listI[k],listJ[k]].tick_params(axis='both', which='major', labelsize=18)
-plt.savefig('images/state.timeseries.png', bbox_inches='tight')
 plt.show()
 ```
 
@@ -288,4 +290,63 @@ plt.show()
 	<figcaption><b>Figure 2.</b> Time series of simulations with fluctuating population size.</figcaption>
 </figure>
 
-With \\(\rho = 0.5, \alpha=0.5\\), we observe many transitions and short run lengths in both environments. When we change the parameters to \\(\rho = 0.95, \alpha=0.5\\), we observe few transitions and longer run lengths because temporal autocorrelation is increased for both environments. When we adjust to \\(\alpha=0.95\\), we observe that population size is equal to N2 more often than N1. 
+With \\(\rho = 0.5, \alpha=0.5\\), we observe many transitions and short run lengths in both environments. When we change the parameters to \\(\rho = 0.95, \alpha=0.5\\), we observe few transitions and longer run lengths because temporal autocorrelation is increased for both environments. When we adjust to \\(\alpha=0.95\\), we observe that population size is equal to N2 more often than N1. Since \\(\alpha\\) affects the expected frequency of N1 and N2, it has asymmetric effects of the temporal autocorrelation of  each environment.
+
+Now, to examine the distribution of run lengths, I use the following function which takes advantage of the `groupby` function:
+
+```python
+from itertools import groupby
+
+def calcRuns(lENV):
+    '''
+    Given lENV, get lengths of cosecutive runs of 0s and 1s
+    '''
+    lenE0, lenE1 = [], []
+    for k, v in groupby(lENV):
+        lV = list(v)
+        if k==0:
+            lenE0 += [len(lV)]
+        else:
+            lenE1 += [len(lV)]
+    return [lenE0, lenE1]
+```
+
+First lets examine the distribution of run lengths with moderate temporal autocorrelation, \\(\rho\\), and equal frequency of each environment, \\(\alpha=0.5\\).
+
+```python
+#####-----simulate
+rho, alpha, gen, seed = 0.95, 0.5, 100000, 50
+lENV = stochasticSim(rho, alpha, gen, seed)
+lenE0, lenE1 = calcRuns(lENV)
+meanE0, meanE1 = round(np.mean(lenE0),1), round(np.mean(lenE1),1)
+#####-----create df
+dfRuns = pd.DataFrame({'N':['N1']*len(lenE0) + ['N2']*len(lenE1),'LEN':lenE0+lenE1})
+#####-----plot hitsotgram of run lengths
+fig, ax = plt.subplots(figsize=(10, 10))
+sns.histplot(data=dfRuns, x='LEN', hue='N', palette="colorblind")
+ax.vlines(x=meanE0, ymin=0, ymax=220, color='blue', linestyle='--', alpha=0.9)
+ax.vlines(x=meanE1, ymin=0, ymax=220, color='orange', linestyle='--', alpha=0.9)
+ax.set_xlabel(xlabel='Run lengths',fontsize=20)
+ax.set_ylabel(ylabel='Count', fontsize=20)
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.text(meanE0+10, 200, meanE0, fontsize=15, color='blue')
+ax.text(meanE1+10, 180, meanE1, fontsize=15, color='orange')
+plt.savefig('images/runlengths.95.50.png', bbox_inches='tight')
+plt.show()
+```
+
+<figure>
+ 	<img src="/assets/images/06_2021/runlengths.95.50.png">
+	<figcaption><b>Figure 3.</b> Distribution of run lengths with moderate temporal autocorrelation and equal frequency of environments. Dashed line represent the mean run length value.</figcaption>
+</figure>
+
+The expected run length for each environment is 40 generations under these parameters, which matches closely with the dashed lines. However, we observe the large variance in run lengths, which is expected since run lengths are geometrically distributed. 
+
+Now lets examine the distribution of run lengths with moderate temporal autocorrelation, \\(\rho\\), and a higher frequency of N2 environments, \\(\alpha=0.95\\).
+
+<figure>
+ 	<img src="/assets/images/06_2021/runlengths.95.50.png">
+	<figcaption><b>Figure 4.</b> Distribution of run lengths with moderate temporal autocorrelation and unequal frequency of environments. Dashed line represent the mean run length value.</figcaption>
+</figure>
+
+Under these parameters, the expected run length for the N1 and N2 environment is 21 and 400 generations, respectively, which matches closely with the dashed lines. Now we observe an even larger variance for run lengths in the N2 environment.
