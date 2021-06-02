@@ -240,7 +240,7 @@ def stochasticSim(rho, alpha, gen, seed):
     return lENV
 ```
 
-I will plot the first 500 generations for simulations where \\(\rho = {0.5, 0.95}\\) and \\(\alpha = {0.5, 0.95}\\). 
+I will plot the first 500 generations for simulations where \\(\rho = \{0.5, 0.95\}\\) and \\(\alpha = \{0.5, 0.95\}\\). 
 
 ```python
 #####-----simulate
