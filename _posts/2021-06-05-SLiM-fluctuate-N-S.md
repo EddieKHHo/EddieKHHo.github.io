@@ -285,7 +285,7 @@ plt.show()
 
 <figure>
  	<img src="/assets/images/06_2021/state.timeseries.png">
-	<figcaption><b>Figure 2.</b> Time series of fluctuating populationsize simulations.</figcaption>
+	<figcaption><b>Figure 2.</b> Time series of simulations with fluctuating population size.</figcaption>
 </figure>
 
 With \\(\rho = 0.5, \alpha=0.5\\), we observe many transitions and short run lengths in both environments. 
