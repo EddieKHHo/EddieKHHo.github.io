@@ -344,7 +344,7 @@ The expected run length for each environment is 40 generations under these param
 Now lets examine the distribution of run lengths with moderate temporal autocorrelation, \\(\rho\\), and a higher frequency of N2 environments, \\(\alpha=0.95\\).
 
 <figure>
- 	<img src="/assets/images/06_2021/runlengths.95.50.png">
+ 	<img src="/assets/images/06_2021/runlengths.95.95.png">
 	<figcaption><b>Figure 4.</b> Distribution of run lengths with moderate temporal autocorrelation and unequal frequency of environments. Dashed line represent the mean run length value.</figcaption>
 </figure>
 
