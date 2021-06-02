@@ -195,14 +195,13 @@ The model for stochastic fluctuations of population size (and selection) is actu
 
 We can define \\(T_{12}\\) as the number of generations it takes to transition from N1 to N2 and \\(T_{21}\\)as the number of generation it takes to transition from N2 to N1; this is also known the [hitting time](https://en.wikipedia.org/wiki/Markov_chain#Hitting_times){:target="_blank"}. We can then calculate the expect value of \\(T_{12}\\) and \\(T_{21}\\) as follows:
 
-$$\begin{aligned} 2x - 4 &= 6 \\ 2x &= 10 \\ x &= 5 \end{aligned}$$
-
 $$\begin{aligned}
 2x - 4 &= 6 \\
 2x &= 10 \\
 x &= 5 \end{aligned}$$
 
-
-
-$$\begin{aligned} \bar{T_{12}} &= 1+p_{11}\bar{T_{12}} \end{aligned}$$
+$$\begin{aligned}
+\bar{T_{12}} &= 1+p_{11}\bar{T_{12}} \\
+\bar{T_{12}} &= (1-p_{11})^{-1} \\
+\bar{T_{12}} &= ((\rho + (1-\rho) (1-\alpha))^{-1} \end{aligned}$$
 
