@@ -6,7 +6,6 @@ last_modified_at: false
 header:
   overlay_image: /assets/images/06_2021/slim.code.png
   overlay_filter: 0.5
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
 Description of [SLiM](https://messerlab.org/slim/){:target="_blank"} from their website:
