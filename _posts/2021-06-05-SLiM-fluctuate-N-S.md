@@ -185,5 +185,10 @@ If we wanted even the environment in the first generation to be from a random sa
 
 ## Stochastic fluctuation model
 
+The model for stochastic fluctuations of population size (and selection) is actually just a simple two-state Markov process.
 
+<figure>
+ 	<img src="/assets/images/06_2021/TransitionDiagram_2.png">
+	<figcaption><b>Figure 1.</b> Transition diagram for Markov process describing population size fluctuations.</figcaption>
+</figure>
 
