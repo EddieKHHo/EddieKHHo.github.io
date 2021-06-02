@@ -83,9 +83,9 @@ Similar to deterministic fluctuations, there are an infinite number of ways to m
 
 Given these assumptions, the expected run length (in generations) in each environment would be:
 
-$$ E[# run length in E1] = \left( \left( 1-\rho \right) \left( \alpha \right) \right)^{-1} $$
+$$ E[run length in E1] = \left( \left( 1-\rho \right) \left( \alpha \right) \right)^{-1} $$
 
-$$ E[# run length in E2] = \left(  \left( 1-\rho \right) \left( 1 - \alpha \right) \right)^{-1} $$
+$$ E[run length in E2] = \left(  \left( 1-\rho \right) \left( 1 - \alpha \right) \right)^{-1} $$
 
 You can find additional information about this model [here](#stochastic-fluctuation-model).
 
