@@ -199,3 +199,5 @@ The model for stochastic fluctuations of population size (and selection) is actu
 | \\(p_{22}\\) | \\(\rho + (1-\rho) \alpha\\)     |
 | \\(p_{21}\\) | \\((1-\rho) (1-\alpha)\\)        |
 
+We can define \\(T_{12}\)) as the number of generations it takes to transition from N1 to N2 and \\(T_{21}\))as the number of generation it takes to transition from N2 to N1.
+
