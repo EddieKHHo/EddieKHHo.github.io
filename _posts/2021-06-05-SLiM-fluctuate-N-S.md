@@ -288,4 +288,4 @@ plt.show()
 	<figcaption><b>Figure 2.</b> Time series of simulations with fluctuating population size.</figcaption>
 </figure>
 
-With \\(\rho = 0.5, \alpha=0.5\\), we observe many transitions and short run lengths in both environments. 
+With \\(\rho = 0.5, \alpha=0.5\\), we observe many transitions and short run lengths in both environments. When we change the parameters to \\(\rho = 0.95, \alpha=0.5\\), we observe few transitions and longer run lengths because temporal autocorrelation is increased for both environments. When we adjust to \\(\alpha=0.95\\), we observe that population size is equal to N2 more often than N1. 
