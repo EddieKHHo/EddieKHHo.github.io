@@ -197,8 +197,10 @@ We can define \\(T_{12}\\) as the number of generations it takes to transition f
 
 $$\begin{aligned} 2x - 4 &= 6 \\ 2x &= 10 \\ x &= 5 \end{aligned}$$
 
-$$\begin{aligned} 2x - 4 &= 6 \\
-2x &= 10 \\ x &= 5 \end{aligned}$$
+$$\begin{aligned}
+2x - 4 &= 6 \\
+2x &= 10 \\
+x &= 5 \end{aligned}$$
 
 
 
