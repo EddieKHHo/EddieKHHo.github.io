@@ -192,10 +192,10 @@ The model for stochastic fluctuations of population size (and selection) is actu
 	<figcaption><b>Figure 1.</b> Transition diagram for Markov process describing population size fluctuations.</figcaption>
 </figure>
 
-| Symbol       | Transition probability |
-| ------------ | ---------------------- |
-| \\(p_{11}\\) |                        |
-| \\(p_{12}\\) |                        |
-| \\(p_{22}\\) |                        |
-| \\(p_{21}\\) |                        |
+| Symbol       | Transition probability           |
+| ------------ | -------------------------------- |
+| \\(p_{11}\\) | \\(\rho + (1-\rho) (1-\alpha)\\) |
+| \\(p_{12}\\) |                                  |
+| \\(p_{22}\\) |                                  |
+| \\(p_{21}\\) |                                  |
 
