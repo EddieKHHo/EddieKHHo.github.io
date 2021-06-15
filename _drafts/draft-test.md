@@ -1,5 +1,4 @@
 ---
-permalink: /test_draft/
 layout: single
 toc: true
 toc_sticky: true
