@@ -313,6 +313,15 @@ defaults:
       toc_label: "Table of Contents"
       toc_icon: "clipboard-list"
       mathjax: true
+  # _recipes
+  - scope:
+      path: ""
+      type: recipes
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
 
 plugins:
   - jekyll-include-cache
