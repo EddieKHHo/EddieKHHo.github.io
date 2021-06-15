@@ -1,8 +1,8 @@
 ---
 layout: collection
 title: "You found the drafts!"
-collection: drafts
 permalink: /drafts/
+collection: drafts
 author_profile: true
 header:
   overlay_image: /assets/images/about/Ant-02-600px.jpg
