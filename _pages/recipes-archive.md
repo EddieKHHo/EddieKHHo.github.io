@@ -1,8 +1,8 @@
 ---
 layout: collection
 title: "Recipes"
-collection: recipes
 permalink: /recipes/
+collection: recipes
 author_profile: false
 ---
 
