@@ -10,3 +10,5 @@ header:
 ---
 
 [test](/test_draft/)
+
+<a href="/test_draft/" rel="permalink">test draft</a>
