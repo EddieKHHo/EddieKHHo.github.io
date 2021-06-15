@@ -1,6 +1,7 @@
 ---
 layout: collection
 title: "You found the drafts!"
+collection: drafts
 permalink: /drafts/
 author_profile: true
 header:
