@@ -9,4 +9,4 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
-[test](test_draft)
+[test](/test_draft/)
