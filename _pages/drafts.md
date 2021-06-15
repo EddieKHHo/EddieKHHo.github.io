@@ -12,3 +12,6 @@ header:
 [test](/test_draft/)
 
 <a href="/test_draft/" rel="permalink">test draft</a>
+
+<a href="/_drafts/draft-test.md/" rel="permalink">test draft 1</a>
+<a href="/drafts/draft-test.md/" rel="permalink">test draft 2</a>
