@@ -1,6 +1,6 @@
 ---
 layout: collection
-title: "You found the drafts!"
+title: "You found the secreft drafts!"
 permalink: /drafts/
 collection: drafts
 author_profile: true
@@ -10,3 +10,4 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
 ---
 
+A place for me to draft posts before posting them.
