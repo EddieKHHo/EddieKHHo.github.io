@@ -29,7 +29,9 @@ It is useful to first learn about the different parts of a decision tree. At the
 
 ## Prediction
 
-Once a decision tree is learned from training on the data, a prediction is made for new data points by looking at which leaf node they fall on based on their feature values. The prediction for the leaf node is simply the **majority target** for decision tree classifiers or the **mean value of targets** for decision tree regressors. Note that for decision tree regressors, the predicted value will never be outside of the values in the training dataset (i.e. it does not extrapolate). 
+Once a decision tree is learned from training on the data, a prediction is made for new data points by looking at which leaf node they fall on based on their feature values. The prediction for the leaf node is simply the **majority target** for decision tree classifiers or the **mean value of targets** for decision tree regressors. Note that for decision tree regressors, the predicted value will never be outside of the values in the training dataset (i.e. it does not extrapolate).
+
+An addition note for `scikit-learn` users using `DecisionTreeClassifier`. After a model is trained, the `predict` method is giving the majority target at the leaf node. The `predict_proba` method will output the proportion of each target class in the leaf node. 
 
 ## Overfitting
 
