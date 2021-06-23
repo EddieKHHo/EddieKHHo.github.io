@@ -117,4 +117,10 @@ For both measures of impurity, there is a peak at \\(p_{0} = 0.5\\), which repre
 
 ## Regression measures of impurity
 
-Given a continuous target variable at node \\(m\\) with values represented by vector \\(y\\). Let \\(\bar{y}\\) as the mean and \\(\tilde{y}\\) as the median of vector y.
+Given a continuous target variable at node \\(m\\) with \\(N_{m}\\)values represented by vector \\(y\\). Let \\(\bar{y}\\) as the mean and \\(\tilde{y}\\) as the median of vector y.
+
+<h3>Mean squared error</h3>
+
+$$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} (y-\bar{y})^{2} $$
+
+<h3>Mean absolute error</h3>
