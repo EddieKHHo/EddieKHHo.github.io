@@ -23,7 +23,7 @@ It is useful to first learn about the different parts of a decision tree. At the
 # Building a decision tree
 
 1. Begin with the entire dataset at the root node.
-2. Search over all possible splits and find the one that is most informative about the target; each split only concerns one feature. A split typically involves splitting the data base on whether its feature value is <= or > than a **threshold** value. The aim is to find the split that minimized the **impurity** of the sub-nodes.
+2. Search over all possible splits and find the one that is most informative about the target; each split only concerns one feature. A split typically involves splitting the data base on whether its feature value is <= or > than a **threshold** value. The aim is to find the split that minimized the **impurity** of the sub-nodes. Thus, most decision tree algorithms are **greedy** algorithm that find the local optimum solution at each node, but this does not necessarily lead to a globally optimal decision tree.
 3. Use the most informative split (minimum impurity) to divide the dataset into "left" and "right" sub-nodes.
 4. Repeat steps 2 and 3 to recursively partition the dataset until each leaf only contains a single target class / regression value. A leaf node containing only data points with the same target value is a called **pure**. However, a leaf node can be impure for at least two reasons. Firstly, there may simply not be enough information in the features to separate  data points with different target values. Secondly, construction of the tree may be halted if some restriction is met to reduce overfitting (e.g. maximum depth was reached).
 
@@ -37,7 +37,9 @@ An addition note for `scikit-learn` users using `DecisionTreeClassifier`. After 
 
 Building a tree until all leaves are pure usually causes the model to overfit onto the training dataset. To prevent overfitting, one can perform **pre-pruning** to stop building the tree early on or **post-pruning** to remove or collapse nodes with little information. Some examples of pre-pruning include limiting the max depth of the three, limiting the maximum number of leaves, and requiring a minimum number of data point to continue splitting a node.
 
-# Measure of impurity
+# Measures of impurity
+
+Evaluating the impurity of nodes is essential for building a decision tree. After all, the goal is to find the combination in feature space that would accurately predict the target value (minimize impurity). If the leaf node is highly impure, then the decision path that led to it would not give accurate predictions. It is important to separate 
 
 Impurity of node
 
