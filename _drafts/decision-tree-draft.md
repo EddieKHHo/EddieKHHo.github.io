@@ -121,6 +121,12 @@ Given a continuous target variable at node \\(m\\) with \\(N_{m}\\)values repres
 
 <h3>Mean squared error</h3>
 
+Measure squared error has many applications, especially in statistical regressions. It is a useful statistic to measure the variation of a random variable around a mean.
+
 $$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} (y-\bar{y})^{2} $$
 
 <h3>Mean absolute error</h3>
+
+The mean absolute error is less commonly used. However it is less sensitive to outlier data points compared to the mean squared error. The one drawback is that determining the median of a vector is more computationally intensive than calculating the mean, especially when the data set is very large.
+
+$$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} |y-\tilde{y}| $$
