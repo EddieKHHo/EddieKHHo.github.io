@@ -109,7 +109,7 @@ plt.show()
 ```
 
 <figure>
- 	<img src="/assets/images/06_2021/impurity.gini.entopy.png">
+ 	<img src="/assets/images/06_2021/impurity.gini.entropy.png">
 	<figcaption><b>Figure 2.</b> Gini and entropy curve for binary class targat variable.</figcaption>
 </figure>
 
