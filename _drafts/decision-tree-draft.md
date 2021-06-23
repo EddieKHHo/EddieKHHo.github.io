@@ -49,7 +49,7 @@ Given a categorical target variable with \(k\\) classes  (0, 1, ..., *k*-1, *k*)
 
 <h3>Gini index</h3>
 
-$$\abc\$$
+$$H(S_{m}) = p_{m,k}(1-p_{m,k})$$
 
 ## Regression measures of impurity
 
