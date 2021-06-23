@@ -51,5 +51,9 @@ Given a categorical target variable with \(k\\) classes  (0, 1, ..., *k*-1, *k*)
 
 $$H(S_{m}) =\sum_{k} p_{m,k}(1-p_{m,k})$$
 
+<h3>Entropy</h3>
+
+$$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
+
 ## Regression measures of impurity
 
