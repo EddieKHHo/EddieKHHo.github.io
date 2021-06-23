@@ -61,7 +61,7 @@ Entropy is a measure of disorder, which increases with increasing abundances of 
 $$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
 
 <h3>Example</h3>
-If we assume that the dataset only has two classes (0 and 1). At node \\(m\\) the proportion of data of class 0 and class 1 will be \\(p_{0}\\) and \\(p_{1}=1-p_{0}\\), respectively. For this type of data, we can examine the Gini and entropy curve for all values of \\(p_{0}\\) from 0 to 1.
+If we assume that the dataset only has two classes (0 and 1). At node \\(m\\) the proportion of data of class 0 and class 1 will be \\(p_{0}\\) and \\(p_{1}=1-p_{0}\\), respectively. For this type of data, we can examine the Gini and entropy curve for all values of \\(p_{0}\\) from 0 to 1. 
 
 ```python
 from math import log
@@ -112,6 +112,8 @@ plt.show()
  	<img src="/assets/images/06_2021/impurity.gini.entropy.png">
 	<figcaption><b>Figure 2.</b> Gini and entropy curve for binary class target variable. The blue line representing the proportion of class 0 is just used for reference.</figcaption>
 </figure>
+
+For both measures of impurity, there is a peak at \\(p_{0} = 0.5\\), which represents a node with maximal impurity. Impurity then approaches 0 as \\(p_{0}\\) approaches 0 and 1, which represents nodes with only class 0 or only class 1 target variables.
 
 ## Regression measures of impurity
 
