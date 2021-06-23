@@ -23,11 +23,19 @@ It is useful to first learn about the different parts of a decision tree. At the
 # Building a decision tree
 
 1. Begin with the entire dataset at the root node.
-2. Search over all possible splits and find the one that is most informative about the target; each split only concerns one feature. A split typically involves splitting the data base on whether its feature value is <= or > than a **threshold** value.
-3. Use the most informative split to divide the dataset into a left and a right node.
+2. Search over all possible splits and find the one that is most informative about the target; each split only concerns one feature. A split typically involves splitting the data base on whether its feature value is <= or > than a **threshold** value. The aim is to find the split that minimized the **impurity** of the sub-nodes.
+3. Use the most informative split (minimum impurity) to divide the dataset into a left and right sub-nodes.
 4. Repeat steps 2 and 3 to recursively partition the dataset until each leaf only contains a single target class or regression value. A leaf node containing only data points with the same target value is a called **pure**. In other cases, construction of the tree may be halted if some restriction is met (e.g. maximum depth was reached).
 
 Once a decision tree is learned from training on the data, a prediction is made for new data points by looking at which leaf node they fall on based on their feature values. The prediction for the leaf node is simply the **majority target** for decision tree classifiers or the **mean value of targets** for decision tree regressors. Note that for decision tree regressors, the predicted value will never be outside of the values in the training dataset (i.e. it does not extrapolate). 
+
+## Classification measures of impurity
+
+
+
+## Regression measures of impurity
+
+
 
 ## Overfitting
 
