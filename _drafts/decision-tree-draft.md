@@ -56,7 +56,7 @@ H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
 &=1-\sum_{k} p_{m,k}^{2}  \end{aligned}$$
 
 <h3>Entropy</h3>
-A pure and a maximullay impure node will have entropy values of 0 and  0.5, respectively.
+Entropy is a measure of disorder, which increases with increasing abundances of data points with different target values. A pure and a maximullay impure node will have entropy values of 0 and  0.5, respectively.
 
 $$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
 
