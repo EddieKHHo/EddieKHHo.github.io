@@ -117,7 +117,7 @@ For both measures of impurity, there is a peak at \\(p_{0} = 0.5\\), which repre
 
 ## Regression measures of impurity
 
-Given a continuous target variable at node \\(m\\) with \\(N_{m}\\)values represented by vector \\(y\\). Let \\(\bar{y}\\) as the mean and \\(\tilde{y}\\) as the median of vector y.
+Given a continuous target variable at node \\(m\\) with \\(N_{m}\\)values represented by vector \\(y\\), let \\(\bar{y}\\) be the **mean** and \\(\tilde{y}\\) be the **median** of vector y.
 
 <h3>Mean squared error (MSE)</h3>
 
@@ -136,3 +136,51 @@ $$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} |y-\tilde{y}| $$
 The example shown here is mostly meaningless. It is here just to show that you can apply the concepts of MSE and MAE to categorical target variables and to show how the plots of MSE and MAE differ from Gini and Entropy. There really is not a generalized way of showing what MSE and MAE curves may look like because it depends entirely on the values of the dataset.
 
 Let's assume that the dataset only has two classes (0 and 1) and there are **100** data points at node \\(m\\). Let proportion of data of class 0 and class 1 will be \\(p_{0}\\) and \\(p_{1}=1-p_{0}\\), respectively. Below is the MSE and MAE curve for this particular type of data across all values of \\(p_{0}\\) from 0 to 1. 
+
+```python
+def mean_square_error(n, n0):
+    '''
+    Calculate mean square error for binary continuous variable
+    '''
+    n1 = n-n0
+    y_list = [0]*n0 + [1]*n1
+    y_mean = np.mean(y_list)
+    mse = sum([(y-y_mean)**2 for y in y_list]) / n
+    return mse
+
+def mean_absolute_error(n, n0):
+    '''
+    Calculate mean absolute error for binary continuous variable
+    '''
+    n1 = n-n0
+    y_list = [0]*n0 + [1]*n1
+    y_median = np.median(y_list)
+    mae = sum([abs(y-y_median) for y in y_list]) / n
+    return mae
+
+# create data and dataframe for MSE and MAE
+listP0 = list(np.arange(0,1+0.01,0.01))
+listMSE = [mean_square_error(100, int(100*p0)) for p0 in listP0]
+listMAE = [mean_absolute_error(100,int(100*p0)) for p0 in listP0]
+dfImpurity = pd.DataFrame({
+    'p0':listP0+listP0+listP0,
+    'measure':['p0']*len(listP0)+['MSE']*len(listMSE)+['MAE']*len(listMAE),
+    'impurity':listP0+listMSE+listMAE
+})
+# plot using seaborn
+fig, ax = plt.subplots(figsize=(8, 8))
+sns.lineplot(
+    data=dfImpurity, x='p0', y='impurity', 
+    hue='measure', palette="colorblind", markers=True)
+ax.set_xlabel(xlabel='Proportion of class 0',fontsize=20)
+ax.set_ylabel(ylabel='Impurity', fontsize=20)
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.legend(prop={'size': 15})
+plt.savefig('images/impurity.mse.mae.png', bbox_inches='tight')
+plt.show()
+```
+
+<figure>
+ 	<img src="/assets/images/06_2021/impurity.mse.mae.png">
+	<figcaption><b>Figure 3.</b> MSE and MAE curve for binary class target variable with 100 data points. The blue line representing the proportion of class 0 is just used for reference.</figcaption>
+</figure>
