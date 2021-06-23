@@ -39,11 +39,9 @@ Building a tree until all leaves are pure usually causes the model to overfit on
 
 # Measures of impurity
 
-Evaluating the impurity of nodes is essential for building a decision tree. After all, the goal is to find the combination in feature space that would accurately predict the target value (minimize impurity). If the leaf node is highly impure, then the decision path that led to it would not give accurate predictions. It is important to separate 
+Evaluating the impurity of nodes is essential for building a decision tree. After all, the goal is to find the combination in feature space that would accurately predict the target value (minimize impurity). If the leaf node is highly impure, then the decision path that led to it would not give accurate predictions. It is important to separate the i**mpurity of a node** from the **quality of the split**. The former is calculated based on the target variables in a single node, while the latter is calculated using the impurity of sub-nodes (and sometimes the parent node) of a split. I will discuss how impurity is calculated here and the quality of the split in a later section.
 
-Impurity of node
-
-Impurity of split.
+Impurity will obviously be calculated different for categorical vs continuous target variables. I will only present a few common measures here. Here I will define the impurity function as **\\(H(S_{m})\\)**, where **\\(S_{m}\\)** represents the set of data points at node \\(m\\).
 
 ## Classification measures of impurity
 
