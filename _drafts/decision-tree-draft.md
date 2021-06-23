@@ -191,7 +191,7 @@ Just to repeat, this is not what a typically MSE or MAE curve would look like, t
 
 To evaluate the quality of a split, you would need to consider not just the impurity of a single sub-node, but the impurity at all sub-nodes created by the split and possible even the parent node. The CART algorithm considers all possible splits and keeps the split with the high quality. Similar to the impurity measures, there are various measures for the quality of the split and I will only present two of them. 
 
-Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(N_{m}\\) data points is split into a "left" and a "right" child node. Theleft node contains dataset \\(S_{m}^{left}\\) with \\(N_{m}^{left}\\) datapoints and the right node contains dataset  \\(S_{m}^{right}\\) with \\(N_{m}^{right}\\) data points; \\(N_{m}^{left}+N_{m}^{right} = N_{m}\\).
+Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(N_{m}\\) data points is split into a "left" and a "right" child node. The left node contains dataset \\(S_{m}^{left}\\) with \\(N_{m}^{left}\\) data points and the right node contains dataset  \\(S_{m}^{right}\\) with \\(N_{m}^{right}\\) data points; \\(N_{m}^{left}+N_{m}^{right} = N_{m}\\).
 
 ## Information gain (IG)
 
