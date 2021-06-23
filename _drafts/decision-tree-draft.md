@@ -48,6 +48,7 @@ Here I will define the impurity function as **\\(H(S_{m})\\)**, where **\\(S_{m}
 Given a categorical target variable with \(k\\) classes  (0, 1, ..., *k*-1, *k*). Let the proportion of each class at leaf node \\(m\\) be \\(p_{m, k}\\).
 
 <h3>Gini index</h3>
+The Gini index is used by the CART algorithm.
 
 $$\begin{aligned}
 H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
