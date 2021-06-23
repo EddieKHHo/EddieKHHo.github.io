@@ -51,8 +51,8 @@ Given a categorical target variable with \(k\\) classes  (0, 1, ..., *k*-1, *k*)
 
 $$\begin{aligned}
 H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
-H(S_{m}) &=\sum_{k} p_{m,k}-\sum_{k} p_{m,k}^{2} \\
-H(S_{m}) &=1-\sum_{k} p_{m,k}^{2}  \end{aligned}$$
+&=\sum_{k} p_{m,k}-\sum_{k} p_{m,k}^{2} \\
+&=1-\sum_{k} p_{m,k}^{2}  \end{aligned}$$
 
 <h3>Entropy</h3>
 
