@@ -18,5 +18,6 @@ It is useful to first learn about the different parts of a decision tree. At the
 
 <figure>
  	<img src="/assets/images/06_2021/DecisionTree.png">
-	<figcaption><b>Figure 1.</b> Disagram of a simple decision tree.</figcaption>
+	<figcaption><b>Figure 1.</b> Diagram of a simple decision tree.</figcaption>
 </figure>
+
