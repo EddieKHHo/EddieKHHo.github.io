@@ -92,9 +92,9 @@ listGini = [gini_index(p0) for p0 in listP0]
 listEntropy = [entropy(p0) for p0 in listP0]
 # create dataframe
 dfImpurity = pd.DataFrame({
-    'p0':listP0+listP0,
-    'measure':['Gini']*len(listGini)+['Entropy']*len(listEntropy),
-    'impurity':listGini+listEntropy
+    'p0':listP0+listP0+listP0,
+    'measure':['p0']*len(listP0)+['Gini']*len(listGini)+['Entropy']*len(listEntropy),
+    'impurity':listP0+listGini+listEntropy
 })
 # plot using seaborn
 fig, ax = plt.subplots(figsize=(8, 8))
@@ -110,7 +110,7 @@ plt.show()
 
 <figure>
  	<img src="/assets/images/06_2021/impurity.gini.entropy.png">
-	<figcaption><b>Figure 2.</b> Gini and entropy curve for binary class targat variable.</figcaption>
+	<figcaption><b>Figure 2.</b> Gini and entropy curve for binary class target variable. The blue line representing the proportion of class 0 is just used for reference.</figcaption>
 </figure>
 
 ## Regression measures of impurity
