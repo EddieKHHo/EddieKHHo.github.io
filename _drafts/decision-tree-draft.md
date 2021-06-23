@@ -196,3 +196,5 @@ Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(
 ## Information gain (IG)
 
 IG is used for categorical target variables (decision tree classifiers). I mostly see it used in conjunction with Entropy but have seen a few examples of its used with Gini. IG is a measure of the difference in impurity between the parent and the child nodes after a split.
+
+$$ IG = H(S_{m}) - ( \frac{S_{m}^{left}}{S_{m}}H(S_{m}^{left})+\frac{S_{m}^{right}}{S_{m}}H(S_{m}^{right}) ) ) $$
