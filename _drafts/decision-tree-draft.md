@@ -63,5 +63,55 @@ $$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
 <h3>Example</h3>
 If we assume that the dataset only has two classes (0 and 1). At node \\(m\\) the proportion of data of class 0 and class 1 will be \\(p_{0}\\) and \\(p_{1}=1-p_{0}\\), respectively. For this type of data, we can examine the Gini and entropy curve for all values of \\(p_{0}\\) from 0 to 1.
 
+```python
+from math import log
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+def gini_index(p0):
+    '''
+    Calculate gini index for binary target variable
+    '''
+    p1 = 1-p0
+    return 1 - (p0**2 + p1**2)
+
+def entropy(p0):
+    '''
+    Calculate entropy for binary target variable
+    '''
+    p1 = 1-p0
+    try:
+        return (-1 * (p0 * log(p0, 2) + p1 * log(p1, 2)))
+    except ValueError:
+        return 0
+
+# create lists of p0, Gini and Entropy
+listP0 = list(np.arange(0,1+0.01,0.01))
+listGini = [gini_index(p0) for p0 in listP0]
+listEntropy = [entropy(p0) for p0 in listP0]
+# create dataframe
+dfImpurity = pd.DataFrame({
+    'p0':listP0+listP0,
+    'measure':['Gini']*len(listGini)+['Entropy']*len(listEntropy),
+    'impurity':listGini+listEntropy
+})
+# plot using seaborn
+fig, ax = plt.subplots(figsize=(8, 8))
+sns.lineplot(
+    data=dfImpurity, x='p0', y='impurity', 
+    hue='measure', palette="colorblind", markers=True)
+ax.set_xlabel(xlabel='Proportion of class 0',fontsize=20)
+ax.set_ylabel(ylabel='Impurity', fontsize=20)
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.legend(prop={'size': 15})
+plt.show()
+```
+
+<figure>
+ 	<img src="/assets/images/06_2021/impurity.gini.entopy.png">
+	<figcaption><b>Figure 2.</b> Gini and entropy curve for binary class targat variable.</figcaption>
+</figure>
+
 ## Regression measures of impurity
 
