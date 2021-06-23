@@ -45,7 +45,11 @@ Here I will define the impurity function as **\\(H(S_{m})\\)**, where **\\(S_{m}
 
 ## Classification measures of impurity
 
-Given a categorical target variable with classes \\(k\\) classes  (0, 1, ..., *k*-1, *k*). Let the proportion of each class at leaf node \\(m\\) be \\(p_{m, k}\\).
+Given a categorical target variable with \(k\\) classes  (0, 1, ..., *k*-1, *k*). Let the proportion of each class at leaf node \\(m\\) be \\(p_{m, k}\\).
+
+<h3>Gini index</h3>
+
+$$\abc\$$
 
 ## Regression measures of impurity
 
