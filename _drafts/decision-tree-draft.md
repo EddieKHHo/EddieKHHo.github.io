@@ -56,9 +56,12 @@ H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
 &=1-\sum_{k} p_{m,k}^{2}  \end{aligned}$$
 
 <h3>Entropy</h3>
-
+A completely pure and impure node will have entropy values of 0,  0.5, respectively.
 
 $$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
+
+<h3>Example</h3>
+If we assume that the dataset only has two classes (0 and 1). At node \\(m\\) the proportion of data of class 0 and class 1 will be \\(p_{0}\\) and \\(p_{1}=1-p_{0}\\), respectively. For this type of data, we can examine the Gini and entropy curve for all values of \\(p_{0}\\) from 0 to 1.
 
 ## Regression measures of impurity
 
