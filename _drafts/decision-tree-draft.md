@@ -48,7 +48,7 @@ Here I will define the impurity function as **\\(H(S_{m})\\)**, where **\\(S_{m}
 Given a categorical target variable with \(k\\) classes  (0, 1, ..., *k*-1, *k*). Let the proportion of each class at leaf node \\(m\\) be \\(p_{m, k}\\).
 
 <h3>Gini index</h3>
-The Gini index is used by the **CART** algorithm. It measures how often a randomly chosen data point in the node would be incorrectly labeled. A completely pure and impure node will have Gini index values of 0,  0.5, respectively.
+The Gini index is used by the **CART** algorithm. It measures how often a randomly chosen data point in the node would be incorrectly labeled. A pure and a maximumally impure node will have Gini index values of 0 and  0.5, respectively.
 
 $$\begin{aligned}
 H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
@@ -56,7 +56,7 @@ H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
 &=1-\sum_{k} p_{m,k}^{2}  \end{aligned}$$
 
 <h3>Entropy</h3>
-A completely pure and impure node will have entropy values of 0,  0.5, respectively.
+A pure and a maximullay impure node will have entropy values of 0 and  0.5, respectively.
 
 $$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
 
