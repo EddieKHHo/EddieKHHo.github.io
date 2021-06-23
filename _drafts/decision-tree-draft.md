@@ -56,7 +56,7 @@ H(S_{m}) &=\sum_{k} p_{m,k}(1-p_{m,k}) \\
 &=1-\sum_{k} p_{m,k}^{2}  \end{aligned}$$
 
 <h3>Entropy</h3>
-Entropy is a measure of disorder, which increases with increasing abundances of data points with different target values. A pure and a maximullay impure node will have entropy values of 0 and  0.5, respectively.
+Entropy is a measure of disorder, which increases with increasing abundances of data points with different target values. A pure and a maximallay impure node will have entropy values of 0 and  0.5, respectively.
 
 $$H(S_{m}) =-\sum_{k} p_{m,k}\log_{2}p_{m,k}$$
 
@@ -119,14 +119,20 @@ For both measures of impurity, there is a peak at \\(p_{0} = 0.5\\), which repre
 
 Given a continuous target variable at node \\(m\\) with \\(N_{m}\\)values represented by vector \\(y\\). Let \\(\bar{y}\\) as the mean and \\(\tilde{y}\\) as the median of vector y.
 
-<h3>Mean squared error</h3>
+<h3>Mean squared error (MSE)</h3>
 
-Measure squared error has many applications, especially in statistical regressions. It is a useful statistic to measure the variation of a random variable around a mean.
+Measure squared error has many applications, especially in statistical regressions. It is a useful statistic to measure the variation of a random variable around a mean. The minimum value of the MSE is 0, but there is no upper limit (unlike Gini and Entropy).
 
 $$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} (y-\bar{y})^{2} $$
 
-<h3>Mean absolute error</h3>
+<h3>Mean absolute error (MAE)</h3>
 
-The mean absolute error is less commonly used. However it is less sensitive to outlier data points compared to the mean squared error. The one drawback is that determining the median of a vector is more computationally intensive than calculating the mean, especially when the data set is very large.
+The mean absolute error is less commonly used. However it is less sensitive to outlier data points compared to the mean squared error. The one drawback is that determining the median of a vector is more computationally intensive than calculating the mean, especially when the data set is very large.  The minimum value of the MAE is 0, but there is no upper limit (unlike Gini and Entropy).
 
 $$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} |y-\tilde{y}| $$
+
+<h3>Example</h3>
+
+The example shown here is mostly meaningless. It is here just to show that you can apply the concepts of MSE and MAE to categorical target variables and to show how the plots of MSE and MAE differ from Gini and Entropy. There really is not a generalized way of showing what MSE and MAE curves may look like because it depends entirely on the values of the dataset.
+
+Let's assume that the dataset only has two classes (0 and 1) and there are **100** data points at node \\(m\\). Let proportion of data of class 0 and class 1 will be \\(p_{0}\\) and \\(p_{1}=1-p_{0}\\), respectively. Below is the MSE and MAE curve for this particular type of data across all values of \\(p_{0}\\) from 0 to 1. 
