@@ -57,5 +57,5 @@ plot_tree(clf1, feature_names=features, filled=True)
  	<img src="/assets/images/06_2021/iris.classifier.png">
 	<figcaption><b>Figure 1.</b> Simplified decision tree classifier for iris dataset.</figcaption>
 </figure>
+This decision tree gives you all the information you need to understand how the classifier works. For root and decision nodes, the first line indicates the feature and threshold value use to perform the split, the second gives the impurity (Gini index) of the node, the third line gives the number of samples, and the last lists the number of samples in class 0 (not versicolor) and class 1(is versicolor). Leaf nodes are basically the same, except it does not have the first line.
 
-This decision tree gives you all the information you need to understand how the classifier works. For root and decision nodes, the first line indicates the feature and threshold value use to perform the split, the second line indicates the impurity (Gini index) of the node, the third line indicates the number of samples, and the last line indicates the number of samples in class 0 (not versicolor) and class 1(is versicolor). Leaf nodes are basically the same, except it does not have the first line because it is not split further.
