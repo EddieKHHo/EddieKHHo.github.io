@@ -175,7 +175,7 @@ features = iris.feature_names
 target = 'versicolor'
 ```
 
-Let first examine the weighted Gini of all splits output by `gini_all_splits.`
+Let's first examine the weighted Gini of all splits output by `gini_all_splits.`
 
 ```python
 # get split impurity for all features and thresholds values
@@ -198,3 +198,18 @@ plt.show()
 </figure>
 
 We actually observe that there are ties for the lowest weighted Gini when splitting by 'petal length' and by 'petal width'.
+
+Let's now look at the optimal splits for each feature output by `gini_best_split`.
+
+```python
+table_best_split = gini_best_split(dfIris, features, target)
+```
+
+| Feature      | t    | Gini_left | Gini_right | Gini_split |
+| ------------ | ---- | --------- | ---------- | ---------- |
+| sepal length | 5.4  | 0.204     | 0.495      | 0.394      |
+| sepal width  | 2.9  | 0.481     | 0.285      | 0.360      |
+| petal length | 1.9  | 0         | 0.5        | 0.333      |
+| petal width  | 0.6  | 0         | 0.5        | 0.333      |
+
+As expected, we observe a tie for the lowest weighted Gini (0.333) when splitting using 'petal length' with threshold 1.9 and 'petal width' with threshold 0.6. There are two things of note here. Firstly, we know from the plot above that there are many other threshold values that would give the same weighted Gini of 0.333. The ones shown in the table are just the ones that appear first. Second, the decision classifier created by `scikit-learn` in Figure 1, choose to split by 'petal length' with threshold 2.45, which according to Figure 2 will tie for the weighted Gini score of 0.333. 
