@@ -37,3 +37,24 @@ versicolor = [0 if x==1 else 1 for x in iris.target]
 dfIris['versicolor'] = versicolor
 ```
 
+We can now construct the decision tree classifier with maximum depth of three and plot the tree using the `plot_tree` method.
+
+```python
+# define features and targets
+features = iris.feature_names
+target = 'versicolor'
+# define parameters for tree
+random_state = 111
+max_depth = 3
+# fit decision tree classifier
+X, Y = dfIris[features], dfIris[target]
+clf1 = DecisionTreeClassifier(random_state=111, max_depth=max_depth)
+clf1 = clf1.fit(X, Y)
+# plot tree
+plot_tree(clf1, feature_names=features, filled=True)
+```
+
+<figure>
+ 	<img src="/assets/images/06_2021/iris.classifier.png">
+	<figcaption><b>Figure 1.</b> Decision tree for classifier for iris dataset.</figcaption>
+</figure>
