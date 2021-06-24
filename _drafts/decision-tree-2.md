@@ -60,7 +60,7 @@ plot_tree(clf1, feature_names=features, filled=True)
 
 This decision tree gives you all the information you need to understand how the classifier works. For root and decision nodes, the first line indicates the feature and threshold value use to perform the split, the second gives the impurity (Gini index) of the node, the third line gives the number of samples, and the last lists the number of samples in class 0 (not versicolor) and class 1 (is versicolor). Leaf nodes are basically the same, except it does not have the first line.
 
-As a side note, we can use this information to construct a few data point to better understand how the classifier works, using `predict` and `predict_proba`. To be precise, we will make up 5 data points with the appropriate 'petal length' and 'petal width', such that they will end up in each of the 5 leaf nodes.
+As a side note, we can use this information to construct a few data point to better understand how the classifier works, using `predict` and `predict_proba`. To be precise, we will make up 5 data points with the appropriate 'petal length' and 'petal width', such that they will end up in each of the 5 leaf nodes, then examine the outputs of `predict` and `predict_proba`.
 
 ```python
 X_test = [[0,0,0,0],[0,0,3,0],[0,0,5,0],[0,0,3,2],[0,0,5,2]] # data points
