@@ -194,7 +194,7 @@ plt.show()
 
 <figure>
  	<img src="/assets/images/06_2021/iris.first_split.png">
-	<figcaption><b>Figure 2.</b>Impurity of first splits for each feature and threshold.</figcaption>
+	<figcaption><b>Figure 2.</b> Impurity of first splits for each feature and threshold.</figcaption>
 </figure>
 
 We actually observe that there are ties for the lowest weighted Gini when splitting by 'petal length' and by 'petal width'.
