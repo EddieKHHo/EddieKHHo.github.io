@@ -195,7 +195,7 @@ Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(
 
 ## Weighted sum of impurities
 
-This seems to be the measure of split quality implemented by `scikit-learn` according to their documentation of decision trees. The quality of split at parent node \\(m\\) given feature \\(f\\) and threshold \\(t\\), \\(G(S_{m}, f, t)\\) is simply the sum of the impurities of its child nodes weighted by the proportion of data points in each child node. As far as I can tell, you can utilize \\(G(S_{m}, f, t)\\)  to evaluate the quality of the split for categorical and continuous measures of impurities. However, I most often see this associated with the calculated of Gini impurities.
+This seems to be the measure of split quality implemented by `scikit-learn` according to their documentation of decision trees. The quality of split at parent node \\(m\\) given feature \\(f\\) and threshold \\(t\\), \\(G(S_{m}, f, t)\\) is simply the sum of the impurities of its child nodes weighted by the proportion of data points in each child node. As far as I can tell, you can utilize \\(G(S_{m}, f, t)\\)  to evaluate the quality of the split for categorical and continuous measures of impurities. However, I most often see this associated with the calculation of Gini impurities.
 
 $$ G(S_{m}, f, t)= \frac{S_{m}^{left}}{S_{m}}H(S_{m}^{left})+\frac{S_{m}^{right}}{S_{m}}H(S_{m}^{right}) $$
 
