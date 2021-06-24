@@ -222,3 +222,5 @@ s1_left = dfIris[dfIris[F] <= t].reset_index(drop=True)
 s1_right = dfIris[dfIris[F] > t].reset_index(drop=True)
 ```
 
+This would results in a tree that looks like the one below.
+
