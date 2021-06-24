@@ -262,7 +262,7 @@ The result decision tree would look like this:
 
 Both `s2_left` and `s2_right` are impure, so we would need to continue splitting both of them.
 
-For `s2_left`, 
+For `s2_left`, the best split to use is 'petal length' with threshold 4.9.
 
 ```python
 table_best_split = gini_best_split(s2_left, features, target)
@@ -273,13 +273,13 @@ s3A_right = s2_left[s2_left[F] > t].reset_index(drop=True)
 ```
 | Feature      | t    | Gini_left | Gini_right | Gini_split |
 | ------------ | ---- | --------- | ---------- | ---------- |
-| sepal length | 6.1  | 0.369     | 0.413      | 0.393      |
-| sepal width  | 2.4  | 0.18      | 0.496      | 0.464      |
-| petal length | 4.7  | 0.043     | 0.194      | 0.126      |
-| petal width  | 1.7  | 0.168     | 0.043      | 0.110      |
+| sepal length | 7.0  | 0.14      | 0          | 0.137      |
+| sepal width  | 2.6  | 0.266     | 0.108      | 0.163      |
+| petal length | 4.9  | 0.041     | 0.444      | 0.086      |
+| petal width  | 1.3  | 0         | 0.311      | 0.15       |
 
 
-For `s2_right`
+For `s2_right`, the best split to use is 'petal length' with threshold 4.8.
 
 ```python
 table_best_split = gini_best_split(s2_right, features, target)
@@ -290,7 +290,14 @@ s3B_right = s2_right[s2_right[F] > t].reset_index(drop=True)
 ```
 | Feature      | t    | Gini_left | Gini_right | Gini_split |
 | ------------ | ---- | --------- | ---------- | ---------- |
-| sepal length | 6.1  | 0.369     | 0.413      | 0.393      |
-| sepal width  | 2.4  | 0.18      | 0.496      | 0.464      |
-| petal length | 4.7  | 0.043     | 0.194      | 0.126      |
-| petal width  | 1.7  | 0.168     | 0.043      | 0.110      |
+| sepal length | 5.9  | 0.245     | 0          | 0.037      |
+| sepal width  | 3.1  | 0         | 0.133      | 0.040      |
+| petal length | 4.8  | 0.444     | 0          | 0.029      |
+| petal width  | 1.8  | 0.153     | 0          | 0.04       |
+
+The resulting tree after all splits:
+
+<figure>
+ 	<img src="/assets/images/06_2021/iris.third_split.tree.png">
+	<figcaption><b>Figure 3.</b> Decision tree after the all splits.</figcaption>
+</figure>
