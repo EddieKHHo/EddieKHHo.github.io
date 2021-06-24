@@ -222,5 +222,9 @@ s1_left = dfIris[dfIris[F] <= t].reset_index(drop=True)
 s1_right = dfIris[dfIris[F] > t].reset_index(drop=True)
 ```
 
-This would results in a tree that looks like the one below.
+This would results in a tree that looks like the one below. I labeled the nodes a little bit differently from Figure 1. The first two lines of each node show the number of each class and the Gini index of the node. The last two lines show the condition used to split the node and the weighted Gini of the split.
 
+<figure>
+ 	<img src="/assets/images/06_2021/iris.first_split.tree.png">
+	<figcaption><b>Figure 3.</b> Decision tree after the first split.</figcaption>
+</figure>
