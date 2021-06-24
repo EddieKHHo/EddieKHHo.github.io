@@ -4,7 +4,7 @@ excerpt: "My notes on the algorithm and mathematics of decision tree classifiers
 date: 2021-06-24
 last_modified_at: false
 header:
-  overlay_image: /assets/images/06_2021/slim.code.png
+  overlay_image: /assets/images/06_2021/tree.png
   overlay_filter: 0.5
 ---
 
