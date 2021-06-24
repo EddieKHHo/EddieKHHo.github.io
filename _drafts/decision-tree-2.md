@@ -57,6 +57,7 @@ plot_tree(clf1, feature_names=features, filled=True)
  	<img src="/assets/images/06_2021/iris.classifier.mod.png">
 	<figcaption><b>Figure 1.</b> Simplified decision tree classifier for iris dataset.</figcaption>
 </figure>
+
 This decision tree gives you all the information you need to understand how the classifier works. For root and decision nodes, the first line indicates the feature and threshold value use to perform the split, the second gives the impurity (Gini index) of the node, the third line gives the number of samples, and the last lists the number of samples in class 0 (not versicolor) and class 1 (is versicolor). Leaf nodes are basically the same, except it does not have the first line.
 
 As a side note, we can use this information to construct a few data point to better understand how the classifier works, using `predict` and `predict_proba`. To be precise, we will make up 5 data points with the appropriate 'petal length' and 'petal width', such that they will end up in each of the 5 leaf nodes.
@@ -69,4 +70,12 @@ X_prob = clf1.predict_proba(X_test) # classifier class probabilities
 X_results = pd.concat([pd.DataFrame(X_test), pd.DataFrame(X_prob), pd.Series(X_pred)], axis=1)
 X_results.columns = X.columns.tolist()+['Prob0','Prob1','Pred']
 ```
+
+| Leaf | Petal length | Petal width | Prob0 | Prob1 | Prediction |
+| ---- | ------------ | ----------- | ----- | ----- | ---------- |
+| A    | 0            | 0           | 0     | 1     | 1          |
+| B    | 3            | 0           | 0.979 | 0.021 | 0          |
+| C    | 5            | 0           | 0.333 | 0.667 | 1          |
+| D    | 3            | 2           | 0.333 | 0.667 | 1          |
+| E    | 5            | 2           | 0     | 1     | 1          |
 
