@@ -85,10 +85,114 @@ We observed exactly what we expect. `predict_proba` outputs the proportion of cl
 
 Now let's try to replicate this tree using the CART algorithm described by the `scikit-learn` documentation. For more details, you can look at Part 1 of these notes.
 
-For each level of the tree, I will go through these steps.
+I will go through these steps for each level of the tree:
 
 1. Pick an impure node \\(m\\).
-2. Split the dataset at node \\(m\\) using all possible features, \\(f\\), and all possible threshold, \\(t\\), values starting from the minimum value of \\(f\\) to the maximum in increments of 0.1. The "left" child node will contain samples where \\(f <= t\\) and the "right" child node will contain samples where \\(f > t\\). Measure the quality of the split using the weighted sum of Gini impurities at the child nodes.
+2. Split the dataset at node \\(m\\) using all possible features, \\(f\\), and all threshold values, \\(t\\), starting from the minimum value of \\(f\\) to the maximum in increments of 0.1. The "left" child node will contain samples where \\(f <= t\\) and the "right" child node will contain samples where \\(f > t\\). Measure the quality of the split using the weighted sum of Gini impurities at the child nodes.
 3. Split node \\(m\\) according to the split with the lowest weighted Gini (i.e. the optimal split).
 4. Repeat for all other impure nodes.
 
+## Relevant functions
+
+Functions to calculate the Gini index of a single node and the weighted Gini of a pair of left and right child nodes.
+
+```python
+def gini_index(targets):
+    '''
+    Calculate gini index for binary list (0, 1)
+    '''
+    p0 = sum([x==0 for x in targets]) / len(targets) if len(targets)>0 else 0
+    p1 = 1-p0
+    gini = 1 - (p0**2 + p1**2)
+    return gini
+
+def gini_weighted(targets_left, targets_right):
+    '''
+    Calculate weighted gini of split
+    '''
+    prop_left = len(targets_left) / (len(targets_left)+len(targets_right))
+    prop_right = len(targets_right) / (len(targets_left)+len(targets_right))
+    gini_split = prop_left*gini_index(targets_left) + prop_right*gini_index(targets_right)
+    return gini_split
+```
+
+This function generates a table of the weighted Gini for all splits at the node for each specified feature. For each feature, it splits the node using threshold values starting from the minimum value to the maximum in increments of 0.1.
+
+```python
+def gini_all_splits(data, features, target):
+    '''
+    get results of spliting data by each feature and a range of thresholds
+    '''
+    # split using each feature and each threshold
+    table_split = pd.DataFrame(columns=['Feature','t','gini_left','gini_right','gini_split'])
+    for F in features:
+        t_min, t_max = min(data[F]), max(data[F])
+        step = 0.01
+        t_list = list(np.arange(t_min, t_max+step, step)) # get list of thresholds
+        #t_list.reverse()
+        t_list = [round(x,2) for x in t_list]
+        # split using each threshold and calculate gini
+        for t in t_list:
+            data_left = data[data[F] <= t].reset_index(drop=True)
+            data_right = data[data[F] > t].reset_index(drop=True)
+            gini_left = gini_index(data_left[target])
+            gini_right = gini_index(data_right[target])
+            gini_split = gini_weighted(data_left[target], data_right[target])
+            table_split.loc[len(table_split)] = [F, t, gini_left, gini_right, gini_split]
+    return table_split
+```
+
+This function takes the output of `gini_all_splits` and finds the first split with the minimum weighted Gini for each feature.
+
+```python
+def gini_best_split(data, features, target):
+    '''
+    obtain best split for each feature
+    '''
+    table_split = gini_all_splits(data, features, target) # table of all splits using all features
+    # get best split for each feature
+    table_best_split = pd.DataFrame()
+    for F in features:
+        table_feature = table_split[table_split['Feature']==F].reset_index(drop=True) # subset to focal feature
+        index_min_gini = table_feature.gini_split.argmin() # get index of lowest gini_split
+        best_row = table_feature.iloc[index_min_gini]
+        table_best_split = table_best_split.append(best_row).reset_index(drop=True)
+    return table_best_split
+```
+
+## First split
+
+First we setup the iris dataset as above, by converting it to a binary target to indicate if the sample is 'versicolor' or not.
+
+```python
+iris = load_iris(as_frame=True)
+dfIris = iris.data
+# target is converted to binary
+versicolor = [0 if x==1 else 1 for x in iris.target]
+dfIris['versicolor'] = versicolor
+# define features and target columns
+features = iris.feature_names
+target = 'versicolor'
+```
+
+Let first examine the weighted Gini of all splits output by `gini_all_splits.`
+
+```python
+# get split impurity for all features and thresholds values
+first_split = gini_all_splits(dfIris, features, target)
+# plot
+fig, ax = plt.subplots(figsize=(8, 8))
+sns.lineplot(
+    data=first_split, x='t', y='gini_split', 
+    hue='Feature', palette="colorblind", markers=True)
+ax.set_xlabel(xlabel='Threshold',fontsize=20)
+ax.set_ylabel(ylabel='Gini impurty of split', fontsize=20)
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.legend(prop={'size': 15})
+plt.show()
+```
+
+<figure>
+ 	<img src="/assets/images/06_2021/iris.first_split.png">
+	<figcaption><b>Figure 2.</b>Impurity of first splits for each feature and threshold.</figcaption>
+</figure>
