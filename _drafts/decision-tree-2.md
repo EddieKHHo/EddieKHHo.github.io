@@ -213,3 +213,12 @@ table_best_split = gini_best_split(dfIris, features, target)
 | petal width  | 0.6  | 0         | 0.5        | 0.333      |
 
 As expected, we observe a tie for the lowest weighted Gini (0.333) when splitting using 'petal length' with threshold 1.9 and 'petal width' with threshold 0.6. There are two things of note here. Firstly, we know from the plot above that there are many other threshold values that would give the same weighted Gini of 0.333. The ones shown in the table are just the ones that appear first. Second, the decision classifier created by `scikit-learn` in Figure 1, choose to split by 'petal length' with threshold 2.45, which according to Figure 2 will tie for the weighted Gini score of 0.333. 
+
+It is not clear to me how `scikit-learn` chooses to break ties, however, for our purpose we will choose to split by 'petal length' with threshold 1.9 to more closely match Figure 1. This first split creates two child nodes `s1_left` and `s1_right`. 
+
+```python
+F, t = 'petal length (cm)', 1.9
+s1_left = dfIris[dfIris[F] <= t].reset_index(drop=True)
+s1_right = dfIris[dfIris[F] > t].reset_index(drop=True)
+```
+
