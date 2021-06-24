@@ -191,7 +191,13 @@ Just to repeat, this is not what a typically MSE or MAE curve would look like, t
 
 To evaluate the quality of a split, you would need to consider not just the impurity of a single sub-node, but the impurity at all sub-nodes created by the split and possible even the parent node. The CART algorithm considers all possible splits and keeps the split with the high quality. Similar to the impurity measures, there are various measures for the quality of the split and I will only present two of them. 
 
-Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(N_{m}\\) data points is split into a "left" and a "right" child node. The left node contains dataset \\(S_{m}^{left}\\) with \\(N_{m}^{left}\\) data points and the right node contains dataset  \\(S_{m}^{right}\\) with \\(N_{m}^{right}\\) data points; \\(N_{m}^{left}+N_{m}^{right} = N_{m}\\).
+Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(N_{m}\\) data points. This parent node is split into two child nodes using feature \\(f\\) and threshold value \\(t\\). The "left" child node represents the set \\(S_{m}^{left}\\) of \\(N_{m}^{left}\\) data points where \\(f\\) has a value <= \\(t\\). The "right" child node represents the set \\(S_{m}^{right}\\) of \\(N_{m}^{right}\\) data points where \\(f\\) has a value > \\(t\\). 
+
+## Weighted impurity of child nodes
+
+This seems to be the measure of split quality implemented by `scikit-learn` according to their documentation of decision trees. 
+
+
 
 ## Information gain (IG)
 
