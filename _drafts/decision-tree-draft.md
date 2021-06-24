@@ -1,5 +1,5 @@
 ---
-title: "Notes on decision tree classifiers/regressors"
+title: "Inner workings: decision trees (Part 1)"
 excerpt: "My notes on the algorithm and mathematics of decision tree classifiers and regressors."
 date: 2021-06-24
 last_modified_at: false
@@ -8,7 +8,7 @@ header:
   overlay_filter: 0.5
 ---
 
-
+This post contains some of my notes on decision tree classifiers and regressors. I have split my notes into two parts. The first part will describe the methodology constructing decision trees along with some of the mathematics invoked. The second part will be more code heavy and involve step-by-step construction of a decision tree using the algorithm described by `scikit-learn`. 
 
 # Decision tree
 
@@ -32,10 +32,6 @@ It is useful to first learn about the different parts of a decision tree. At the
 Once a decision tree is learned from training on the data, a prediction is made for new data points by looking at which leaf node they fall on based on their feature values. The prediction for the leaf node is simply the **majority target** for decision tree classifiers or the **mean value of targets** for decision tree regressors. Note that for decision tree regressors, the predicted value will never be outside of the values in the training dataset (i.e. it does not extrapolate).
 
 An addition note for `scikit-learn` users using `DecisionTreeClassifier`. After a model is trained, the `predict` method is giving the majority target at the leaf node. The `predict_proba` method will output the proportion of each target class in the leaf node. 
-
-## Overfitting
-
-Building a tree until all leaves are pure usually causes the model to overfit onto the training dataset. To prevent overfitting, one can perform **pre-pruning** to stop building the tree early on or **post-pruning** to remove or collapse nodes with little information. Some examples of pre-pruning include limiting the max depth of the three, limiting the maximum number of leaves, and requiring a minimum number of data point to continue splitting a node.
 
 # Measures of impurity
 
@@ -206,3 +202,9 @@ IG is used for categorical target variables (decision tree classifiers). I mostl
 $$ IG(S_{m}, f, t) = E(S_{m}) - ( \frac{S_{m}^{left}}{S_{m}}E(S_{m}^{left})+\frac{S_{m}^{right}}{S_{m}}E(S_{m}^{right})  ) $$
 
 The first term in the equation is simply the entropy of the parent node. The second term is the weighted sum of entropies in the child nodes.
+
+# Overfitting
+
+Building a tree until all leaves are pure usually causes the model to overfit onto the training dataset. To prevent overfitting, one can perform **pre-pruning** to stop building the tree early on or **post-pruning** to remove or collapse nodes with little information. Some examples of pre-pruning include limiting the max depth of the three, limiting the maximum number of leaves, and requiring a minimum number of data point to continue splitting a node.
+
+A related method to prevent overfitting is to utilize **ensemble models** of decision trees. One of the most simple and popular method is to construct **random forest models**. However, I will not elaborate on this in this post.
