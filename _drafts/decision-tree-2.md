@@ -228,3 +228,7 @@ This would results in a tree that looks like the one below. I labeled the nodes 
  	<img src="/assets/images/06_2021/iris.first_split.tree.png">
 	<figcaption><b>Figure 3.</b> Decision tree after the first split.</figcaption>
 </figure>
+
+## Second split
+
+Since `s1_left` is a pure leaf node, we only need to split the `s1_right` node.
