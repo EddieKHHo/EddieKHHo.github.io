@@ -236,6 +236,7 @@ Since `s1_left` is a pure leaf node, we only need to split the `s1_right` node.
 ```python
 table_best_split = gini_best_split(s1_right, features, target)
 ```
+
 | Feature      | t    | Gini_left | Gini_right | Gini_split |
 | ------------ | ---- | --------- | ---------- | ---------- |
 | sepal length | 6.1  | 0.369     | 0.413      | 0.393      |
@@ -271,6 +272,7 @@ F, t = 'petal length (cm)', 4.9
 s3A_left = s2_left[s2_left[F] <= t].reset_index(drop=True)
 s3A_right = s2_left[s2_left[F] > t].reset_index(drop=True)
 ```
+
 | Feature      | t    | Gini_left | Gini_right | Gini_split |
 | ------------ | ---- | --------- | ---------- | ---------- |
 | sepal length | 7.0  | 0.14      | 0          | 0.137      |
@@ -288,6 +290,7 @@ F, t = 'petal length (cm)', 4.8
 s3B_left = s2_right[s2_right[F] <= t].reset_index(drop=True)
 s3B_right = s2_right[s2_right[F] > t].reset_index(drop=True)
 ```
+
 | Feature      | t    | Gini_left | Gini_right | Gini_split |
 | ------------ | ---- | --------- | ---------- | ---------- |
 | sepal length | 5.9  | 0.245     | 0          | 0.037      |
