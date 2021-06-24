@@ -12,3 +12,4 @@ This post contains the second part of my notes on decision tree classifiers and 
 
 # Simplified decision tree of Iris dataset
 
+Here I will construct a decision tree classifier using the iris dataset. To simplify the tree, I will convert the target variable from having three classes {0: setosa, 1: versicolor, 2: virginica} to just two classes {0: not versicolor, 1: is versicolor). 
