@@ -79,3 +79,5 @@ X_results.columns = X.columns.tolist()+['Prob0','Prob1','Pred']
 |  D   |      3       |      2      | 0.333 | 0.667 |     1      |
 |  E   |      5       |      2      |   0   |   1   |     1      |
 
+We observed exactly what we expect. `predict_proba` outputs the proportion of class 0 and class 1 at each leaf node according the their counts. `predict` outputs the prediction based on the class that is the majority at the leaf.
+
