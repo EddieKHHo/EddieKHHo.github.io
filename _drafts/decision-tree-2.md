@@ -88,7 +88,7 @@ Now let's try to replicate this tree using the CART algorithm described by the `
 For each level of the tree, I will go through these steps.
 
 1. Pick an impure node \\(m\\).
-2. Split the dataset at node \\(m\\) using all possible features, \\(f\\), and all possible threshold, \\(t\\), values starting from the minimum value of the \\(f\\) to the maximum in increments of 0.1. The "left" child node will contain samples where \\(f <= t\\) and the "right" child node will contain samples where \\(f > t\\). Measure the quality of the split using the weighted sum of Gin impurities at the child nodes.
+2. Split the dataset at node \\(m\\) using all possible features, \\(f\\), and all possible threshold, \\(t\\), values starting from the minimum value of \\(f\\) to the maximum in increments of 0.1. The "left" child node will contain samples where \\(f <= t\\) and the "right" child node will contain samples where \\(f > t\\). Measure the quality of the split using the weighted sum of Gini impurities at the child nodes.
 3. Split node \\(m\\) according to the split with the lowest weighted Gini (i.e. the optimal split).
 4. Repeat for all other impure nodes.
 
