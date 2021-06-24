@@ -232,3 +232,55 @@ This would results in a tree that looks like the one below. I labeled the nodes 
 ## Second split
 
 Since `s1_left` is a pure leaf node, we only need to split the `s1_right` node.
+
+```python
+table_best_split = gini_best_split(s1_right, features, target)
+```
+| Feature      | t    | Gini_left | Gini_right | Gini_split |
+| ------------ | ---- | --------- | ---------- | ---------- |
+| sepal length | 6.1  | 0.369     | 0.413      | 0.393      |
+| sepal width  | 2.4  | 0.18      | 0.496      | 0.464      |
+| petal length | 4.7  | 0.043     | 0.194      | 0.126      |
+| petal width  | 1.7  | 0.168     | 0.043      | 0.110      |
+
+Splitting by 'petal width' using threshold 1.7 would be the optimal split here and results in the child nodes `s2_left` and `s2_right`.
+
+```python
+F, t = 'petal width (cm)', 1.7
+s2_left = s1_right[s1_right[F] <= t].reset_index(drop=True)
+s2_right = s1_right[s1_right[F] > t].reset_index(drop=True)
+```
+
+The result decision tree would look like this:
+
+<figure>
+ 	<img src="/assets/images/06_2021/iris.second_split.tree.png">
+	<figcaption><b>Figure 3.</b> Decision tree after the second split.</figcaption>
+</figure>
+
+## Third split
+
+Both `s2_left` and `s2_right` are impure, so we would need to continue splitting both of them.
+
+For `s2_left`, 
+
+```python
+table_best_split = gini_best_split(s2_left, features, target)
+
+F, t = 'petal length (cm)', 4.9
+s3A_left = s2_left[s2_left[F] <= t].reset_index(drop=True)
+s3A_right = s2_left[s2_left[F] > t].reset_index(drop=True)
+```
+
+
+
+For `s2_right`
+
+```python
+table_best_split = gini_best_split(s2_right, features, target)
+
+F, t = 'petal length (cm)', 4.8
+s3B_left = s2_right[s2_right[F] <= t].reset_index(drop=True)
+s3B_right = s2_right[s2_right[F] > t].reset_index(drop=True)
+```
+
