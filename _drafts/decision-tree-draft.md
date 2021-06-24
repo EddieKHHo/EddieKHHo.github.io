@@ -193,11 +193,11 @@ To evaluate the quality of a split, you would need to consider not just the impu
 
 Lets assume that the parent node \\(m\\) containing dataset \\(S_{m}\\) with \\(N_{m}\\) data points. This parent node is split into two child nodes using feature \\(f\\) and threshold value \\(t\\). The "left" child node represents the set \\(S_{m}^{left}\\) of \\(N_{m}^{left}\\) data points where \\(f\\) has a value <= \\(t\\). The "right" child node represents the set \\(S_{m}^{right}\\) of \\(N_{m}^{right}\\) data points where \\(f\\) has a value > \\(t\\). 
 
-## Weighted impurity of child nodes
+## Weighted sum of impurities
 
-This seems to be the measure of split quality implemented by `scikit-learn` according to their documentation of decision trees. 
+This seems to be the measure of split quality implemented by `scikit-learn` according to their documentation of decision trees. The quality of split at parent node \\(m\\) given feature \\(f\\) and threshold \\(t\\), \\(G(S_{m}, f, t)\\) is simply the sum of the impurities of its child nodes weighted by the proportion of data points in each child node. As far as I can tell, you can utilize \\(G(S_{m}, f, t)\\)  to evaluate the quality of the split for categorical and continuous measures of impurities. However, I most often see this associated with the calculated of Gini impurities.
 
-
+$$ G(S_{m}, f, t)= ( \frac{S_{m}^{left}}{S_{m}}H(S_{m}^{left})+\frac{S_{m}^{right}}{S_{m}}H(S_{m}^{right})  ) $$
 
 ## Information gain (IG)
 
