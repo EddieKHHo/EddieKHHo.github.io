@@ -271,7 +271,12 @@ F, t = 'petal length (cm)', 4.9
 s3A_left = s2_left[s2_left[F] <= t].reset_index(drop=True)
 s3A_right = s2_left[s2_left[F] > t].reset_index(drop=True)
 ```
-
+| Feature      | t    | Gini_left | Gini_right | Gini_split |
+| ------------ | ---- | --------- | ---------- | ---------- |
+| sepal length | 6.1  | 0.369     | 0.413      | 0.393      |
+| sepal width  | 2.4  | 0.18      | 0.496      | 0.464      |
+| petal length | 4.7  | 0.043     | 0.194      | 0.126      |
+| petal width  | 1.7  | 0.168     | 0.043      | 0.110      |
 
 
 For `s2_right`
@@ -283,4 +288,9 @@ F, t = 'petal length (cm)', 4.8
 s3B_left = s2_right[s2_right[F] <= t].reset_index(drop=True)
 s3B_right = s2_right[s2_right[F] > t].reset_index(drop=True)
 ```
-
+| Feature      | t    | Gini_left | Gini_right | Gini_split |
+| ------------ | ---- | --------- | ---------- | ---------- |
+| sepal length | 6.1  | 0.369     | 0.413      | 0.393      |
+| sepal width  | 2.4  | 0.18      | 0.496      | 0.464      |
+| petal length | 4.7  | 0.043     | 0.194      | 0.126      |
+| petal width  | 1.7  | 0.168     | 0.043      | 0.110      |
