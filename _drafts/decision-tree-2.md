@@ -301,3 +301,11 @@ The resulting tree after all splits:
  	<img src="/assets/images/06_2021/iris.third_split.tree.png">
 	<figcaption><b>Figure 3.</b> Decision tree after the all splits.</figcaption>
 </figure>
+
+
+
+<figure class="half">
+    <img src="/assets/images/06_2021/iris.classifier.png">
+    <img src="/assets/images/06_2021/iris.third_split.tree.png">
+	<figcaption><b>Figure 4.</b> Decision tree after the all splits.
+</figure>
