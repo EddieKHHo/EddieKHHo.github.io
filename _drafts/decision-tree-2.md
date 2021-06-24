@@ -8,7 +8,7 @@ header:
   overlay_filter: 0.5
 ---
 
-This post contains the second part of my notes on decision tree classifiers and regressors. You can have a look of part 1 here. The goal in this post is to used what I learned in part 1 and construct a decision tree step-by-step. I will utilize the algorithm laid out by the `scikit-learn` documentation and check that my tree matches the tree constructed using `scikit-learn`.
+This post contains the second part of my notes on decision tree classifiers and regressors. The goal in this post is to used what I learned in Part 1 and construct a decision tree step-by-step. I will utilize the algorithm laid out by the `scikit-learn` documentation and check that my tree matches the tree constructed using `scikit-learn`.
 
 # Packages
 
@@ -80,4 +80,15 @@ X_results.columns = X.columns.tolist()+['Prob0','Prob1','Pred']
 |  E   |      5       |      2      |   0   |   1   |     1      |
 
 We observed exactly what we expect. `predict_proba` outputs the proportion of class 0 and class 1 at each leaf node according the their counts. `predict` outputs the prediction based on the class that is the majority at the leaf.
+
+# Step-by-step decision tree construction
+
+Now let's try to replicate this tree using the CART algorithm described by the `scikit-learn` documentation. For more details, you can look at Part 1 of these notes.
+
+For each level of the tree, I will go through these steps.
+
+1. Pick an impure node \\(m\\).
+2. Split the dataset at node \\(m\\) using all possible features, \\(f\\), and all possible threshold, \\(t\\), values starting from the minimum value of the \\(f\\) to the maximum in increments of 0.1. The "left" child node will contain samples where \\(f <= t\\) and the "right" child node will contain samples where \\(f > t\\). Measure the quality of the split using the weighted sum of Gin impurities at the child nodes.
+3. Split node \\(m\\) according to the split with the lowest weighted Gini (i.e. the optimal split).
+4. Repeat for all other impure nodes.
 
