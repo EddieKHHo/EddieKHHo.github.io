@@ -332,7 +332,7 @@ s3B_right = s2_right[s2_right[F] > t].reset_index(drop=True)
 The resulting tree after all splits:
 
 <figure>
- 	<img src="/assets/images/06_2021/iris.third_split.tree.png">
+ 	<img src="/assets/images/06_2021/iris.s1_right_split.png">
 	<figcaption><b>Figure 6.</b> Decision tree after the all splits.</figcaption>
 </figure>
 
