@@ -239,7 +239,29 @@ This would results in a tree that looks like the one below. I labeled the nodes 
 
 ## Second split
 
-Since `s1_left` is a pure leaf node, we only need to split the `s1_right` node.
+Since `s1_left` is a pure leaf node, we only need to split the `s1_right` node. Let's examine the impurity of all the splits at`s1_right`.
+
+```python
+s1_right_split = gini_all_splits(s1_right, features, target)
+
+fig, ax = plt.subplots(figsize=(8, 8))
+sns.lineplot(
+    data=s1_right_split, x='t', y='gini_split', 
+    hue='Feature', palette="colorblind", markers=True)
+ax.set_xlabel(xlabel='Threshold',fontsize=20)
+ax.set_ylabel(ylabel='Gini impurty of split', fontsize=20)
+ax.tick_params(axis='both', which='major', labelsize=18)
+ax.legend(prop={'size': 15})
+plt.savefig('images/iris.s1_right_split.png', bbox_inches='tight')
+plt.show()
+```
+
+<figure>
+ 	<img src="/assets/images/06_2021/iris.second_split.tree.png">
+	<figcaption><b>Figure 4.</b> Decision tree after the second split.</figcaption>
+</figure>
+
+
 
 ```python
 table_best_split = gini_best_split(s1_right, features, target)
@@ -264,8 +286,9 @@ The resulting decision tree would look like this:
 
 <figure>
  	<img src="/assets/images/06_2021/iris.second_split.tree.png">
-	<figcaption><b>Figure 3.</b> Decision tree after the second split.</figcaption>
+	<figcaption><b>Figure 5.</b> Decision tree after the second split.</figcaption>
 </figure>
+
 
 ## Third split
 
@@ -310,7 +333,7 @@ The resulting tree after all splits:
 
 <figure>
  	<img src="/assets/images/06_2021/iris.third_split.tree.png">
-	<figcaption><b>Figure 4.</b> Decision tree after the all splits.</figcaption>
+	<figcaption><b>Figure 6.</b> Decision tree after the all splits.</figcaption>
 </figure>
 
 Using just a few custom functions, we have successfully reconstructed the decision tree created by `scikit-learn`. There are a few differences with regards to the threshold values used when splitting note but that is just because there is always a range of threshold values that would result in the exact same split.
