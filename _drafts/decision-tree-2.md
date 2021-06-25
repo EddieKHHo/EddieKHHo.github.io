@@ -257,8 +257,8 @@ plt.show()
 ```
 
 <figure>
- 	<img src="/assets/images/06_2021/iris.second_split.tree.png">
-	<figcaption><b>Figure 4.</b> Decision tree after the second split.</figcaption>
+ 	<img src="/assets/images/06_2021/iris.s1_right_split.png">
+	<figcaption><b>Figure 4.</b> Impurity of splits for s1_right.</figcaption>
 </figure>
 
 
@@ -332,9 +332,10 @@ s3B_right = s2_right[s2_right[F] > t].reset_index(drop=True)
 The resulting tree after all splits:
 
 <figure>
- 	<img src="/assets/images/06_2021/iris.s1_right_split.png">
+ 	<img src="/assets/images/06_2021/iris.third_split.tree.png">
 	<figcaption><b>Figure 6.</b> Decision tree after the all splits.</figcaption>
 </figure>
+
 
 Using just a few custom functions, we have successfully reconstructed the decision tree created by `scikit-learn`. There are a few differences with regards to the threshold values used when splitting note but that is just because there is always a range of threshold values that would result in the exact same split.
 
