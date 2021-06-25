@@ -1,6 +1,6 @@
 ---
 title: "Inner workings: decision trees (Part 2)"
-excerpt: "My notes on the algorithm and mathematics of decision tree classifiers and regressors."
+excerpt: "Step-by-step construction of a decision tree using the Iris dataset."
 date: 2021-06-24
 last_modified_at: false
 header:
