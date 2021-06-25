@@ -345,7 +345,7 @@ Overall, I found this a useful exercise to get a deeper understanding of how a d
 
 # Construct a continuous decision tree
 
-Just as a proof of concept, you can treat the target as a continuous variable, rather than a categorical variable and obtain the same tree. The only difference is that instead of using the Gini index as a measure of impurity, you would use something like the mean squared error or the mean absolute error (described in [Part 1]({% post_url 2021-06-24-Decision-tree-part1 %}){:target="_blank"}).
+Just as a proof of concept, you can treat the target as a continuous variable, rather than a categorical variable, and obtain the same tree. The only difference is that instead of using the Gini index as a measure of impurity, you would use something like the mean squared error or the mean absolute error (described in [Part 1]({% post_url 2021-06-24-Decision-tree-part1 %}){:target="_blank"}).
 
 Mean squared error (MSE):
 
