@@ -96,6 +96,14 @@ I will go through these steps for each level of the tree:
 
 Functions to calculate the Gini index of a single node and the weighted Gini of a pair of left and right child nodes.
 
+Gini index:
+
+$$ H(S_{m})=1-\sum_{k} p_{m,k}^{2} $$
+
+Weight Gini:
+
+$$ G(S_{m}, f, t)= \frac{S_{m}^{left}}{S_{m}}H(S_{m}^{left})+\frac{S_{m}^{right}}{S_{m}}H(S_{m}^{right}) $$
+
 ```python
 def gini_index(targets):
     '''
