@@ -355,7 +355,7 @@ Mean absolute error (MAE):
 
 $$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} |y-\tilde{y}| $$
 
-Here is the analogous set of functions to perform a manual construct of a continuous decision tree using the MSE as the measure of impurity. If you follow the same steps as above, you would get the exact same decision tree at the end.
+Here is the analogous set of functions to perform a step-by-step construction of a continuous decision tree using MSE as the measure of impurity. If you follow the same steps as above, you would get the exact same decision tree at the end.
 
 ```python
 def MSE(targets):
