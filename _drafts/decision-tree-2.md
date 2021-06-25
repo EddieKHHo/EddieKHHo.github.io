@@ -261,7 +261,9 @@ plt.show()
 	<figcaption><b>Figure 4.</b> Impurity of splits for s1_right.</figcaption>
 </figure>
 
+We observe that the best split is achieved by 'petal width'. Similar to Figure 3, the 'sepal' traits are not very useful for splitting the dataset.
 
+Now, let's find the threshold and features that give the optimal split.
 
 ```python
 table_best_split = gini_best_split(s1_right, features, target)
