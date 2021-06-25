@@ -1,5 +1,5 @@
 ---
-title: "Inner workings: decision trees (Part 2)"
+title: "Inner workings: Decision trees (Part 2)"
 excerpt: "Step-by-step construction of a decision tree using the Iris dataset."
 date: 2021-06-24
 last_modified_at: false
