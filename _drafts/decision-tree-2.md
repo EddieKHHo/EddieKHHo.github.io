@@ -316,3 +316,74 @@ The resulting tree after all splits:
 Using just a few custom functions, we have successfully reconstructed the decision tree created by `scikit-learn`. There are a few differences with regards to the threshold values used when splitting note but that is just because there is always a range of threshold values that would result in the exact same split.
 
 Overall, I found this a useful exercise to get a deeper understanding of how a decision tree classifier is created. Obviously, the functions that I wrote (e.g. `gini_all_splits`, `gini_best_split`) are not the most efficient; they are actually quite slow when there are many features. There are probably more clever ways to find the local optimum split than just going through all values in a range but that is out of the scope for this post.
+
+## Construct continuous decision tree
+
+Just as a proof of concept, you can treat the target as a continuous variable, rather than a categorical variable and obtain the same tree. The only difference is that instead of using the Gini index as a measure of impurity, you would use something like the mean squared error or the mean absolute error (described in [Part 1]({% post_url 2021-06-24-Decision-tree-part1 %}){:target="_blank"}).
+
+Mean squared error (MSE):
+
+$$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} (y-\bar{y})^{2} $$
+
+Mean absolute error (MAE):
+
+$$H(S_{m}) = \frac{1}{N_{m}} \sum_{y} |y-\tilde{y}| $$
+
+Here is the analogous set of functions to perform a manual construct of a continuous decision tree using the MSE as the measure of impurity. If you follow the same steps as above, you would get the exact same decision tree at the end.
+
+```python
+def MSE(targets):
+    '''
+    Calculate mean squared error given list of target values
+    '''
+    mean_target = np.mean(targets)
+    mse = sum([(x-mean_target)**2 for x in targets]) / len(targets) if len(targets)>0 else 0
+    return mse
+
+def MSE_weighted(targets_left, targets_right):
+    '''
+    Calculate weighted mse of split
+    '''
+    prop_left = len(targets_left) / (len(targets_left)+len(targets_right))
+    prop_right = len(targets_right) / (len(targets_left)+len(targets_right))
+    mse_split = prop_left*MSE(targets_left) + prop_right*MSE(targets_right)
+    return mse_split
+
+def mse_all_splites(data, features, target):
+    '''
+    Results of spliting data by each feature and a range of thresholds
+    '''
+    # split using each feature and each threshold
+    table_split = pd.DataFrame(columns=['Feature','t','mse_left','mse_right','mse_split'])
+    for F in features:
+        t_min, t_max = min(data[F]), max(data[F])
+        step = 0.1
+        t_list = list(np.arange(t_min, t_max+step, step)) # get list of thresholds
+        t_list.reverse()
+        t_list = [round(x,1) for x in t_list]
+        # split using each threshold and calculate gini
+        for t in t_list:
+            data_left = data[data[F] <= t].reset_index(drop=True)
+            data_right = data[data[F] > t].reset_index(drop=True)
+            mse_left = MSE(data_left[target])
+            mse_right = MSE(data_right[target])
+            mse_split = MSE_weighted(data_left[target], data_right[target])
+            table_split.loc[len(table_split)] = [F, t, mse_left, mse_right, mse_split]
+    return table_split
+
+
+def mse_best_split(data, features, target):
+    '''
+    obtain best split for each feature
+    '''
+    table_split = mse_all_splites(data, features, target) # table of all splits using all features
+    # get best split for each feature
+    table_best_split = pd.DataFrame()
+    for F in features:
+        table_feature = table_split[table_split['Feature']==F].reset_index(drop=True) # subset to focal feature
+        index_min_mse = table_feature.mse_split.argmin() # get index of lowest gini_split
+        best_row = table_feature.iloc[index_min_mse]
+        table_best_split = table_best_split.append(best_row).reset_index(drop=True)
+    return table_best_split
+```
+
