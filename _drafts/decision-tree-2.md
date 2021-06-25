@@ -8,7 +8,7 @@ header:
   overlay_filter: 0.5
 ---
 
-This post contains the second part of my notes on decision tree classifiers and regressors. The goal in this post is to used what I learned in Part 1 and construct a decision tree step-by-step. I will utilize the algorithm laid out by the `scikit-learn` documentation and check that my tree matches the tree constructed using `scikit-learn`.
+This post contains the second part of my notes on decision tree classifiers and regressors. The goal in this post is to used what I learned in [Part 1]({% post_url 2021-06-24-Decision-tree-part1 %}){:target="_blank"} and construct a decision tree step-by-step. I will utilize the algorithm laid out by the `scikit-learn` documentation and check that my tree matches the tree constructed using `scikit-learn`.
 
 # Packages
 
@@ -310,8 +310,9 @@ The resulting tree after all splits:
 
 <figure>
  	<img src="/assets/images/06_2021/iris.third_split.tree.png">
-	<figcaption><b>Figure 3.</b> Decision tree after the all splits.</figcaption>
+	<figcaption><b>Figure 4.</b> Decision tree after the all splits.</figcaption>
 </figure>
+
 Using just a few custom functions, we have successfully reconstructed the decision tree created by `scikit-learn`. There are a few differences with regards to the threshold values used when splitting note but that is just because there is always a range of threshold values that would result in the exact same split.
 
-Overall, I found this a useful exercise to get a deeper understanding of how a decision tree classifier is created.
+Overall, I found this a useful exercise to get a deeper understanding of how a decision tree classifier is created. Obviously, the functions that I wrote (e.g. `gini_all_splits`, `gini_best_split`) are not the most efficient; they are actually quite slow when there are many features. There are probably more clever ways to find the local optimum split than just going through all values in a range but that is out of the scope for this post.
