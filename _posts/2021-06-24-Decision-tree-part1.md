@@ -8,7 +8,7 @@ header:
   overlay_filter: 0.5
 ---
 
-This post contains my notes on decision tree classifiers and regressors. I have split my notes into two parts. The first part will describe the methodology constructing decision trees along with some of the mathematics involved. The second part will be more code heavy and involve step-by-step construction of a decision tree using the algorithm described by `scikit-learn`. 
+This post contains my notes on decision tree classifiers and regressors. I have split my notes into two parts. The first part will describe the methodology constructing decision trees along with some of the mathematics involved. The [second part]({% post_url 2021-06-25-Decision-tree-part2 %}){:target="_blank"} will be more code heavy and involve step-by-step construction of a decision tree using the algorithm described by `scikit-learn`. 
 
 # Decision tree
 
