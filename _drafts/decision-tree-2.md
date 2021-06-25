@@ -81,7 +81,7 @@ X_results.columns = X.columns.tolist()+['Prob0','Prob1','Pred']
 
 We observed exactly what we expect. `predict_proba` outputs the proportion of class 0 and class 1 at each leaf node according the their counts. `predict` outputs the prediction based on the class that is the majority at the leaf.
 
-# Construct categorical decision tree 
+# Construct a categorical decision tree 
 
 Now let's try to replicate this tree using the CART algorithm described by the `scikit-learn` documentation. For more details, you can look at Part 1 of these notes.
 
@@ -317,7 +317,7 @@ Using just a few custom functions, we have successfully reconstructed the decisi
 
 Overall, I found this a useful exercise to get a deeper understanding of how a decision tree classifier is created. Obviously, the functions that I wrote (e.g. `gini_all_splits`, `gini_best_split`) are not the most efficient; they are actually quite slow when there are many features. There are probably more clever ways to find the local optimum split than just going through all values in a range but that is out of the scope for this post.
 
-# Construct continuous decision tree
+# Construct a continuous decision tree
 
 Just as a proof of concept, you can treat the target as a continuous variable, rather than a categorical variable and obtain the same tree. The only difference is that instead of using the Gini index as a measure of impurity, you would use something like the mean squared error or the mean absolute error (described in [Part 1]({% post_url 2021-06-24-Decision-tree-part1 %}){:target="_blank"}).
 
