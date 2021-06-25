@@ -81,7 +81,7 @@ X_results.columns = X.columns.tolist()+['Prob0','Prob1','Pred']
 
 We observed exactly what we expect. `predict_proba` outputs the proportion of class 0 and class 1 at each leaf node according the their counts. `predict` outputs the prediction based on the class that is the majority at the leaf.
 
-# Step-by-step decision tree construction
+# Construct categorical decision tree 
 
 Now let's try to replicate this tree using the CART algorithm described by the `scikit-learn` documentation. For more details, you can look at Part 1 of these notes.
 
