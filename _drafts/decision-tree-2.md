@@ -94,7 +94,7 @@ I will go through these steps for each level of the tree:
 
 ## Relevant functions
 
-Functions to calculate the Gini index of a single node and the weighted Gini of a pair of left and right child nodes.
+Functions to calculate the Gini index of a single node and the weighted Gini of a pair of left and right child nodes (described in [Part 1]({% post_url 2021-06-24-Decision-tree-part1 %}){:target="_blank"}).
 
 Gini index:
 
@@ -312,4 +312,6 @@ The resulting tree after all splits:
  	<img src="/assets/images/06_2021/iris.third_split.tree.png">
 	<figcaption><b>Figure 3.</b> Decision tree after the all splits.</figcaption>
 </figure>
-Using just a few custom functions, we have successfully reconstructed the decision tree created by `scikit-learn`. There are a few differences with regards to the threshold values used when splitting note but that is just because there is always a range of threshold values that would result in the exact same split. 
+Using just a few custom functions, we have successfully reconstructed the decision tree created by `scikit-learn`. There are a few differences with regards to the threshold values used when splitting note but that is just because there is always a range of threshold values that would result in the exact same split.
+
+Overall, I found this a useful exercise to get a deeper understanding of how a decision tree classifier is created.
