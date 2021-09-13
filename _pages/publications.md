@@ -11,9 +11,15 @@ header:
 
 # [Google scholar link](https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate){:target="blank"}
 
+## 2021
+**Ho EKH**, Bellis ES, Calkins J, Adrion JR, Latta IV LC and Schaack S. Engines of change: Transposable element mutation rates are high and variable within *Daphnia magna*. *PLOS Genetics*. *In review*
+
+**Ho EKH** and Schaack S. Intraspecific variation in the rates of mutations causing structural variation in *Daphnia magna*. *Genome Biology and Evolution*. *In review*
+
+
 ## 2020
 
-**Ho EKH**, Macrae, F, Latta IV LC, Mcllroy P, Ebert D, Fields PD, Benner MJ and Schaack S. 2020. High and highly variable spontaneous mutations rates in *Daphnia*. *Molecular Biology and Evolution* 37: 3258 – 3266. [Link](https://doi.org/10.1093/molbev/msaa142){:target="blank"}
+**Ho EKH**, Macrae F, Latta IV LC, Mcllroy P, Ebert D, Fields PD, Benner MJ and Schaack S. 2020. High and highly variable spontaneous mutations rates in *Daphnia*. *Molecular Biology and Evolution* 37: 3258 – 3266. [Link](https://doi.org/10.1093/molbev/msaa142){:target="blank"}
 
 ## 2019
 
