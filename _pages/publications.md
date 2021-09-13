@@ -12,6 +12,8 @@ header:
 # [Google scholar link](https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate){:target="blank"}
 
 ## 2021
+Grieshop K, **Ho EKH**, Kasimatis KR. Dominance reversals, antagonistic pleiotropy, and the maintenance of genetic variation. *arXiv*. [Link](https://arxiv.org/abs/2109.01571)
+
 **Ho EKH**, Bellis ES, Calkins J, Adrion JR, Latta IV LC and Schaack S. Engines of change: Transposable element mutation rates are high and variable within *Daphnia magna*. *PLOS Genetics*. *In review*
 
 **Ho EKH** and Schaack S. Intraspecific variation in the rates of mutations causing structural variation in *Daphnia magna*. *Genome Biology and Evolution*. *In review*
