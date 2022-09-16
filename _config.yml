@@ -96,7 +96,7 @@ analytics:
 author:
   name             : #""
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Bioinformatician / Postdoctoral researcher studying mutation rates and their genomic effects."
+  bio              : "Bioinformatician developing novel algorithms to detect tumour DNA in liquid biopsies."
   location         :
   email            :
   links:
