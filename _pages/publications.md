@@ -12,7 +12,7 @@ header:
 # [Google scholar link](https://scholar.google.com/citations?hl=en&user=HNAsbKoAAAAJ&view_op=list_works&sortby=pubdate){:target="blank"}
 
 ## 2022
-Scheffer H, Coate JE, **Ho EKH**, Schaack S. 2022. Thermal stress and mutation accumulation increase heat shock protein expression in *Daphnia*. Evolutionary Ecology*. [Link](https://doi.org/10.1007/s10682-022-10209-1){:target="blank"}
+Scheffer H, Coate JE, **Ho EKH**, Schaack S. 2022. Thermal stress and mutation accumulation increase heat shock protein expression in *Daphnia*. *Evolutionary Ecology*. [Link](https://doi.org/10.1007/s10682-022-10209-1){:target="blank"}
 
 ## 2021
 Grieshop K, **Ho EKH** and Kasimatis KR. 2021. Dominance reversals, antagonistic pleiotropy, and the maintenance of genetic variation. *arXiv*. [Link](https://arxiv.org/abs/2109.01571)
